@@ -37,11 +37,8 @@ function onRemoteTrack(track) {
       }
       changeList[participant] = speakerCount;
       console.log('INFO: Participants: ' + JSON.stringify(changeList));
-      // lastParticipant = participant;
     }
 
-    //var remoteVideo = "#remoteVideo" +speakerCount;
-    //var remoteAudio = "#remoteAudio" +speakerCount;
     var remoteVideo = "#remoteVideo" +changeList[participant];
     var remoteAudio = "#remoteAudio" +changeList[participant];
 
@@ -70,8 +67,6 @@ function onRemoteTrackRemove(track) {
       speakerRemoved = changeList[participant];
       delete changeList[participant];
     }
-    //speakerRemoved = changeList[participant];
-    delete changeList[participant];
     console.log('INFO: Participants after track remove: ' + JSON.stringify(changeList));
 }
 
