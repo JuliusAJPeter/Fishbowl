@@ -4,6 +4,7 @@ let room = null;
 const remoteTracks = {};
 const changeList = {};
 let speakerCount = 1;
+let speakerRemoved = 0;
 let lastParticipant = null;
 
 /**
@@ -15,8 +16,10 @@ function onRemoteTrack(track) {
         return;
     }
     const participant = track.getParticipantId();
-    if (lastParticipant == null)
-	     lastParticipant = participant;
+    if (lastParticipant == null) {
+        lastParticipant = participant;
+        changeList[participant] = speakerCount;
+    }
 
     if (!remoteTracks[participant]) {
         remoteTracks[participant] = [];
@@ -24,16 +27,23 @@ function onRemoteTrack(track) {
     const idx = remoteTracks[participant].push(track);
     const id = participant + track.getType() + idx;
 
-    if (participant != lastParticipant){
-	     speakerCount = speakerCount+1;
-	     changeList
-	     console.log('INFO: Participant: ' +participant);
-	     console.log('INFO: speakerCount: ' +speakerCount);
-	     lastParticipant = participant;
+    if (!(participant in changeList)){
+      if (speakerRemoved != 0) {
+        speakerCount = speakerRemoved;
+	      speakerRemoved = 0;
+      }
+      else {
+        speakerCount = speakerCount+1;
+      }
+      changeList[participant] = speakerCount;
+      console.log('INFO: Participants: ' + JSON.stringify(changeList));
+      // lastParticipant = participant;
     }
 
-    var remoteVideo = "#remoteVideo"+speakerCount;
-    var remoteAudio = "#remoteAudio"+speakerCount;
+    //var remoteVideo = "#remoteVideo" +speakerCount;
+    //var remoteAudio = "#remoteAudio" +speakerCount;
+    var remoteVideo = "#remoteVideo" +changeList[participant];
+    var remoteAudio = "#remoteAudio" +changeList[participant];
 
     if (track.getType() === 'video') {
         /*$('body').append(
@@ -50,6 +60,18 @@ function onRemoteTrack(track) {
     console.log('INFO: Remote track added!');
 }
 
+function onRemoteTrackRemove(track) {
+    console.log(`INFO: Track removed!${track}`);
+    const participant = track.getParticipantId();
+    if (participant in changeList) {
+      speakerRemoved = changeList[participant];
+      delete changeList[participant];
+    }
+    //speakerRemoved = changeList[participant];
+    delete changeList[participant];
+    console.log('INFO: Participants after track remove: ' + JSON.stringify(changeList));
+}
+
 /**
  * That function is executed when the conference is joined
  */
@@ -63,12 +85,8 @@ function onConferenceJoined() {
 function onConnectionSuccess() {
     room = connection.initJitsiConference('aaltofishbowlconference', interfaceConfig);
     room.on(JitsiMeetJS.events.conference.TRACK_ADDED, onRemoteTrack);
-    room.on(JitsiMeetJS.events.conference.TRACK_REMOVED, track => {
-        console.log(`INFO: Track removed!${track}`);
-    });
-    room.on(
-        JitsiMeetJS.events.conference.CONFERENCE_JOINED,
-        onConferenceJoined);
+    room.on(JitsiMeetJS.events.conference.TRACK_REMOVED, onRemoteTrackRemove);
+    room.on(JitsiMeetJS.events.conference.CONFERENCE_JOINED,onConferenceJoined);
     room.on(JitsiMeetJS.events.conference.USER_JOINED, id => {
         console.log('INFO: User join');
         remoteTracks[id] = [];
@@ -99,6 +117,17 @@ function disconnect() {
         disconnect);
 }
 
+/**
+ *
+ */
+function unload() {
+    room.leave();
+    connection.disconnect();
+}
+
+$(window).bind('beforeunload', unload);
+$(window).bind('unload', unload);
+
 JitsiMeetJS.init(config)
     .then(() => {
         connection = new JitsiMeetJS.JitsiConnection(null, null, config);
@@ -115,5 +144,4 @@ JitsiMeetJS.init(config)
 
         connection.connect();
     })
-    .catch(error => console.log(error));
-
+    .catch(error => console.log('ERROR: JitsiMeetJS.init says ' +error));
