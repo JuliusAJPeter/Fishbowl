@@ -60,6 +60,9 @@ function onRemoteTrack(track) {
     console.log('INFO: Remote track added!');
 }
 
+/**
+ * function is called when remote track (audio or video) is removed
+ */
 function onRemoteTrackRemove(track) {
     console.log(`INFO: Track removed!${track}`);
     const participant = track.getParticipantId();
@@ -73,14 +76,14 @@ function onRemoteTrackRemove(track) {
 }
 
 /**
- * That function is executed when the conference is joined
+ * function is executed when the conference is joined
  */
 function onConferenceJoined() {
     console.log('INFO: Conference joined in silence!');
 }
 
 /**
- * That function is called when connection is established successfully
+ * function is called when connection is established successfully
  */
 function onConnectionSuccess() {
     room = connection.initJitsiConference('aaltofishbowlconference', interfaceConfig);
@@ -95,14 +98,14 @@ function onConnectionSuccess() {
 }
 
 /**
- * This function is called when the connection fail.
+ * function is called when the connection fails.
  */
 function onConnectionFailed() {
     console.error('WARN: Connection Failed!');
 }
 
 /**
- * This function is called when we disconnect.
+ * function is called when disconnect. NOT FULLY IMPLEMENTED YET.
  */
 function disconnect() {
     console.log('INFO: Connection disconnect!');
@@ -118,7 +121,7 @@ function disconnect() {
 }
 
 /**
- *
+ * function called when windiw is closed.
  */
 function unload() {
     room.leave();
