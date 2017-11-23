@@ -3,6 +3,7 @@ let connection = null;
 let room = null;
 const remoteTracks = {};
 const changeList = {};
+let frameArray = [1,2,3,4];
 let speakerCount = 1;
 let speakerRemoved = 0;
 let lastParticipant = null;
@@ -16,11 +17,12 @@ function onRemoteTrack(track) {
         return;
     }
     const participant = track.getParticipantId();
+    /*
     if (lastParticipant == null) {
         lastParticipant = participant;
         changeList[participant] = speakerCount;
     }
-
+    */
     if (!remoteTracks[participant]) {
         remoteTracks[participant] = [];
     }
@@ -28,6 +30,8 @@ function onRemoteTrack(track) {
     const id = participant + track.getType() + idx;
 
     if (!(participant in changeList)){
+      changeList[participant] = frameArray.shift();
+      /*
       if (speakerRemoved != 0) {
         speakerCount = speakerRemoved;
 	      speakerRemoved = 0;
@@ -36,6 +40,7 @@ function onRemoteTrack(track) {
         speakerCount = speakerCount+1;
       }
       changeList[participant] = speakerCount;
+      */
       console.log('INFO: Participants: ' + JSON.stringify(changeList));
     }
 
@@ -46,12 +51,12 @@ function onRemoteTrack(track) {
         /*$('body').append(
             `<video autoplay='1' id='${participant}video${idx}' />`);*/
         $(remoteVideo).replaceWith(
-          `<div id='remoteVideo${speakerCount}'><video autoplay='1' id='${participant}video${idx}' width='300px'/></div>`);
+          `<div id='remoteVideo${changeList[participant]}'><video autoplay='1' id='${participant}video${idx}' width='300px'/></div>`);
     } else {
         /*$('body').append(
             `<audio autoplay='1' id='${participant}audio${idx}' />`);*/
         $(remoteAudio).replaceWith(
-          `<div id='remoteAudio${speakerCount}'><audio autoplay='1' id='${participant}audio${idx}' /></div>`);
+          `<div id='remoteAudio${changeList[participant]}'><audio autoplay='1' id='${participant}audio${idx}' /></div>`);
     }
     track.attach($(`#${id}`)[0]);
     console.log('INFO: Remote track added!');
@@ -64,7 +69,13 @@ function onRemoteTrackRemove(track) {
     console.log(`INFO: Track removed!${track}`);
     const participant = track.getParticipantId();
     if (participant in changeList) {
-      speakerRemoved = changeList[participant];
+      var remoteVideo = "#remoteVideo" +changeList[participant];
+      var remoteAudio = "#remoteAudio" +changeList[participant];	    
+      $(remoteVideo).replaceWith(
+          `<div id='remoteVideo${changeList[participant]}'><img src="resources/user.png" width="200px" height="175px"/></div>`);
+      $(remoteAudio).replaceWith(
+          `<div id='remoteAudio${changeList[participant]}'></div>`);	      
+      frameArray.push(changeList[participant]);
       delete changeList[participant];
     }
     console.log('INFO: Participants after track remove: ' + JSON.stringify(changeList));
@@ -143,3 +154,4 @@ JitsiMeetJS.init(config)
         connection.connect();
     })
     .catch(error => console.log('ERROR: JitsiMeetJS.init says ' +error));
+
