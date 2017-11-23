@@ -4,9 +4,6 @@ let room = null;
 const remoteTracks = {};
 const changeList = {};
 let frameArray = [1,2,3,4];
-let speakerCount = 1;
-let speakerRemoved = 0;
-let lastParticipant = null;
 
 /**
  * Handles remote tracks
@@ -17,12 +14,6 @@ function onRemoteTrack(track) {
         return;
     }
     const participant = track.getParticipantId();
-    /*
-    if (lastParticipant == null) {
-        lastParticipant = participant;
-        changeList[participant] = speakerCount;
-    }
-    */
     if (!remoteTracks[participant]) {
         remoteTracks[participant] = [];
     }
@@ -31,16 +22,6 @@ function onRemoteTrack(track) {
 
     if (!(participant in changeList)){
       changeList[participant] = frameArray.shift();
-      /*
-      if (speakerRemoved != 0) {
-        speakerCount = speakerRemoved;
-	      speakerRemoved = 0;
-      }
-      else {
-        speakerCount = speakerCount+1;
-      }
-      changeList[participant] = speakerCount;
-      */
       console.log('INFO: Participants: ' + JSON.stringify(changeList));
     }
 
@@ -155,3 +136,9 @@ JitsiMeetJS.init(config)
     })
     .catch(error => console.log('ERROR: JitsiMeetJS.init says ' +error));
 
+function joinBtn() {
+    if (frameArray.length > 0)
+        alert('User may join. Speakers count: ' + (4-frameArray.length));	    
+    else
+	alert('User cannot join now. Speakers count: ' + (4-frameArray.length));
+}
