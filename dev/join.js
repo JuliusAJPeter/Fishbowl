@@ -17,7 +17,7 @@ function onLocalTracks(tracks) {
         const participant = localTracks[i].getParticipantId();
         if (!(participant in changeList)){
           changeList[participant] = frameArray.shift();
-          console.log('INFO: Participants: ' + JSON.stringify(changeList));
+          console.log('INFO (join.js): Participants: ' + JSON.stringify(changeList));
         }
 
         var remoteVideo = "#remoteVideo" +changeList[participant];
@@ -58,7 +58,7 @@ function onRemoteTrack(track) {
 
     if (!(participant in changeList)){
       changeList[participant] = frameArray.shift();
-      console.log('INFO: Participants: ' + JSON.stringify(changeList));
+      console.log('INFO (join.js): Participants: ' + JSON.stringify(changeList));
     }
 
     var remoteVideo = "#remoteVideo" +changeList[participant];
@@ -76,7 +76,7 @@ function onRemoteTrack(track) {
           `<div id='remoteAudio${changeList[participant]}'><audio autoplay='1' id='${participant}audio${idx}' /></div>`);
     }
     track.attach($(`#${id}`)[0]);
-    console.log('INFO: Remote track added!');
+    console.log('INFO (join.js): Remote track added!');
 }
 
 /**
@@ -95,14 +95,14 @@ function onRemoteTrackRemove(track) {
       frameArray.push(changeList[participant]);
       delete changeList[participant];
     }
-    console.log('INFO: Participants after track remove: ' + JSON.stringify(changeList));
+    console.log('INFO (join.js): Participants after track remove: ' + JSON.stringify(changeList));
 }
 
 /**
  * That function is executed when the conference is joined
  */
 function onConferenceJoined() {
-    console.log('INFO: Conference joined!');
+    console.log('INFO (join.js): Conference joined!');
     isJoined = true;
     for (let i = 0; i < localTracks.length; i++) {
         room.addTrack(localTracks[i]);
@@ -118,7 +118,7 @@ function onConnectionSuccess() {
     room.on(JitsiMeetJS.events.conference.TRACK_REMOVED, onRemoteTrackRemove);
     room.on(JitsiMeetJS.events.conference.CONFERENCE_JOINED,onConferenceJoined);
     room.on(JitsiMeetJS.events.conference.USER_JOINED, id => {
-        console.log('INFO: User join');
+        console.log('INFO (join.js): User join');
         remoteTracks[id] = [];
     });
     room.join();
@@ -128,14 +128,14 @@ function onConnectionSuccess() {
  * function is called when the connection fails.
  */
 function onConnectionFailed() {
-    console.error('WARN: Connection Failed!');
+    console.error('WARN (join.js): Connection Failed!');
 }
 
 /**
  * function is called when disconnect. NOT FULLY IMPLEMENTED YET.
  */
 function disconnect() {
-    console.log('INFO: Connection disconnect!');
+    console.log('INFO (join.js): Connection disconnect!');
     connection.removeEventListener(
         JitsiMeetJS.events.connection.CONNECTION_ESTABLISHED,
         onConnectionSuccess);
@@ -151,6 +151,11 @@ function disconnect() {
  * function called when windiw is closed.
  */
 function unload() {
+    for(let i = 0; i<localTracks.length; i++) {
+      //console.log("INFO: localTrack: " +localTracks[i]);
+      //localTracks[i].stop();
+      localTracks[i].dispose();
+    }	    
     room.leave();
     connection.disconnect();
 }
@@ -179,9 +184,17 @@ JitsiMeetJS.init(config)
                 throw error;
             });
     })
-    .catch(error => console.log('ERROR: JitsiMeetJS.init says ' +error));
+    .catch(error => console.log('ERROR (join.js): JitsiMeetJS.init says ' +error));
 
 function btnClick() {
-    alert('INFO: Leave functionality not implemented yet!');
+    unload();
+    $('script').each(function() {
+	if (this.src == 'https://fishbowl.havoc.fi/dev/join.js' ||
+	    this.src == 'https://fishbowl.havoc.fi/dev/libs/join-config.js')
+	    this.parentNode.removeChild(this);
+    });
+    $("#mainBtn").text("Join"); 
+    $('body').append('<script src="libs/audience-config.js"></script>');
+    $('body').append('<script src="audience.js"></script>');
 }
 

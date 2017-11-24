@@ -22,7 +22,7 @@ function onRemoteTrack(track) {
 
     if (!(participant in changeList)){
       changeList[participant] = frameArray.shift();
-      console.log('INFO: Participants: ' + JSON.stringify(changeList));
+      console.log('INFO (audience.js): Participants: ' + JSON.stringify(changeList));
     }
 
     var remoteVideo = "#remoteVideo" +changeList[participant];
@@ -40,7 +40,7 @@ function onRemoteTrack(track) {
           `<div id='remoteAudio${changeList[participant]}'><audio autoplay='1' id='${participant}audio${idx}' /></div>`);
     }
     track.attach($(`#${id}`)[0]);
-    console.log('INFO: Remote track added!');
+    console.log('INFO (audience.js): Remote track added!');
 }
 
 /**
@@ -59,14 +59,14 @@ function onRemoteTrackRemove(track) {
       frameArray.push(changeList[participant]);
       delete changeList[participant];
     }
-    console.log('INFO: Participants after track remove: ' + JSON.stringify(changeList));
+    console.log('INFO (audience.js): Participants after track remove: ' + JSON.stringify(changeList));
 }
 
 /**
  * function is executed when the conference is joined
  */
 function onConferenceJoined() {
-    console.log('INFO: Conference joined in silence!');
+    console.log('INFO (audience.js): Conference joined in silence!');
 }
 
 /**
@@ -78,7 +78,7 @@ function onConnectionSuccess() {
     room.on(JitsiMeetJS.events.conference.TRACK_REMOVED, onRemoteTrackRemove);
     room.on(JitsiMeetJS.events.conference.CONFERENCE_JOINED,onConferenceJoined);
     room.on(JitsiMeetJS.events.conference.USER_JOINED, id => {
-        console.log('INFO: User join');
+        console.log('INFO (audience.js): User join');
         remoteTracks[id] = [];
     });
     room.join();
@@ -88,14 +88,14 @@ function onConnectionSuccess() {
  * function is called when the connection fails.
  */
 function onConnectionFailed() {
-    console.error('WARN: Connection Failed!');
+    console.error('WARN (audience.js): Connection Failed!');
 }
 
 /**
  * function is called when disconnect. NOT FULLY IMPLEMENTED YET.
  */
 function disconnect() {
-    console.log('INFO: Connection disconnect!');
+    console.log('INFO (audience.js): Connection disconnect!');
     connection.removeEventListener(
         JitsiMeetJS.events.connection.CONNECTION_ESTABLISHED,
         onConnectionSuccess);
@@ -134,7 +134,7 @@ JitsiMeetJS.init(config)
 
         connection.connect();
     })
-    .catch(error => console.log('ERROR: JitsiMeetJS.init says ' +error));
+    .catch(error => console.log('ERROR (audience.js): JitsiMeetJS.init says ' +error));
 
 function btnClick() {
     if (frameArray.length > 0) {
@@ -150,6 +150,6 @@ function btnClick() {
 	$('body').append('<script src="join.js"></script>');
     }
     else {
-        alert('User cannot join now. Speakers count: ' + (4-frameArray.length));
+        alert('audience.js: User cannot join now. Speakers count: ' + (4-frameArray.length));
     }
 }
