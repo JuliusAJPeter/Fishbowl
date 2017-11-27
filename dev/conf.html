@@ -19,21 +19,26 @@
               float: left;
               outline: 1px gray solid;
             }
+
+	    .spin {
+		position: absolute;
+		z-index: 10;
+		display: block;
+	    }
+
+	    #spinner {
+		display: none;
+	    }
           </style>
-	  <!-- johnpj1
-          <script src="libs/jquery-2.1.1.min.js"></script>
-          <script src="libs/strophe/strophe.js"></script>
-          <script src="libs/strophe/strophe.disco.min.js?v=1"></script>
-          <script src="libs/audience-config.js"></script>
-          <script src="libs/interface_config.js"></script>
-          <script src="https://cdn.jitsi.net/2367/libs/lib-jitsi-meet.min.js?v=2367"></script>
-	  <script src="audience.js" ></script> -->
         </head>
 
         <body>
 	  <!-- main -->
           <div align=center>
             <div id="boxFrame">
+	      <div class="spin">
+		 <img id="spinner" src="resources/loading.gif"/>
+	      </div>
               <div class="frame1">
 		<div id="remoteVideo1"><img src="resources/user.png" width="200px" height="175px"/></div>
                 <div id="remoteAudio1"></div>
@@ -49,10 +54,10 @@
               <div class="frame4">
 		<div id="remoteVideo4"><img src="resources/user.png" width="200px" height="175px"/></div>
                 <div id="remoteAudio4"></div>
-              </div>
+	      </div>
               <div>
                 <button id="mainBtn" style="width:600px; height:50px; font-size:30px" 
-			onClick="btnClick()">Join</button>
+			onClick="btnClick()" disabled="true">Join</button>
               </div>
             </div>
           </div>

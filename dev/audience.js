@@ -1,10 +1,12 @@
 
+
 let connection = null;
 let room = null;
 const remoteTracks = {};
 const changeList = {};
 let frameArray = [1,2,3,4];
 
+$('#spinner').show();
 /**
  * Handles remote tracks
  * @param track JitsiTrack object
@@ -67,6 +69,8 @@ function onRemoteTrackRemove(track) {
  */
 function onConferenceJoined() {
     console.log('INFO (audience.js): Conference joined in silence!');
+    $('#spinner').hide();
+    $('#mainBtn').attr('disabled', false);
 }
 
 /**
@@ -145,11 +149,14 @@ function btnClick() {
 	        this.src == 'https://fishbowl.havoc.fi/dev/libs/audience-config.js')
 		this.parentNode.removeChild(this);
 	});
-        $("#mainBtn").text("Leave"); 
+        $("#mainBtn").text("Leave");
+	$('#mainBtn').attr('disabled', true);
+	$('#spinner').show();    
 	$('body').append('<script src="libs/join-config.js"></script>');
 	$('body').append('<script src="join.js"></script>');
     }
     else {
-        alert('audience.js: User cannot join now. Speakers count: ' + (4-frameArray.length));
+        //alert('audience.js: User cannot join now. Speakers count: ' + (4-frameArray.length));
+	room.sendTextMessage("Someone wants to join!");
     }
 }

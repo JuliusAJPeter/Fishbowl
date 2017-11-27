@@ -107,6 +107,8 @@ function onConferenceJoined() {
     for (let i = 0; i < localTracks.length; i++) {
         room.addTrack(localTracks[i]);
     }
+    $('#spinner').hide();
+    $('#mainBtn').attr('disabled', false);
 }
 
 /**
@@ -121,7 +123,15 @@ function onConnectionSuccess() {
         console.log('INFO (join.js): User join');
         remoteTracks[id] = [];
     });
+    room.on(JitsiMeetJS.events.conference.MESSAGE_RECEIVED, onMessageReceive);
     room.join();
+}
+
+/**
+ * function is called when a message is received
+ */
+function onMessageReceive(id, text, ts) {
+    console.log('MESSAGE: '+id+':'+text+':'+ts);
 }
 
 /**
@@ -194,6 +204,8 @@ function btnClick() {
 	    this.parentNode.removeChild(this);
     });
     $("#mainBtn").text("Join"); 
+    $('#mainBtn').attr('disabled', true);
+    $('#spinner').show();	
     $('body').append('<script src="libs/audience-config.js"></script>');
     $('body').append('<script src="audience.js"></script>');
 }
