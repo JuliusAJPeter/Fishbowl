@@ -135,7 +135,7 @@ JitsiMeetJS.init(config)
         connection.addEventListener(
             JitsiMeetJS.events.connection.CONNECTION_DISCONNECTED,
             disconnect);
-
+	toast("Connecting conference..");
         connection.connect();
     })
     .catch(error => console.log('ERROR (audience.js): JitsiMeetJS.init says ' +error));
@@ -159,4 +159,13 @@ function btnClick() {
         //alert('audience.js: User cannot join now. Speakers count: ' + (4-frameArray.length));
 	room.sendTextMessage("Someone wants to join!");
     }
+}
+
+function toast(message) {
+    var x = document.getElementById("snackbar");
+    $('#snackbar').text(message);
+    x.className = "show";
+    setTimeout(function() {
+	    x.className = x.className.replace("show", "");
+    }, 5000);
 }

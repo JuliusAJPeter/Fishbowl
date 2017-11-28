@@ -131,7 +131,9 @@ function onConnectionSuccess() {
  * function is called when a message is received
  */
 function onMessageReceive(id, text, ts) {
-    console.log('MESSAGE: '+id+':'+text+':'+ts);
+    console.log('MESSAGE:==> ');
+    console.log(id);
+    console.log(text);
 }
 
 /**
