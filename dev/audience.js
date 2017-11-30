@@ -5,8 +5,10 @@ let room = null;
 const remoteTracks = {};
 const changeList = {};
 let frameArray = [1,2,3,4];
+let count = 20;
+let triggerJoin = false;
 
-$('#spinner').show();
+//$('#spinner').show();
 /**
  * Handles remote tracks
  * @param track JitsiTrack object
@@ -69,8 +71,9 @@ function onRemoteTrackRemove(track) {
  */
 function onConferenceJoined() {
     console.log('INFO (audience.js): Conference joined in silence!');
-    $('#spinner').hide();
+    //$('#spinner').hide();
     $('#mainBtn').attr('disabled', false);
+    toast("Joined conference as listener..", 5000);
 }
 
 /**
@@ -135,37 +138,60 @@ JitsiMeetJS.init(config)
         connection.addEventListener(
             JitsiMeetJS.events.connection.CONNECTION_DISCONNECTED,
             disconnect);
-	toast("Connecting conference..");
+	toast("Connecting conference..", 3000);
         connection.connect();
     })
     .catch(error => console.log('ERROR (audience.js): JitsiMeetJS.init says ' +error));
 
 function btnClick() {
-    if (frameArray.length > 0) {
-        // alert('User may join. Speakers count: ' + (4-frameArray.length));
-        unload();
-	$('script').each(function() {
-	    if (this.src == 'https://fishbowl.havoc.fi/dev/audience.js' ||
-	        this.src == 'https://fishbowl.havoc.fi/dev/libs/audience-config.js')
-		this.parentNode.removeChild(this);
-	});
-        $("#mainBtn").text("Leave");
-	$('#mainBtn').attr('disabled', true);
-	$('#spinner').show();    
-	$('body').append('<script src="libs/join-config.js"></script>');
-	$('body').append('<script src="join.js"></script>');
-    }
-    else {
-        //alert('audience.js: User cannot join now. Speakers count: ' + (4-frameArray.length));
-	room.sendTextMessage("Someone wants to join!");
-    }
+   $('#mainBtn').attr('disabled', true);
+   if (frameArray.length > 0) {
+     join();
+   } 
+   else {
+     room.sendTextMessage("Someone wants to join!");
+     triggerJoin = true;
+   }
 }
 
-function toast(message) {
+function join() {
+   unload();
+   $('script').each(function() {
+	if (this.src == 'https://fishbowl.havoc.fi/dev/audience.js' ||
+	    this.src == 'https://fishbowl.havoc.fi/dev/libs/audience-config.js')
+		this.parentNode.removeChild(this);
+   });
+   $("#mainBtn").text("Leave");
+   //$('#mainBtn').attr('disabled', true);
+   //$('#spinner').show();
+   $('body').append('<script src="libs/join-config.js"></script>');
+   $('body').append('<script src="join.js"></script>');
+}
+
+function toast(message, seconds) {
     var x = document.getElementById("snackbar");
     $('#snackbar').text(message);
     x.className = "show";
     setTimeout(function() {
-	    x.className = x.className.replace("show", "");
-    }, 5000);
+            x.className = x.className.replace("show", "");
+    }, seconds);
 }
+
+setInterval(function() {
+   //console.log("setInterval trigger");
+   var message = "Connection in-progress. Please wait "+count+"s.";
+   var x = document.getElementById("snackbar");
+   $('#snackbar').text(message);
+   x.className = x.className.replace("show", "");
+   if (triggerJoin && frameArray.length == 0){
+	x.className = "show";
+        //x.className = x.className.replace("show", "");
+        //toast(text, 1000);
+	count--;
+	count==0 ? count=20 : count;
+   } else if (triggerJoin && frameArray.length > 0) {	
+	triggerJoin = false;
+	clearInterval();
+	join();
+   } 
+}, 1000);

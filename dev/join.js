@@ -107,7 +107,7 @@ function onConferenceJoined() {
     for (let i = 0; i < localTracks.length; i++) {
         room.addTrack(localTracks[i]);
     }
-    $('#spinner').hide();
+    //$('#spinner').hide();
     $('#mainBtn').attr('disabled', false);
 }
 
@@ -131,9 +131,7 @@ function onConnectionSuccess() {
  * function is called when a message is received
  */
 function onMessageReceive(id, text, ts) {
-    console.log('MESSAGE:==> ');
-    console.log(id);
-    console.log(text);
+    toast(text);
 }
 
 /**
@@ -207,8 +205,16 @@ function btnClick() {
     });
     $("#mainBtn").text("Join"); 
     $('#mainBtn').attr('disabled', true);
-    $('#spinner').show();	
+    //$('#spinner').show();	
     $('body').append('<script src="libs/audience-config.js"></script>');
     $('body').append('<script src="audience.js"></script>');
 }
 
+function toast(message) {
+    var x = document.getElementById("snackbar");
+    $('#snackbar').text(message);
+    x.className = "show";
+    setTimeout(function() {
+	    x.className = x.className.replace("show", "");
+    }, 5000);
+}
