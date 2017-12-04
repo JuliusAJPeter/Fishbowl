@@ -6,7 +6,7 @@ const remoteTracks = {};
 const changeList = {};
 let frameArray = [1,2,3,4];
 let isJoined = false;
-
+let blink = false;
 /**
  * Handles local tracks.
  * @param tracks Array with JitsiTrack objects
@@ -131,7 +131,15 @@ function onConnectionSuccess() {
  * function is called when a message is received
  */
 function onMessageReceive(id, text, ts) {
-    toast(text);
+    if (text === "REQUEST") {
+	blink = true;
+	toast("Someone wants to join!");
+    } else if (text === "STOP") {
+	blink = false;
+	clearInterval(blinkBtn);
+    } else {
+	toast(text);
+    }
 }
 
 /**
@@ -197,6 +205,8 @@ JitsiMeetJS.init(config)
     .catch(error => console.log('ERROR (join.js): JitsiMeetJS.init says ' +error));
 
 function btnClick() {
+    clearInterval(blinkBtn);
+    blink = false;
     unload();
     $('script').each(function() {
 	if (this.src == 'https://fishbowl.havoc.fi/dev/join.js' ||
@@ -218,3 +228,12 @@ function toast(message) {
 	    x.className = x.className.replace("show", "");
     }, 5000);
 }
+
+var blinkBtn = setInterval(function() {
+   if (blink){
+     $('#mainBtn').text('');
+     setTimeout(function() {
+	$('#mainBtn').text('Leave');
+     }, 500);
+   }
+}, 1000);

@@ -149,7 +149,7 @@ function btnClick() {
      join();
    } 
    else {
-     room.sendTextMessage("Someone wants to join!");
+     room.sendTextMessage("REQUEST");
      triggerJoin = true;
    }
 }
@@ -177,21 +177,26 @@ function toast(message, seconds) {
     }, seconds);
 }
 
-setInterval(function() {
+var queue = setInterval(function() {
    //console.log("setInterval trigger");
-   var message = "Connection in-progress. Please wait "+count+"s.";
-   var x = document.getElementById("snackbar");
-   $('#snackbar').text(message);
-   x.className = x.className.replace("show", "");
+   //var message = "Connection in-progress. Please wait "+count+"s.";
+   //var x = document.getElementById("snackbar");
+   //$('#snackbar').text(message);
+   //x.className = x.className.replace("show", "");
    if (triggerJoin && frameArray.length == 0){
+	var message = "Connection in-progress. Please wait "+count+"s.";
+ 	var x = document.getElementById("snackbar");
+	$('#snackbar').text(message);
+	//x.className = x.className.replace("show", "");
 	x.className = "show";
         //x.className = x.className.replace("show", "");
         //toast(text, 1000);
 	count--;
 	count==0 ? count=20 : count;
    } else if (triggerJoin && frameArray.length > 0) {	
+	room.sendTextMessage("STOP");
 	triggerJoin = false;
-	clearInterval();
+	clearInterval(queue);
 	join();
    } 
 }, 1000);
