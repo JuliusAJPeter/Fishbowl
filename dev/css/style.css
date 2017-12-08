@@ -1,0 +1,248 @@
+body {
+  /*background: #e9e9e9;*/
+  background-color: #58585B;
+  font-family: 'RobotoDraft', 'Roboto', sans-serif;
+  font-size: 14px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Banner */
+.banner {
+  width: 100%;
+  height: 100px;
+}
+
+/* Form Module */
+.form-module {
+  position: relative;
+  background: #2E2E30;
+  max-width: 450px;
+  width: 100%;
+  border-top: 5px solid #808086;
+  box-shadow: 0 0 3px rgba(0, 0, 0, 0.1);
+  margin: 0 auto;
+  display: block;
+}
+
+.form-module h2 {
+  margin: 0 0 20px;
+  color: #ffffff;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 1;
+  text-align: center;
+}
+
+.form-module .toggle {
+  cursor: pointer;
+  position: absolute;
+  top: -0;
+  right: -0;
+  background: #808086;
+  width: 30px;
+  height: 30px;
+  margin: -5px 0 0;
+  color: #ffffff;
+  font-size: 12px;
+  line-height: 30px;
+  text-align: center;
+}
+
+.form-module .toggle .tooltip {
+  position: absolute;
+  top: 5px;
+  right: -65px;
+  display: block;
+  background: rgba(128, 128, 134, 0.6);
+  width: auto;
+  padding: 5px;
+  font-size: 10px;
+  color: #000000;
+  line-height: 1;
+  text-transform: uppercase;
+}
+
+.form-module .toggle .tooltip:before {
+  content: '';
+  position: absolute;
+  top: 5px;
+  left: -5px;
+  display: block;
+  border-top: 5px solid transparent;
+  border-bottom: 5px solid transparent;
+  border-right: 5px solid rgba(128, 128, 134, 0.6);
+}
+
+.form-module .form {
+  display: none;
+  padding: 40px;
+}
+
+.form-module .form:nth-child(2) {
+  display: block;
+}
+
+.form-module input {
+  outline: none;
+  display: block;
+  width: 100%;
+  border: 1px solid #808086;
+  margin: 0 0 20px;
+  padding: 10px 15px;
+  box-sizing: border-box;
+  font-size: 16px;
+  font-wieght: 400;
+  -webkit-transition: 0.3s ease;
+  transition: 0.3s ease;
+}
+
+.form-module input:focus {
+  border: 1px solid #808086;
+  color: #808086;
+}
+
+.form-module .avatar {
+  padding-left: 40px;
+  /*padding-bottom: 20px;*/
+}
+
+.avatar button {
+  cursor: pointer;
+  margin-top: 10px;
+  margin-left: 120px;
+  max-width: 15%;
+  -webkit-transition: 0.3s ease;
+  transition: all 0.3s ease;
+}
+
+.form-module .label{
+  color: gray;
+  font-size: 16px;
+  font-family: inherit;
+  margin-left: 130px;
+  padding-top: 5px;
+  padding-bottom: 40px;
+}
+
+.form-module button {
+  cursor: pointer;
+  background: #ffffff;
+  width: 100%;
+  font-size: 18px;
+  font-weight: 600;
+  border: 0;
+  padding: 10px 15px;
+  color: #000000;
+  -webkit-transition: 0.3s ease;
+  transition: all 0.3s ease;
+}
+
+.form-module button:hover {
+  background: #808086;
+}
+
+.form-module ul {
+  list-style-type: circle;
+  color: #ffffff;
+}
+
+.form-module li {
+  padding: 5px;
+}
+
+.form-module img {
+  width: 300px;
+  border: 1px solid #d9d9d9;
+}
+
+.conference {
+  display: none;
+}
+
+.boxFrame {
+  max-width: 600px;
+  display: block;
+  /*border: 1px solid;*/
+}
+
+.boxFrame .frame1,
+.boxFrame .frame2,
+.boxFrame .frame3,
+.boxFrame .frame4 {
+  width: 300px;
+  height: 175px;
+  outline: 1px gray solid;
+  float: left;
+  background-color: #ffffff;
+}
+
+.boxFrame button {
+  cursor: pointer;
+  width: 100%;
+  height: 60px;
+  font-size: 20px;
+}
+
+.boxFrame .space {
+  clear: both;
+  width: 100%;
+  height: 10px;
+}
+
+.frame1 img,
+.frame3 img {
+  width: 200px;
+  height: 174px;
+  -webkit-transform: scaleX(-1);
+  transform: scaleX(-1);
+}
+
+.frame2 img,
+.frame4 img {
+  width: 200px;
+  height: 175px;
+}
+
+#snackbar {
+  visibility: hidden; /* Hidden by default. Visible on click */
+  min-width: 250px; /* Set a default minimum width */
+  margin-left: -125px; /* Divide value of min-width by 2 */
+  background-color: #333; /* Black background color */
+  color: #fff; /* White text color */
+  text-align: center; /* Centered text */
+  border-radius: 2px; /* Rounded borders */
+  padding: 16px; /* Padding */
+  position: fixed; /* Sit on top of the screen */
+  z-index: 1; /* Add a z-index if needed */
+  left: 85%; /* Center the snackbar */
+  bottom: 30px; /* 30px from the bottom */
+}
+
+/* Show the snackbar when clicking on a button (class added with JavaScript) */
+#snackbar.show {
+  visibility: visible; /* Show the snackbar */
+  -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
+  animation: fadein 0.5s, fadeout 0.5s 2.5s;
+}
+
+/* Animations to fade the snackbar in and out */
+@-webkit-keyframes fadein {
+  from {bottom: 0; opacity: 0;}
+  to {bottom: 30px; opacity: 1;}
+}
+
+@keyframes fadein {
+  from {bottom: 0; opacity: 0;}
+  to {bottom: 30px; opacity: 1;}
+}
+
+@-webkit-keyframes fadeout {
+  from {bottom: 30px; opacity: 1;}
+  to {bottom: 0; opacity: 0;}
+}
+
+@keyframes fadeout {
+  from {bottom: 30px; opacity: 1;}
+  to {bottom: 0; opacity: 0;}
+}

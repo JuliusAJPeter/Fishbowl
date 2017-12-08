@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en" >
+    <head>
+      <meta charset="UTF-8">
+      <title>Stream&deg; Panel</title>
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
+      <link rel='stylesheet prefetch' href='https://fonts.googleapis.com/css?family=Roboto:400,100,300,500,700,900|RobotoDraft:400,100,300,500,700,900'>
+      <link rel='stylesheet prefetch' href='https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css'>
+      <link rel="stylesheet" href="css/style.css">
+      <script src='libs/jquery-2.1.3.min.js'></script>
+      <script src="https://cdn.jitsi.net/2367/libs/lib-jitsi-meet.min.js?v=2367"></script>
+    </head>
+
+    <body>
+        <!-- Banner -->
+        <div class="banner">
+          <!-- empty banner -->
+        </div>
+        <!-- Form Module-->
+        <div class="form-module">
+          <div class="toggle"><i class="fa fa-times fa-exclamation"></i>
+            <div class="tooltip">Read me</div>
+          </div>
+          <div class="form">
+            <form action="javascript: void(0);" onsubmit="return go()" id="form-details">
+              <input type="text" placeholder="room" name="roomName" required/>
+              <input type="text" placeholder="nickname" name="nickName" required/>
+              <div class="avatar">
+                <img src="resources/ohMyHair.jpg">
+                <button onclick="alert('Under construction');">
+                  <i class="fa fa-camera"></i>
+                </button>
+              </div>
+              <div class="label">
+                <label>avatar snapshot</label>
+              </div>
+              <button>Stream&deg; Panel</button>
+              <!-- <input type="submit" value="Stream&deg; Panel" onclick="join()"/> -->
+            </form>
+          </div>
+          <!-- conference rules -->
+          <div class="form">
+            <h2>Fishbowl conference rules</h2>
+            <ul>
+              <li>Only one person speaks at a time and there should be no side conversations.</li>
+              <li>Participants must use cues such as body language and eye   contact to determine when it is appropriate to speak.</li>
+              <li>If two people start to speak at the same time, one must yield.</li>
+              <li>All participants must look at the person speaking and engage in active listening techniques (nodding, smiling, etc.).</li>
+              <li>Questions can and should be asked of other participants in the inner circle to motivate them to join in.</li>
+              <li>Disagree politely. Do not make it personal. You disagree with the idea, not the person.</li>
+              <li>State your claims and support them with evidence.</li>
+              <li>Respond to the comments of other participants by agreeing or disagreeing and by offering additional evidence.</li>
+              <li>If you are in the outer circle, record notes and quotations from the text(s) to support your claims.</li>
+              <li>The teacher does not participate in the discussion except to provide a new question or to terminate an irrelevant or inappropriate line of discussion.
+                You should NOT look at the teacher while speaking but rather at the other participants.</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- main -->
+        <div class="conference" align=center>
+          <div class="boxFrame">
+            <div class="frame1">
+              <div id="remoteVideo1"><img src="resources/user.png"/></div>
+              <div id="remoteAudio1"></div>
+            </div>
+            <div class="frame2">
+              <div id="remoteVideo2"><img src="resources/user.png"/></div>
+              <div id="remoteAudio2"></div>
+            </div>
+            <div class="frame3">
+              <div id="remoteVideo3"><img src="resources/user.png"/></div>
+              <div id="remoteAudio3"></div>
+            </div>
+            <div class="frame4">
+              <div id="remoteVideo4"><img src="resources/user.png"/></div>
+              <div id="remoteAudio4"></div>
+            </div>
+            <div class="space"></div>
+            <div>
+              <button id="mainBtn" disabled="true" onClick="btnClick()">Join</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- The actual snackbar -->
+        <div id="snackbar">Messages..</div>
+
+        <script  src="js/index.js"></script>
+    </body>
+</html>
