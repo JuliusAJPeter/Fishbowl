@@ -22,6 +22,7 @@ function go(){
   document.body.appendChild(script);
   $('.conference').css('display', 'block');
   $('.form-module').css('display', 'none');
+  $('.banner').css('height', '5px');
   //$('body').append('<script src="libs/jquery-2.1.1.min.js"></script>');
   $('body').append('<script src="libs/strophe/strophe.js"></script>');
   $('body').append('<script src="libs/strophe/strophe.disco.min.js?v=1"></script>');

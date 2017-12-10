@@ -160,16 +160,75 @@ body {
   display: none;
 }
 
-.boxFrame {
-  max-width: 600px;
-  display: block;
-  /*border: 1px solid;*/
+.top-bottom {
+  width: 50%;
+  height: 100px;
 }
 
-.boxFrame .frame1,
-.boxFrame .frame2,
-.boxFrame .frame3,
-.boxFrame .frame4 {
+.top-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  grid-gap: 10px;
+}
+
+.bottom-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  grid-gap: 10px;
+  padding-top: 5%;
+}
+
+.img1 {
+  width: 40px;
+  height: 40px;
+  background-color: #ffffff;
+  margin: 0 auto;
+}
+
+.img0 {
+  width: 40px;
+  height: 40px;
+  background-color: #58585B;
+}
+
+.middle {
+  width: 100%;
+  height: 400px;
+}
+
+.middle-grid {
+  display: grid;
+  grid-template-columns: 25% 50% 25%;
+}
+
+.left-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-gap: 10px;
+  padding-top: 10%;
+  padding-left: 60%;
+}
+
+.right-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-gap: 10px;
+  padding-top: 10%;
+  padding-right: 60%;
+}
+
+.center-grid {
+  padding-top: 2%;
+
+}
+
+.center-top-frame,
+.center-bottom-frame {
+  display: inline-block;
+  width: 600px;
+}
+
+.top-left-frame {
   width: 300px;
   height: 175px;
   outline: 1px gray solid;
@@ -177,29 +236,55 @@ body {
   background-color: #ffffff;
 }
 
-.boxFrame button {
-  cursor: pointer;
-  width: 100%;
-  height: 60px;
-  font-size: 20px;
+.top-right-frame {
+  width: 300px;
+  height: 175px;
+  outline: 1px gray solid;
+  float: right;
+  background-color: #ffffff;
 }
 
-.boxFrame .space {
+.bottom-left-frame {
+  width: 300px;
+  height: 175px;
+  outline: 1px gray solid;
+  float: left;
+  background-color: #ffffff;
+}
+
+.bottom-right-frame {
+  width: 300px;
+  height: 175px;
+  outline: 1px gray solid;
+  float: right;
+  background-color: #ffffff;
+}
+
+.frame-button {
+  cursor: pointer;
+  width: 600px;
+  height: 40px;
+  font-size: 20px;
+  text-transform: uppercase;
+  border-radius: 8px;
+}
+
+.frame-space {
   clear: both;
   width: 100%;
   height: 10px;
 }
 
-.frame1 img,
-.frame3 img {
+.top-left-frame img,
+.bottom-left-frame img {
   width: 200px;
   height: 174px;
   -webkit-transform: scaleX(-1);
   transform: scaleX(-1);
 }
 
-.frame2 img,
-.frame4 img {
+.top-right-frame img,
+.bottom-right-frame img {
   width: 200px;
   height: 175px;
 }
