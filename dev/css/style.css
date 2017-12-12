@@ -60,6 +60,7 @@ body {
   font-size: 10px;
   color: #000000;
   line-height: 1;
+  font-weight: bold;
   text-transform: uppercase;
 }
 
@@ -103,25 +104,52 @@ body {
 }
 
 .form-module .avatar {
-  padding-left: 40px;
-  /*padding-bottom: 20px;*/
+
 }
 
-.avatar button {
+.form-module .avatar i {
+  color: white;
+  font-size: 40px;
+  margin: auto;
+}
+
+.form-module .avatar button {
   cursor: pointer;
-  margin-top: 10px;
-  margin-left: 120px;
-  max-width: 15%;
+  background-color: inherit;
+  width: 70px;
+  height: 70px;
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
   -webkit-transition: 0.3s ease;
   transition: all 0.3s ease;
 }
 
-.form-module .label{
+.form-module .avatar button:hover {
+  background: #2E2E30;
+}
+
+.form-module .avatar img {
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+  width: 320px;
+  height: 250px;
+}
+
+.form-module .avatar video{
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+  width: 320px;
+  height: 250px;
+}
+
+.form-module .label {
   color: gray;
   font-size: 16px;
   font-family: inherit;
-  margin-left: 130px;
-  padding-top: 5px;
+  text-align: center;
   padding-bottom: 40px;
 }
 

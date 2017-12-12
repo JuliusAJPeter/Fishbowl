@@ -2,6 +2,7 @@
 <html lang="en" >
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Stream&deg; Panel</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
   <link rel='stylesheet prefetch' href='https://fonts.googleapis.com/css?family=Roboto:400,100,300,500,700,900|RobotoDraft:400,100,300,500,700,900'>
@@ -26,8 +27,8 @@
         <input type="text" placeholder="room" name="roomName" required/>
         <input type="text" placeholder="nickname" name="nickName" required/>
         <div class="avatar">
-          <img src="resources/ohMyHair.jpg">
-          <button onclick="alert('Under construction');">
+          <img id="avatar-here" src="resources/ohMyHair.jpg">
+          <button id="click-snap" onclick="snap(0)">
             <i class="fa fa-camera"></i>
           </button>
         </div>
