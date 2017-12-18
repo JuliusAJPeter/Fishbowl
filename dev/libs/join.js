@@ -107,9 +107,19 @@ function onConferenceJoined() {
     for (let i = 0; i < localTracks.length; i++) {
         room.addTrack(localTracks[i]);
     }
-    //$('#spinner').hide();
     $('#mainBtn').attr('disabled', false);
-    toast("Joined conference as a speaker..");
+    $.toast({
+        text: 'You have joined the room as a speaker.',
+        icon: 'success',
+        showHideTransition: 'fade',
+        allowToastClose: false,
+        hideAfter: 5000,
+        stack: 5,
+        position: 'top-right',
+        textAlign: 'left',
+        bgColor: '#333333',
+        textColor: '#ffffff'
+    }); 
 }
 
 /**
@@ -134,12 +144,34 @@ function onConnectionSuccess() {
 function onMessageReceive(id, text, ts) {
     if (text === "REQUEST") {
 	blink = true;
-	toast("Someone wants to join!");
+ 	$.toast({
+            text: 'Someone wants to join!',
+            icon: 'info',
+            showHideTransition: 'fade',
+            allowToastClose: false,
+            hideAfter: 5000,
+            stack: 5,
+            position: 'top-right',
+            textAlign: 'left',
+            bgColor: '#333333',
+            textColor: '#ffffff'
+        });	
     } else if (text === "STOP") {
 	blink = false;
 	clearInterval(blinkBtn);
     } else {
-	toast(text);
+	$.toast({
+           text: text,
+           icon: 'info',
+           showHideTransition: 'fade',
+           allowToastClose: false,
+           hideAfter: 5000,
+           stack: 5,
+           position: 'top-right',
+           textAlign: 'left',
+           bgColor: '#333333',
+           textColor: '#ffffff'
+        });
     }
 }
 
@@ -185,7 +217,18 @@ $(window).bind('unload', unload);
 JitsiMeetJS.init(config)
     .then(() => {
         connection = new JitsiMeetJS.JitsiConnection(null, null, config);
-
+        $.toast({
+	     text: 'Finding a chair for you...',
+	     icon: 'info',
+	     showHideTransition: 'fade',
+	     allowToastClose: false,
+             hideAfter: 2000,
+	     stack: 5, 
+	     position: 'top-right',
+	     textAlign: 'left',
+	     bgColor: '#333333',
+	     textColor: '#ffffff'	
+	}); 
         connection.addEventListener(
             JitsiMeetJS.events.connection.CONNECTION_ESTABLISHED,
             onConnectionSuccess);
@@ -216,18 +259,8 @@ function btnClick() {
     });
     $("#mainBtn").text("Join the discussion"); 
     $('#mainBtn').attr('disabled', true);
-    //$('#spinner').show();	
     $('body').append('<script src="libs/audience-config.js"></script>');
     $('body').append('<script src="libs/audience.js"></script>');
-}
-
-function toast(message) {
-    var x = document.getElementById("snackbar");
-    $('#snackbar').text(message);
-    x.className = "show";
-    setTimeout(function() {
-	    x.className = x.className.replace("show", "");
-    }, 5000);
 }
 
 var blinkBtn = setInterval(function() {

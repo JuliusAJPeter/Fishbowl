@@ -62,6 +62,7 @@ function go(){
   $('body').append('<script src="libs/audience-config.js"></script>');
   $('body').append('<script src="libs/interface_config.js"></script>');
   $('body').append('<script src="libs/audience.js"></script>');
+  $('body').append('<script type="text/javascript" src="js/jquery.toast.min.js"></script>');
 }
 
 function snap(value) {

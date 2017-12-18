@@ -70,10 +70,20 @@ function onRemoteTrackRemove(track) {
  */
 function onConferenceJoined() {
     console.log('INFO (audience.js): Conference joined in silence!');
-    //$('#spinner').hide();
     $('#mainBtn').attr('disabled', false);
-	room.sendTextMessage(details.nickName+" joined the room..");
-    toast("You have joined the room as a listener..", 5000);
+    /*room.sendTextMessage(details.nickName+" joined the room..");*/
+    $.toast({
+        text: 'You have joined the room as a listener.',
+        icon: 'success',
+        showHideTransition: 'fade',
+        allowToastClose: false,
+        hideAfter: 5000,
+        stack: 5,
+        position: 'top-right',
+        textAlign: 'left',
+        bgColor: '#333333',
+        textColor: '#ffffff'
+    });
 }
 
 /**
@@ -128,7 +138,18 @@ $(window).bind('unload', unload);
 JitsiMeetJS.init(config)
     .then(() => {
         connection = new JitsiMeetJS.JitsiConnection(null, null, config);
-
+        $.toast({
+	     text: 'Connecting to '+details.roomName+' ...',
+	     icon: 'info',
+	     showHideTransition: 'fade',
+	     allowToastClose: false,
+             hideAfter: 2000,
+	     stack: 5, 
+	     position: 'top-right',
+	     textAlign: 'left',
+	     bgColor: '#333333',
+	     textColor: '#ffffff'	
+	});
         connection.addEventListener(
             JitsiMeetJS.events.connection.CONNECTION_ESTABLISHED,
             onConnectionSuccess);
@@ -138,7 +159,6 @@ JitsiMeetJS.init(config)
         connection.addEventListener(
             JitsiMeetJS.events.connection.CONNECTION_DISCONNECTED,
             disconnect);
-	toast("Connecting room..", 3000);
         connection.connect();
     })
     .catch(error => console.log('ERROR (audience.js): JitsiMeetJS.init says ' +error));
@@ -162,38 +182,29 @@ function join() {
 		this.parentNode.removeChild(this);
    });
    $("#mainBtn").text("Leave");
-   //$('#mainBtn').attr('disabled', true);
-   //$('#spinner').show();
    $('body').append('<script src="libs/join-config.js"></script>');
    $('body').append('<script src="libs/join.js"></script>');
 }
 
-function toast(message, seconds) {
-    var x = document.getElementById("snackbar");
-    $('#snackbar').text(message);
-    x.className = "show";
-    setTimeout(function() {
-            x.className = x.className.replace("show", "");
-    }, seconds);
-}
-
 var queue = setInterval(function() {
-   //console.log("setInterval trigger");
-   //var message = "Connection in-progress. Please wait "+count+"s.";
-   //var x = document.getElementById("snackbar");
-   //$('#snackbar').text(message);
-   //x.className = x.className.replace("show", "");
    if (triggerJoin && frameArray.length == 0){
-	var message = "Connection in-progress. Please wait "+count+"s.";
- 	var x = document.getElementById("snackbar");
-	$('#snackbar').text(message);
-	//x.className = x.className.replace("show", "");
-	x.className = "show";
-        //x.className = x.className.replace("show", "");
-        //toast(text, 1000);
+	$.toast({
+           text: 'Connecting in '+count+'s...',
+	   icon: 'info',
+	   showHideTransition: 'fade',
+	   allowToastClose: false,
+	   hideAfter: 1000,
+	   stack: 1,
+	   loader: false,
+           position: 'top-right',
+	   textAlign: 'left',
+           bgColor: '#333333',
+	   textColor: '#ffffff'
+	});
 	count--;
 	count==0 ? count=20 : count;
-   } else if (triggerJoin && frameArray.length > 0) {	
+   } else if (triggerJoin && frameArray.length > 0) {
+        $.toast().reset('all');	   
 	room.sendTextMessage("STOP");
 	triggerJoin = false;
 	clearInterval(queue);
