@@ -11,24 +11,56 @@ $('.toggle').click(function(){
   }, "slow");
 });
 
+let picture = null;
+let nickname = null;
+let localStream = null;
 
 function go(){
   var script = document.createElement('script');
+  nickname = document.getElementById('form-details').elements.item(1).value;
   script.text = "var details = {roomName:'" +
                 document.getElementById('form-details').elements.item(0).value +
                 "',nickName:'" +
-                document.getElementById('form-details').elements.item(1).value +
+                nickname +
                 "'};";
   document.body.appendChild(script);
-  $('.conference').css('display', 'block');
+  $('.container').css('display', 'block');
   $('.form-module').css('display', 'none');
-  $('.banner').css('height', '5px');
-  //$('body').append('<script src="libs/jquery-2.1.1.min.js"></script>');
+  $('.banner').css('display', 'none');
+  var data = {"username": nickname,
+	      "image"   : picture};
+  /*
+  $.ajax({
+         url: "https://fishbowl.aalto.fi/fishbowl_register",
+	 type: "POST",
+	 data: data,
+	 dataType: "application/json",
+         success: function(response){
+	   	     console.log(response);
+	          },
+	 error: function(xhr, ajaxOptions, thrownError) {
+	           alert(xhr.status);
+		   alert(thrownError);
+	          }
+  });
+  /*
+  xhr = new XMLHttpRequest();
+  var url = "https://fishbowl.aalto.fi/fishbowl_register";
+  xhr.open("POST", url, true);
+  xhr.setRequestHeader("Content-type", "application/json");
+  xhr.onreadystatechange = function () { 
+    if (xhr.readyState == 4 && xhr.status == 200) {
+        var json = JSON.parse(xhr.responseText);
+        console.log(JSON.stringify(json));
+    }
+  }
+  var data = JSON.stringify({"username":nickname,"image":picture});
+  xhr.send(data);*/ 
+ 
   $('body').append('<script src="libs/strophe/strophe.js"></script>');
   $('body').append('<script src="libs/strophe/strophe.disco.min.js?v=1"></script>');
   $('body').append('<script src="libs/audience-config.js"></script>');
   $('body').append('<script src="libs/interface_config.js"></script>');
-  //$('body').append('<script src="https://cdn.jitsi.net/2367/libs/lib-jitsi-meet.min.js?v=2367"></script>');
   $('body').append('<script src="libs/audience.js"></script>');
 }
 
@@ -42,9 +74,8 @@ function snap(value) {
        video: true,
        audio: false
      }, function(stream) {
-       //video.src = vendorURL.createObjectURL(stream);
-       //console.log(video);
-       $('#avatar-here').replaceWith('<video id="video" src="'+vendorURL.createObjectURL(stream)+'"></video>');
+       localStream = stream;
+       $('#avatar-here').replaceWith('<video id="video" src="'+vendorURL.createObjectURL(stream)+'" autoplay></video>');
        $('#click-snap').attr('onclick', 'snap(1)');
        video.play();
      }, function(error){
@@ -54,12 +85,11 @@ function snap(value) {
   if(value == 1) {
      var camera = document.getElementById('video'),
 	 canvas = document.createElement('canvas'),
-         //photo = document.createElement('img'),
-	 context = canvas.getContext('2d');
+         context = canvas.getContext('2d');
      context.drawImage(camera, 0, 0, 300, 150);
-     //photo.setAttribute('src', canvas.toDataURL('image/png'));
-     //photo.setAtrribute('id', 'avatar-here');
-     $('#video').replaceWith('<img id="avatar-here" src="'+canvas.toDataURL('image/png')+'"></img>');
+     picture = canvas.toDataURL('image/png');
+     localStream.getTracks()[0].stop();
+     $('#video').replaceWith('<img id="avatar-here" src="'+picture+'"></img>');
      $('#click-snap').attr('onclick', 'snap(0)');
   }
 }

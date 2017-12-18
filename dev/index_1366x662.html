@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Stream&deg; Panel</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
+  <link rel='stylesheet prefetch' href='https://fonts.googleapis.com/css?family=Roboto:400,100,300,500,700,900|RobotoDraft:400,100,300,500,700,900'>
+  <link rel='stylesheet prefetch' href='https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css'>
+  <link rel="stylesheet" href="css/style_1366x662.css">
+  <script src='libs/jquery-2.1.3.min.js'></script>
+  <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+  <script src="https://cdn.jitsi.net/2367/libs/lib-jitsi-meet.min.js?v=2367"></script>
+</head>
+
+<body>
+  <!-- Banner -->
+  <div class="banner">
+    <!-- empty banner -->
+  </div>
+  <!-- Form Module-->
+  <div class="form-module">
+    <div class="toggle"><i class="fa fa-times fa-exclamation"></i>
+      <div class="tooltip">Read me</div>
+    </div>
+    <div class="form">
+      <form action="javascript: void(0);" onsubmit="return go()" id="form-details">
+        <input type="text" placeholder="room" name="roomName" required/>
+        <input type="text" placeholder="nickname" name="nickName" required/>
+        <div class="avatar">
+          <!-- <img id="avatar-here" src="resources/image.png">-->
+          <h1 id="avatar-here">Take a photo of yourself by clicking the camera icon</h1>
+        </div>
+        <div class="avatar-button">
+          <button id="click-snap" onclick="snap(0)" type="button">
+            <i class="fa fa-camera"></i>
+          </button>
+        </div>
+        <div class="label">
+          <label>avatar snapshot</label>
+        </div>
+        <button>Enter the room</button>
+        <!-- <input type="submit" value="Stream&deg; Panel" onclick="join()"/> -->
+      </form>
+    </div>
+    <!-- conference rules -->
+    <div class="form">
+      <h2>Fishbowl conference rules</h2>
+      <ul>
+        <li>Only one person speaks at a time and there should be no side conversations.</li>
+        <li>Participants must use cues such as body language and eye   contact to determine when it is appropriate to speak.</li>
+        <li>If two people start to speak at the same time, one must yield.</li>
+        <li>All participants must look at the person speaking and engage in active listening techniques (nodding, smiling, etc.).</li>
+        <li>Questions can and should be asked of other participants in the inner circle to motivate them to join in.</li>
+        <li>Disagree politely. Do not make it personal. You disagree with the idea, not the person.</li>
+        <li>State your claims and support them with evidence.</li>
+        <li>Respond to the comments of other participants by agreeing or disagreeing and by offering additional evidence.</li>
+        <li>If you are in the outer circle, record notes and quotations from the text(s) to support your claims.</li>
+        <li>The teacher does not participate in the discussion except to provide a new question or to terminate an irrelevant or inappropriate line of discussion.
+          You should NOT look at the teacher while speaking but rather at the other participants.</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- main -->
+    <div class="container">
+      <div class="top">
+        <div class="chair7">
+          <img src="resources/chair-right.png"/>
+        </div>
+        <div class="chair6">
+          <img src="resources/chair-right.png"/>
+        </div>
+        <div class="chair5">
+          <img src="resources/chair-right.png"/>
+        </div>
+        <div class="chair4">
+          <img src="resources/chair-right.png"/>
+        </div>
+        <div class="chair3">
+          <img src="resources/chair-left.png"/>
+        </div>
+        <div class="chair2">
+          <img src="resources/chair-left.png"/>
+        </div>
+        <div class="chair1">
+          <img src="resources/chair-left.png"/>
+        </div>
+        <div class="chair29">
+          <img src="resources/chair-right.png"/>
+        </div>
+        <div class="chair28">
+          <img src="resources/chair-right.png"/>
+        </div>
+        <div class="chair27">
+          <img src="resources/chair-right.png"/>
+        </div>
+        <div class="chair26">
+          <img src="resources/chair-left.png"/>
+        </div>
+        <div class="chair25">
+          <img src="resources/chair-left.png"/>
+        </div>
+      </div>
+
+      <div class="bottom">
+        <div class="chair13">
+          <img src="resources/chair-right.png"/>
+        </div>
+        <div class="chair14">
+          <img src="resources/chair-right.png"/>
+        </div>
+        <div class="chair15">
+          <img src="resources/chair-right.png"/>
+        </div>
+        <div class="chair18">
+          <img src="resources/chair-left.png"/>
+        </div>
+        <div class="chair17">
+          <img src="resources/chair-left.png"/>
+        </div>
+        <div class="chair19">
+          <img src="resources/chair-left.png"/>
+        </div>
+        <div class="chair16">
+          <img src="resources/chair-left.png"/>
+        </div>
+        <div class="chair37">
+          <img src="resources/chair-left.png"/>
+        </div>
+        <div class="chair36">
+          <img src="resources/chair-left.png"/>
+        </div>
+        <div class="chair35">
+          <img src="resources/chair-left.png"/>
+        </div>
+        <div class="chair34">
+          <img src="resources/chair-right.png"/>
+        </div>
+        <div class="chair33">
+          <img src="resources/chair-right.png"/>
+        </div>
+      </div>
+
+      <div class="left">
+        <div class="chair21">
+          <img src="resources/chair-left.png"/>
+        </div>
+        <div class="chair22">
+          <img src="resources/chair-left.png"/>
+        </div>
+        <div class="chair23">
+          <img src="resources/chair-left.png"/>
+        </div>
+        <div class="chair38">
+          <img src="resources/chair-left.png"/>
+        </div>
+        <div class="chair39">
+          <img src="resources/chair-left.png"/>
+        </div>
+        <div class="chair40">
+          <img src="resources/chair-left.png"/>
+        </div>
+        <div class="chair20">
+          <img src="resources/chair-left.png"/>
+        </div>
+        <div class="chair24">
+          <img src="resources/chair-left.png"/>
+        </div>
+      </div>
+
+      <div class="right">
+        <div class="chair32">
+          <img src="resources/chair-right.png"/>
+        </div>
+        <div class="chair31">
+          <img src="resources/chair-right.png"/>
+        </div>
+        <div class="chair30">
+          <img src="resources/chair-right.png"/>
+        </div>
+        <div class="chair12">
+          <img src="resources/chair-right.png"/>
+        </div>
+        <div class="chair11">
+          <img src="resources/chair-right.png"/>
+        </div>
+        <div class="chair10">
+          <img src="resources/chair-right.png"/>
+        </div>
+        <div class="chair9">
+          <img src="resources/chair-right.png"/>
+        </div>
+        <div class="chair8">
+          <img src="resources/chair-right.png"/>
+        </div>
+      </div>
+
+      <div class="conference">
+        <div class="frame1">
+	  <div id="remoteVideo1">
+            <img src="resources/conference-chair.png"/>
+	  </div>
+	  <div id="remoteAudio1"></div>
+        </div>
+        <div class="frame2">
+	  <div id="remoteVideo2">
+            <img src="resources/conference-chair.png"/>
+	  </div>
+	  <div id="remoteAudio2"></div>
+        </div>
+        <div class="frame3">
+	  <div id="remoteVideo3">
+            <img src="resources/conference-chair.png"/>
+	  </div>
+	  <div id="remoteAudio3"></div>
+        </div>
+        <div class="frame4">
+	  <div id="remoteVideo4">
+            <img src="resources/conference-chair.png"/>
+	  </div>
+	  <div id="remoteAudio4"></div>
+        </div>
+        <div class="joinbutton">
+	  <button id="mainBtn" disabled="true" onClick="btnClick()">join the discussion</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- The actual snackbar -->
+    <div id="snackbar">Messages..</div>
+
+    <script  src="js/index.js"></script>
+  </body>
+  </html>
+

@@ -4,7 +4,7 @@ body {
   font-family: 'RobotoDraft', 'Roboto', sans-serif;
   font-size: 14px;
   -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  overflow-x:hidden;
 }
 
 /* Banner */
@@ -118,6 +118,10 @@ body {
   margin: 0 auto;
 }
 
+.form-module .avatar-button i:hover {
+  color: yellow;
+}
+
 .form-module .avatar-button button {
   cursor: pointer;
   background-color: inherit;
@@ -166,6 +170,7 @@ body {
   width: 100%;
   font-size: 18px;
   font-weight: 600;
+  text-transform: uppercase;
   border: 0;
   padding: 10px 15px;
   color: #000000;
@@ -191,137 +196,397 @@ body {
   border: 1px solid #d9d9d9;
 }
 
-.conference {
+div.container {
   display: none;
-}
-
-.top-bottom {
-  width: 50%;
-  height: 100px;
-}
-
-.top-grid {
-  display: grid;
-  grid-template-columns: repeat(7, 1fr);
-  grid-gap: 10px;
-}
-
-.bottom-grid {
-  display: grid;
-  grid-template-columns: repeat(7, 1fr);
-  grid-gap: 10px;
-  padding-top: 5%;
-}
-
-.img1 {
-  width: 40px;
-  height: 40px;
-  background-color: #ffffff;
-  margin: 0 auto;
-}
-
-.img0 {
-  width: 40px;
-  height: 40px;
-  background-color: #58585B;
-}
-
-.middle {
+  position: relative;
   width: 100%;
-  height: 400px;
+  /*overflow: hidden;*/
 }
 
-.middle-grid {
-  display: grid;
-  grid-template-columns: 25% 50% 25%;
+div.container > div {
+  position: relative;
+  top: inherit;
 }
 
-.left-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  grid-gap: 10px;
-  padding-top: 10%;
-  padding-left: 60%;
+div.container img {
+  position: absolute;
+  display: block;
+  margin: 0px;
+  border: none;
+  padding: 0px;
+  background: white;
 }
 
-.right-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  grid-gap: 10px;
-  padding-top: 10%;
-  padding-right: 60%;
+div.container div {
+  position: absolute;
 }
 
-.center-grid {
-  padding-top: 2%;
-
+/* chairs at the top */
+.chair1 img {
+	top: 78px;
+	left: 427px;
+	width: 48px;
+	height: 42px;
 }
 
-.center-top-frame,
-.center-bottom-frame {
-  display: inline-block;
-  width: 600px;
+.chair2 img {
+	top: 78px;
+	left: 498px;
+  width: 48px;
+	height: 42px;
 }
 
-.top-left-frame {
-  width: 300px;
-  height: 175px;
-  outline: 1px gray solid;
-  float: left;
-  background-color: #ffffff;
+.chair3 img {
+	top: 78px;
+	left: 568px;
+  width: 48px;
+	height: 42px;
 }
 
-.top-right-frame {
-  width: 300px;
-  height: 175px;
-  outline: 1px gray solid;
-  float: right;
-  background-color: #ffffff;
+.chair4 img {
+	top: 78px;
+	left: 639px;
+  width: 48px;
+	height: 42px;
 }
 
-.bottom-left-frame {
-  width: 300px;
-  height: 175px;
-  outline: 1px gray solid;
-  float: left;
-  background-color: #ffffff;
+.chair5 img {
+	top: 78px;
+	left: 709px;
+  width: 48px;
+	height: 42px;
 }
 
-.bottom-right-frame {
-  width: 300px;
-  height: 175px;
-  outline: 1px gray solid;
-  float: right;
-  background-color: #ffffff;
+.chair6 img {
+	top: 78px;
+	left: 780px;
+  width: 48px;
+	height: 42px;
 }
 
-.frame-button {
-  cursor: pointer;
-  width: 600px;
-  height: 40px;
-  font-size: 20px;
-  text-transform: uppercase;
-  border-radius: 8px;
+.chair7 img {
+	top: 78px;
+	left: 849px;
+  width: 48px;
+	height: 42px;
 }
 
-.frame-space {
-  clear: both;
-  width: 100%;
-  height: 10px;
+.chair25 img {
+	top: 21px;
+	left: 498px;
+  width: 48px;
+	height: 42px;
 }
 
-.top-left-frame img,
-.bottom-left-frame img {
-  width: 200px;
-  height: 174px;
+.chair26 img {
+	top: 21px;
+	left: 568px;
+  width: 48px;
+	height: 42px;
+}
+
+.chair27 img {
+	top: 21px;
+	left: 639px;
+  width: 48px;
+	height: 42px;
+}
+
+.chair28 img {
+	top: 21px;
+	left: 709px;
+  width: 48px;
+	height: 42px;
+}
+
+.chair29 img {
+	top: 21px;
+	left: 780px;
+  width: 48px;
+	height: 42px;
+}
+
+/* chairs at the bottom */
+
+.chair13 img {
+	top: 522px;
+	left: 849px;
+	width: 48px;
+	height: 42px;
+}
+
+.chair14 img {
+	top: 522px;
+	left: 779px;
+  width: 48px;
+	height: 42px;
+}
+
+.chair15 img {
+	top: 522px;
+	left: 709px;
+  width: 48px;
+	height: 42px;
+}
+
+.chair16 img {
+	top: 522px;
+	left: 639px;
+  width: 48px;
+	height: 42px;
+}
+
+.chair17 img {
+	top: 522px;
+	left: 568px;
+  width: 48px;
+	height: 42px;
+}
+
+.chair18 img {
+	top: 522px;
+	left: 498px;
+  width: 48px;
+	height: 42px;
+}
+
+.chair19 img {
+	top: 522px;
+	left: 427px;
+  width: 48px;
+	height: 42px;
+}
+
+.chair33 img {
+	top: 579px;
+	left: 770px;
+  width: 48px;
+	height: 42px;
+}
+
+.chair34 img {
+	top: 579px;
+	left: 709px;
+  width: 48px;
+	height: 42px;
+}
+
+.chair35 img {
+	top: 579px;
+	left: 639px;
+  width: 48px;
+	height: 42px;
+}
+
+.chair36 img {
+	top: 579px;
+	left: 568px;
+  width: 48px;
+	height: 42px;
+}
+
+.chair37 img {
+	top: 579px;
+	left: 498px;
+  width: 48px;
+	height: 42px;
+}
+
+/* chairs at the left */
+
+.chair20 img {
+	top: 408px;
+	left: 289px;
+	width: 48px;
+	height: 42px;
+}
+
+.chair21 img {
+	top: 348px;
+	left: 289px;
+	width: 48px;
+	height: 42px;
+}
+
+.chair22 img {
+	top: 287px;
+	left: 289px;
+	width: 48px;
+	height: 42px;
+}
+
+.chair23 img {
+	top: 227px;
+	left: 289px;
+	width: 48px;
+	height: 42px;
+}
+
+.chair24 img {
+	top: 167px;
+	left: 289px;
+	width: 48px;
+	height: 42px;
+}
+
+.chair38 img {
+	top: 348px;
+	left: 218px;
+	width: 48px;
+	height: 42px;
+}
+
+.chair39 img {
+	top: 287px;
+	left: 218px;
+	width: 48px;
+	height: 42px;
+}
+
+.chair40 img {
+	top: 227px;
+	left: 218px;
+	width: 48px;
+	height: 42px;
+}
+
+/* chairs at the right */
+
+.chair8 img {
+	top: 167px;
+	left: 989px;
+	width: 48px;
+	height: 42px;
+}
+
+.chair9 img {
+	top: 227px;
+	left: 989px;
+	width: 48px;
+	height: 42px;
+}
+
+.chair10 img {
+	top: 287px;
+	left: 989px;
+	width: 48px;
+	height: 42px;
+}
+
+.chair11 img {
+	top: 347px;
+	left: 989px;
+	width: 48px;
+	height: 42px;
+}
+
+.chair12 img {
+	top: 408px;
+	left: 989px;
+	width: 48px;
+	height: 42px;
+}
+
+.chair30 img {
+	top: 227px;
+	left: 1059px;
+	width: 48px;
+	height: 42px;
+}
+
+.chair31 img {
+	top: 287px;
+	left: 1059px;
+	width: 48px;
+	height: 42px;
+}
+
+.chair32 img {
+	top: 347px;
+	left: 1059px;
+	width: 48px;
+	height: 42px;
+}
+
+/* main chairs in conference */
+
+.frame1 {
+  left: 355px;
+  top: 135px;
+  width: 308px;
+  height: 158px;
+  outline: 1px solid gray;
+  background: #ffffff;
+  overflow: hidden;
+}
+
+.frame1 img {
+  width: 308px;
+  height: 158px;
+}
+
+.frame2 {
+  left: 663px;
+  top: 135px;
+  width: 308px;
+  height: 158px;
+  background: #ffffff;
+  outline: 1px solid gray;
+  overflow: hidden;
+}
+
+.frame2 img {
+  width: 308px;
+  height: 158px;
   -webkit-transform: scaleX(-1);
   transform: scaleX(-1);
 }
 
-.top-right-frame img,
-.bottom-right-frame img {
-  width: 200px;
-  height: 175px;
+.frame3 {
+  left: 355px;
+  top: 292px;
+  width: 308px;
+  height: 158px;
+  outline: 1px solid gray;
+  background: #ffffff;
+  overflow: hidden;
+}
+
+.frame3 img {
+  width: 308px;
+  height: 158px;
+}
+
+.frame4 {
+  left: 663px;
+  top: 292px;
+  width: 308px;
+  height: 158px;
+  background: #ffffff;
+  outline: 1px solid gray;
+  overflow: hidden;
+}
+
+.frame4 img {
+  width: 308px;
+  height: 158px;
+  -webkit-transform: scaleX(-1);
+  transform: scaleX(-1);
+}
+
+.joinbutton {
+  left: 355px;
+  top: 465px;
+}
+
+.joinbutton button {
+  width: 616px;
+  height: 41px;
+  cursor: pointer;
+  font-size: 22px;
+  font-weight: 600;
+  font-family: 'RobotoDraft', 'Roboto', sans-serif;
+  text-transform: uppercase;
 }
 
 #snackbar {

@@ -35,7 +35,7 @@ function onRemoteTrack(track) {
         /*$('body').append(
             `<video autoplay='1' id='${participant}video${idx}' />`);*/
         $(remoteVideo).replaceWith(
-          `<div id='remoteVideo${changeList[participant]}'><video autoplay='1' id='${participant}video${idx}' width='300px'/></div>`);
+          `<div id='remoteVideo${changeList[participant]}'><video autoplay='1' id='${participant}video${idx}' width='308px'/></div>`);
     } else {
         /*$('body').append(
             `<audio autoplay='1' id='${participant}audio${idx}' />`);*/
@@ -56,7 +56,7 @@ function onRemoteTrackRemove(track) {
       var remoteVideo = "#remoteVideo" +changeList[participant];
       var remoteAudio = "#remoteAudio" +changeList[participant];	    
       $(remoteVideo).replaceWith(
-          `<div id='remoteVideo${changeList[participant]}'><img src="resources/user.png"/></div>`);
+          `<div id='remoteVideo${changeList[participant]}'><img src="resources/conference-chair.png"/></div>`);
       $(remoteAudio).replaceWith(
           `<div id='remoteAudio${changeList[participant]}'></div>`);	      
       frameArray.push(changeList[participant]);

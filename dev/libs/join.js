@@ -26,7 +26,7 @@ function onLocalTracks(tracks) {
         if (localTracks[i].getType() === 'video') {
             // $('body').append(`<video autoplay='1' id='localVideo${i}' />`);
             $(remoteVideo).replaceWith(
-              `<div id='remoteVideo${changeList[participant]}'><video autoplay='1' id='localVideo${i}' width='300px'/></div>`);
+              `<div id='remoteVideo${changeList[participant]}'><video autoplay='1' id='localVideo${i}' width='308px'/></div>`);
             localTracks[i].attach($(`#localVideo${i}`)[0]);
         } else {
             // $('body').append(
@@ -68,7 +68,7 @@ function onRemoteTrack(track) {
         /*$('body').append(
             `<video autoplay='1' id='${participant}video${idx}' />`);*/
         $(remoteVideo).replaceWith(
-          `<div id='remoteVideo${changeList[participant]}'><video autoplay='1' id='${participant}video${idx}' width='300px'/></div>`);
+          `<div id='remoteVideo${changeList[participant]}'><video autoplay='1' id='${participant}video${idx}' width='308px'/></div>`);
     } else {
         /*$('body').append(
             `<audio autoplay='1' id='${participant}audio${idx}' />`);*/
@@ -89,7 +89,7 @@ function onRemoteTrackRemove(track) {
       var remoteVideo = "#remoteVideo" +changeList[participant];
       var remoteAudio = "#remoteAudio" +changeList[participant];
       $(remoteVideo).replaceWith(
-          `<div id='remoteVideo${changeList[participant]}'><img src="resources/user.png"/></div>`);
+          `<div id='remoteVideo${changeList[participant]}'><img src="resources/conference-chair.png"/></div>`);
       $(remoteAudio).replaceWith(
           `<div id='remoteAudio${changeList[participant]}'></div>`);
       frameArray.push(changeList[participant]);
@@ -214,7 +214,7 @@ function btnClick() {
 	    this.src == 'https://fishbowl.havoc.fi/dev/libs/join-config.js')
 	    this.parentNode.removeChild(this);
     });
-    $("#mainBtn").text("Join"); 
+    $("#mainBtn").text("Join the discussion"); 
     $('#mainBtn').attr('disabled', true);
     //$('#spinner').show();	
     $('body').append('<script src="libs/audience-config.js"></script>');
