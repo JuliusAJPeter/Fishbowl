@@ -54,9 +54,29 @@ function onRemoteTrackRemove(track) {
     const participant = track.getParticipantId();
     if (participant in changeList) {
       var remoteVideo = "#remoteVideo" +changeList[participant];
-      var remoteAudio = "#remoteAudio" +changeList[participant];	    
+      var remoteAudio = "#remoteAudio" +changeList[participant];
+      switch (changeList[participant]) {
+	case 1:
+	   $(remoteVideo).replaceWith(
+		`<div id='remoteVideo${changeList[participant]}'><img src="resources/top-left.png"/></div>`);
+	   break;
+	case 2:
+           $(remoteVideo).replaceWith(
+		`<div id='remoteVideo${changeList[participant]}'><img src="resources/top-right.png"/></div>`);
+	   break;
+	case 3:
+           $(remoteVideo).replaceWith(
+		`<div id='remoteVideo${changeList[participant]}'><img src="resources/bottom-left.png"/></div>`);
+	   break;
+	case 4:
+           $(remoteVideo).replaceWith(
+		`<div id='remoteVideo${changeList[participant]}'><img src="resources/bottom-right.png"/></div>`);
+	   break;
+      }	
+      /*    
       $(remoteVideo).replaceWith(
           `<div id='remoteVideo${changeList[participant]}'><img src="resources/conference-chair.png"/></div>`);
+      */
       $(remoteAudio).replaceWith(
           `<div id='remoteAudio${changeList[participant]}'></div>`);	      
       frameArray.push(changeList[participant]);
@@ -73,12 +93,13 @@ function onConferenceJoined() {
     $('#mainBtn').attr('disabled', false);
     /*room.sendTextMessage(details.nickName+" joined the room..");*/
     $.toast({
-        text: 'You have joined the room as a listener.',
+        text: 'You have joined the room as an audience.',
         icon: 'success',
         showHideTransition: 'fade',
         allowToastClose: false,
         hideAfter: 5000,
         stack: 5,
+	loader: false,
         position: 'top-right',
         textAlign: 'left',
         bgColor: '#333333',
@@ -139,12 +160,13 @@ JitsiMeetJS.init(config)
     .then(() => {
         connection = new JitsiMeetJS.JitsiConnection(null, null, config);
         $.toast({
-	     text: 'Connecting to '+details.roomName+' ...',
+	     text: 'Connecting to room {'+details.roomName+'} ...',
 	     icon: 'info',
 	     showHideTransition: 'fade',
 	     allowToastClose: false,
              hideAfter: 2000,
-	     stack: 5, 
+	     stack: 5,
+	     loader: false,	
 	     position: 'top-right',
 	     textAlign: 'left',
 	     bgColor: '#333333',
@@ -181,7 +203,7 @@ function join() {
 	    this.src == 'https://fishbowl.havoc.fi/dev/libs/audience-config.js')
 		this.parentNode.removeChild(this);
    });
-   $("#mainBtn").text("Leave");
+   $('#mainBtn').text('leave the panel');
    $('body').append('<script src="libs/join-config.js"></script>');
    $('body').append('<script src="libs/join.js"></script>');
 }
@@ -189,11 +211,11 @@ function join() {
 var queue = setInterval(function() {
    if (triggerJoin && frameArray.length == 0){
 	$.toast({
-           text: 'Connecting in '+count+'s...',
+           text: 'Moving you to the Panel in '+count+'s...',
 	   icon: 'info',
 	   showHideTransition: 'fade',
 	   allowToastClose: false,
-	   hideAfter: 1000,
+	   hideAfter: 2000,
 	   stack: 1,
 	   loader: false,
            position: 'top-right',
@@ -211,3 +233,30 @@ var queue = setInterval(function() {
 	join();
    } 
 }, 1000);
+
+function readme() {
+   $.toast({
+	heading: '<h2>Fishbowl discussion</h2>',
+	text: '<ul>' +
+        	'<li>Fishbowl is a way to have a discussion with a large group of participants.</li>' +
+		'<li>The aim of the discussion is to increase all participants understanding on a topic under discussion.</li>' +
+		'<li>In the center, there are four chairs.</li>' +
+        	'<li>People on the chairs are the panel having a discussion.</li>' +
+        	'<li>The panel in the center is the “fishbowl”.</li>' +
+        	'<li>Anyone in the audience may join the discussion at any time.</li>' +
+		'<li>When someone joins the discussion, one of the panelists must go to the audience.</li>' +
+		'<li>Encourage and give space for all to visit the “fishbowl” so that every participant\'s point of view is heard.</li>' +
+		'<li>Listen to everyone – equally and non-judgementally.</li>' +
+		'<li>Be nice.</li>' +
+		'<li>If you really want to be an ass, go somewhere else. There are plenty of places for that on the Internet.</li>' +
+              '</ul>',
+	showHideTransition: 'slide',
+	allowToastClose: true,
+	hideAfter: false,
+	loader: false,
+	position: 'top-left',
+	textAlign: 'left',
+	bgColor: '#333333',
+	textColor: '#ffffff'
+   });
+}

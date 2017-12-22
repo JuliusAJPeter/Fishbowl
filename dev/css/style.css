@@ -4,7 +4,7 @@ body {
   font-family: 'RobotoDraft', 'Roboto', sans-serif;
   font-size: 14px;
   -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
 }
 
 /* Banner */
@@ -16,7 +16,7 @@ body {
 /* Form Module */
 .form-module {
   position: relative;
-  background: #2E2E30;
+  background: #E9AC07;
   max-width: 400px;
   width: 100%;
   border-top: 5px solid #808086;
@@ -108,7 +108,7 @@ body {
   height: 225px;
   border: 5px solid #ffffff;
   margin: 0 auto;
-  overflow: hidden;
+  /*overflow: hidden;*/
   background: #ffffff;
 }
 
@@ -116,6 +116,10 @@ body {
   color: white;
   font-size: 40px;
   margin: 0 auto;
+}
+
+.form-module .avatar-button i:hover {
+  color: #E9AC07;
 }
 
 .form-module .avatar-button button {
@@ -146,10 +150,10 @@ body {
 
 .form-module .avatar h1 {
   color: inherit;
-  font-size: 47px;
+  font-size: 18px;
   font-weight: 600;
   text-align: center;
-  padding-top: 10px;
+  padding-top: 80px;
 }
 
 .form-module .label {
@@ -166,6 +170,7 @@ body {
   width: 100%;
   font-size: 18px;
   font-weight: 600;
+  text-transform: uppercase;
   border: 0;
   padding: 10px 15px;
   color: #000000;
@@ -179,7 +184,11 @@ body {
 
 .form-module ul {
   list-style-type: circle;
-  color: #ffffff;
+  color: #58585B;
+}
+
+.form-module h2 {
+  color: #58585B;
 }
 
 .form-module li {
@@ -191,178 +200,432 @@ body {
   border: 1px solid #d9d9d9;
 }
 
-.conference {
+div.container {
   display: none;
-}
-
-.top-bottom {
-  width: 50%;
-  height: 100px;
-}
-
-.top-grid {
-  display: grid;
-  grid-template-columns: repeat(7, 1fr);
-  grid-gap: 10px;
-}
-
-.bottom-grid {
-  display: grid;
-  grid-template-columns: repeat(7, 1fr);
-  grid-gap: 10px;
-  padding-top: 5%;
-}
-
-.img1 {
-  width: 40px;
-  height: 40px;
-  background-color: #ffffff;
-  margin: 0 auto;
-}
-
-.img0 {
-  width: 40px;
-  height: 40px;
-  background-color: #58585B;
-}
-
-.middle {
+  position: relative;
   width: 100%;
-  height: 400px;
+  /*overflow: hidden;*/
 }
 
-.middle-grid {
-  display: grid;
-  grid-template-columns: 25% 50% 25%;
+div.container > div {
+  position: relative;
+  top: inherit;
 }
 
-.left-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  grid-gap: 10px;
-  padding-top: 10%;
-  padding-left: 60%;
+div.container img {
+  position: absolute;
+  display: block;
+  margin: 0px;
+  border: none;
+  padding: 0px;
+  background: white;
 }
 
-.right-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  grid-gap: 10px;
-  padding-top: 10%;
-  padding-right: 60%;
+div.container div {
+  position: absolute;
 }
 
-.center-grid {
-  padding-top: 2%;
-
+/* chairs at the top */
+.chair1 img {
+	top: 78px;
+	left: 427px;
+	width: 48px;
+	height: 42px;
+  object-fit: contain;
 }
 
-.center-top-frame,
-.center-bottom-frame {
-  display: inline-block;
-  width: 600px;
+.chair2 img {
+	top: 78px;
+	left: 498px;
+  width: 48px;
+	height: 42px;
+  object-fit: contain;
 }
 
-.top-left-frame {
-  width: 300px;
-  height: 175px;
-  outline: 1px gray solid;
-  float: left;
-  background-color: #ffffff;
+.chair3 img {
+	top: 78px;
+	left: 568px;
+  width: 48px;
+	height: 42px;
+  object-fit: contain;
 }
 
-.top-right-frame {
-  width: 300px;
-  height: 175px;
-  outline: 1px gray solid;
-  float: right;
-  background-color: #ffffff;
+.chair4 img {
+	top: 78px;
+	left: 639px;
+  width: 48px;
+	height: 42px;
+  object-fit: contain;
 }
 
-.bottom-left-frame {
-  width: 300px;
-  height: 175px;
-  outline: 1px gray solid;
-  float: left;
-  background-color: #ffffff;
+.chair5 img {
+	top: 78px;
+	left: 709px;
+  width: 48px;
+	height: 42px;
+  object-fit: contain;
 }
 
-.bottom-right-frame {
-  width: 300px;
-  height: 175px;
-  outline: 1px gray solid;
-  float: right;
-  background-color: #ffffff;
+.chair6 img {
+	top: 78px;
+	left: 780px;
+  width: 48px;
+	height: 42px;
+  object-fit: contain;
 }
 
-.frame-button {
+.chair7 img {
+	top: 78px;
+	left: 849px;
+  width: 48px;
+	height: 42px;
+  object-fit: contain;
+}
+
+.chair25 img {
+	top: 21px;
+	left: 498px;
+  width: 48px;
+	height: 42px;
+  object-fit: contain;
+}
+
+.chair26 img {
+	top: 21px;
+	left: 568px;
+  width: 48px;
+	height: 42px;
+  object-fit: contain;
+}
+
+.chair27 img {
+	top: 21px;
+	left: 639px;
+  width: 48px;
+	height: 42px;
+  object-fit: contain;
+}
+
+.chair28 img {
+	top: 21px;
+	left: 709px;
+  width: 48px;
+	height: 42px;
+  object-fit: contain;
+}
+
+.chair29 img {
+	top: 21px;
+	left: 780px;
+  width: 48px;
+	height: 42px;
+  object-fit: contain;
+}
+
+/* chairs at the bottom */
+
+.chair13 img {
+	top: 522px;
+	left: 849px;
+	width: 48px;
+	height: 42px;
+  object-fit: contain;
+}
+
+.chair14 img {
+	top: 522px;
+	left: 779px;
+  width: 48px;
+	height: 42px;
+  object-fit: contain;
+}
+
+.chair15 img {
+	top: 522px;
+	left: 709px;
+  width: 48px;
+	height: 42px;
+  object-fit: contain;
+}
+
+.chair16 img {
+	top: 522px;
+	left: 639px;
+  width: 48px;
+	height: 42px;
+  object-fit: contain;
+}
+
+.chair17 img {
+	top: 522px;
+	left: 568px;
+  width: 48px;
+	height: 42px;
+  object-fit: contain;
+}
+
+.chair18 img {
+	top: 522px;
+	left: 498px;
+  width: 48px;
+	height: 42px;
+  object-fit: contain;
+}
+
+.chair19 img {
+	top: 522px;
+	left: 427px;
+  width: 48px;
+	height: 42px;
+  object-fit: contain;
+}
+
+.chair33 img {
+	top: 579px;
+	left: 779px;
+  width: 48px;
+	height: 42px;
+  object-fit: contain;
+}
+
+.chair34 img {
+	top: 579px;
+	left: 709px;
+  width: 48px;
+	height: 42px;
+  object-fit: contain;
+}
+
+.chair35 img {
+	top: 579px;
+	left: 639px;
+  width: 48px;
+	height: 42px;
+  object-fit: contain;
+}
+
+.chair36 img {
+	top: 579px;
+	left: 568px;
+  width: 48px;
+	height: 42px;
+  object-fit: contain;
+}
+
+.chair37 img {
+	top: 579px;
+	left: 498px;
+  width: 48px;
+	height: 42px;
+  object-fit: contain;
+}
+
+/* chairs at the left */
+
+.chair20 img {
+	top: 408px;
+	left: 289px;
+	width: 48px;
+	height: 42px;
+  object-fit: contain;
+}
+
+.chair21 img {
+	top: 348px;
+	left: 289px;
+	width: 48px;
+	height: 42px;
+  object-fit: contain;
+}
+
+.chair22 img {
+	top: 287px;
+	left: 289px;
+	width: 48px;
+	height: 42px;
+  object-fit: contain;
+}
+
+.chair23 img {
+	top: 227px;
+	left: 289px;
+	width: 48px;
+	height: 42px;
+  object-fit: contain;
+}
+
+.chair24 img {
+	top: 167px;
+	left: 289px;
+	width: 48px;
+	height: 42px;
+  object-fit: contain;
+}
+
+.chair38 img {
+	top: 348px;
+	left: 218px;
+	width: 48px;
+	height: 42px;
+  object-fit: contain;
+}
+
+.chair39 img {
+	top: 287px;
+	left: 218px;
+	width: 48px;
+	height: 42px;
+  object-fit: contain;
+}
+
+.chair40 img {
+	top: 227px;
+	left: 218px;
+	width: 48px;
+	height: 42px;
+  object-fit: contain;
+}
+
+/* chairs at the right */
+
+.chair8 img {
+	top: 167px;
+	left: 989px;
+	width: 48px;
+	height: 42px;
+  object-fit: contain;
+}
+
+.chair9 img {
+	top: 227px;
+	left: 989px;
+	width: 48px;
+	height: 42px;
+  object-fit: contain;
+}
+
+.chair10 img {
+	top: 287px;
+	left: 989px;
+	width: 48px;
+	height: 42px;
+  object-fit: contain;
+}
+
+.chair11 img {
+	top: 347px;
+	left: 989px;
+	width: 48px;
+	height: 42px;
+  object-fit: contain;
+}
+
+.chair12 img {
+	top: 408px;
+	left: 989px;
+	width: 48px;
+	height: 42px;
+  object-fit: contain;
+}
+
+.chair30 img {
+	top: 227px;
+	left: 1059px;
+	width: 48px;
+	height: 42px;
+  object-fit: contain;
+}
+
+.chair31 img {
+	top: 287px;
+	left: 1059px;
+	width: 48px;
+	height: 42px;
+  object-fit: contain;
+}
+
+.chair32 img {
+	top: 347px;
+	left: 1059px;
+	width: 48px;
+	height: 42px;
+  object-fit: contain;
+}
+
+/* main chairs in conference */
+
+.frame1 {
+  left: 355px;
+  top: 135px;
+  width: 308px;
+  height: 158px;
+  outline: 1px solid gray;
+  background: #ffffff;
+  overflow: hidden;
+}
+
+.frame1 img {
+  object-fit: contain;
+}
+
+.frame2 {
+  left: 663px;
+  top: 135px;
+  width: 308px;
+  height: 158px;
+  background: #bfbfbf;
+  outline: 1px solid gray;
+  overflow: hidden;
+}
+
+.frame2 img {
+   object-fit: contain;
+}
+
+.frame3 {
+  left: 355px;
+  top: 292px;
+  width: 308px;
+  height: 158px;
+  outline: 1px solid gray;
+  background: #ffffff;
+  overflow: hidden;
+}
+
+.frame3 img {
+  object-fit: contain;
+}
+
+.frame4 {
+  left: 663px;
+  top: 292px;
+  width: 308px;
+  height: 158px;
+  background-color: #bfbfbf;
+  outline: 1px solid gray;
+  overflow: hidden;
+}
+
+.frame4 img {
+  object-fit: contain;
+}
+
+.joinbutton {
+  left: 355px;
+  top: 465px;
+}
+
+.joinbutton button {
+  width: 616px;
+  height: 41px;
+  border: 0;
   cursor: pointer;
-  width: 600px;
-  height: 40px;
-  font-size: 20px;
+  background: #000000;
+  font-size: 18px;
+  font-weight: 400;
+  letter-spacing: 1px;
+  font-family: inherit;
+  color: #ffffff;
   text-transform: uppercase;
-  border-radius: 8px;
-}
-
-.frame-space {
-  clear: both;
-  width: 100%;
-  height: 10px;
-}
-
-.top-left-frame img,
-.bottom-left-frame img {
-  width: 200px;
-  height: 174px;
-  -webkit-transform: scaleX(-1);
-  transform: scaleX(-1);
-}
-
-.top-right-frame img,
-.bottom-right-frame img {
-  width: 200px;
-  height: 175px;
-}
-
-#snackbar {
-  visibility: hidden; /* Hidden by default. Visible on click */
-  min-width: 250px; /* Set a default minimum width */
-  margin-left: -125px; /* Divide value of min-width by 2 */
-  background-color: #333; /* Black background color */
-  color: #fff; /* White text color */
-  text-align: center; /* Centered text */
-  border-radius: 2px; /* Rounded borders */
-  padding: 16px; /* Padding */
-  position: fixed; /* Sit on top of the screen */
-  z-index: 1; /* Add a z-index if needed */
-  left: 85%; /* Center the snackbar */
-  bottom: 30px; /* 30px from the bottom */
-}
-
-/* Show the snackbar when clicking on a button (class added with JavaScript) */
-#snackbar.show {
-  visibility: visible; /* Show the snackbar */
-  -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
-  animation: fadein 0.5s, fadeout 0.5s 2.5s;
-}
-
-/* Animations to fade the snackbar in and out */
-@-webkit-keyframes fadein {
-  from {bottom: 0; opacity: 0;}
-  to {bottom: 30px; opacity: 1;}
-}
-
-@keyframes fadein {
-  from {bottom: 0; opacity: 0;}
-  to {bottom: 30px; opacity: 1;}
-}
-
-@-webkit-keyframes fadeout {
-  from {bottom: 30px; opacity: 1;}
-  to {bottom: 0; opacity: 0;}
-}
-
-@keyframes fadeout {
-  from {bottom: 30px; opacity: 1;}
-  to {bottom: 0; opacity: 0;}
+  padding: 10px 15px;
 }

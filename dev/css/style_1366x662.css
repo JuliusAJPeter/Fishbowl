@@ -4,7 +4,7 @@ body {
   font-family: 'RobotoDraft', 'Roboto', sans-serif;
   font-size: 14px;
   -webkit-font-smoothing: antialiased;
-  overflow-x:hidden;
+  overflow-x: hidden;
 }
 
 /* Banner */
@@ -16,7 +16,7 @@ body {
 /* Form Module */
 .form-module {
   position: relative;
-  background: #2E2E30;
+  background: #E9AC07;
   max-width: 400px;
   width: 100%;
   border-top: 5px solid #808086;
@@ -108,7 +108,7 @@ body {
   height: 225px;
   border: 5px solid #ffffff;
   margin: 0 auto;
-  overflow: hidden;
+  /*overflow: hidden;*/
   background: #ffffff;
 }
 
@@ -119,7 +119,7 @@ body {
 }
 
 .form-module .avatar-button i:hover {
-  color: yellow;
+  color: #E9AC07;
 }
 
 .form-module .avatar-button button {
@@ -150,10 +150,10 @@ body {
 
 .form-module .avatar h1 {
   color: inherit;
-  font-size: 47px;
+  font-size: 18px;
   font-weight: 600;
   text-align: center;
-  padding-top: 10px;
+  padding-top: 80px;
 }
 
 .form-module .label {
@@ -170,7 +170,7 @@ body {
   width: 100%;
   font-size: 18px;
   font-weight: 600;
-  text-transform: lowercase;
+  text-transform: uppercase;
   border: 0;
   padding: 10px 15px;
   color: #000000;
@@ -184,7 +184,11 @@ body {
 
 .form-module ul {
   list-style-type: circle;
-  color: #ffffff;
+  color: #58585B;
+}
+
+.form-module h2 {
+  color: #58585B;
 }
 
 .form-module li {
@@ -221,12 +225,40 @@ div.container div {
   position: absolute;
 }
 
+/* Readme button*/
+
+.readme-btn {
+  padding-left: 15px;
+  padding-top: 10px;
+  width: 50px;
+}
+
+.readme {
+  display: block;
+  width: 30px;
+  height: 30px;
+  line-height: 30px;
+  /*border: 1px solid #f5f5f5;*/
+  border-radius: 50%;
+  color: #e9ac07;
+  text-align: center;
+  background: #464646;
+  box-shadow: 0 0 3px gray;
+  font-size: 12px;
+  font-weight: bold;
+}
+
+.readme:hover {
+  background: #262626;
+}
+
 /* chairs at the top */
 .chair1 img {
 	top: 78px;
 	left: 427px;
 	width: 48px;
 	height: 42px;
+  object-fit: contain;
 }
 
 .chair2 img {
@@ -234,6 +266,7 @@ div.container div {
 	left: 498px;
   width: 48px;
 	height: 42px;
+  object-fit: contain;
 }
 
 .chair3 img {
@@ -241,6 +274,7 @@ div.container div {
 	left: 568px;
   width: 48px;
 	height: 42px;
+  object-fit: contain;
 }
 
 .chair4 img {
@@ -248,6 +282,7 @@ div.container div {
 	left: 639px;
   width: 48px;
 	height: 42px;
+  object-fit: contain;
 }
 
 .chair5 img {
@@ -255,6 +290,7 @@ div.container div {
 	left: 709px;
   width: 48px;
 	height: 42px;
+  object-fit: contain;
 }
 
 .chair6 img {
@@ -262,6 +298,7 @@ div.container div {
 	left: 780px;
   width: 48px;
 	height: 42px;
+  object-fit: contain;
 }
 
 .chair7 img {
@@ -269,6 +306,7 @@ div.container div {
 	left: 849px;
   width: 48px;
 	height: 42px;
+  object-fit: contain;
 }
 
 .chair25 img {
@@ -276,6 +314,7 @@ div.container div {
 	left: 498px;
   width: 48px;
 	height: 42px;
+  object-fit: contain;
 }
 
 .chair26 img {
@@ -283,6 +322,7 @@ div.container div {
 	left: 568px;
   width: 48px;
 	height: 42px;
+  object-fit: contain;
 }
 
 .chair27 img {
@@ -290,6 +330,7 @@ div.container div {
 	left: 639px;
   width: 48px;
 	height: 42px;
+  object-fit: contain;
 }
 
 .chair28 img {
@@ -297,6 +338,7 @@ div.container div {
 	left: 709px;
   width: 48px;
 	height: 42px;
+  object-fit: contain;
 }
 
 .chair29 img {
@@ -304,6 +346,7 @@ div.container div {
 	left: 780px;
   width: 48px;
 	height: 42px;
+  object-fit: contain;
 }
 
 /* chairs at the bottom */
@@ -313,6 +356,7 @@ div.container div {
 	left: 849px;
 	width: 48px;
 	height: 42px;
+  object-fit: contain;
 }
 
 .chair14 img {
@@ -320,6 +364,7 @@ div.container div {
 	left: 779px;
   width: 48px;
 	height: 42px;
+  object-fit: contain;
 }
 
 .chair15 img {
@@ -327,6 +372,7 @@ div.container div {
 	left: 709px;
   width: 48px;
 	height: 42px;
+  object-fit: contain;
 }
 
 .chair16 img {
@@ -334,6 +380,7 @@ div.container div {
 	left: 639px;
   width: 48px;
 	height: 42px;
+  object-fit: contain;
 }
 
 .chair17 img {
@@ -341,6 +388,7 @@ div.container div {
 	left: 568px;
   width: 48px;
 	height: 42px;
+  object-fit: contain;
 }
 
 .chair18 img {
@@ -348,6 +396,7 @@ div.container div {
 	left: 498px;
   width: 48px;
 	height: 42px;
+  object-fit: contain;
 }
 
 .chair19 img {
@@ -355,13 +404,15 @@ div.container div {
 	left: 427px;
   width: 48px;
 	height: 42px;
+  object-fit: contain;
 }
 
 .chair33 img {
 	top: 579px;
-	left: 770px;
+	left: 779px;
   width: 48px;
 	height: 42px;
+  object-fit: contain;
 }
 
 .chair34 img {
@@ -369,6 +420,7 @@ div.container div {
 	left: 709px;
   width: 48px;
 	height: 42px;
+  object-fit: contain;
 }
 
 .chair35 img {
@@ -376,6 +428,7 @@ div.container div {
 	left: 639px;
   width: 48px;
 	height: 42px;
+  object-fit: contain;
 }
 
 .chair36 img {
@@ -383,6 +436,7 @@ div.container div {
 	left: 568px;
   width: 48px;
 	height: 42px;
+  object-fit: contain;
 }
 
 .chair37 img {
@@ -390,6 +444,7 @@ div.container div {
 	left: 498px;
   width: 48px;
 	height: 42px;
+  object-fit: contain;
 }
 
 /* chairs at the left */
@@ -399,6 +454,7 @@ div.container div {
 	left: 289px;
 	width: 48px;
 	height: 42px;
+  object-fit: contain;
 }
 
 .chair21 img {
@@ -406,6 +462,7 @@ div.container div {
 	left: 289px;
 	width: 48px;
 	height: 42px;
+  object-fit: contain;
 }
 
 .chair22 img {
@@ -413,6 +470,7 @@ div.container div {
 	left: 289px;
 	width: 48px;
 	height: 42px;
+  object-fit: contain;
 }
 
 .chair23 img {
@@ -420,6 +478,7 @@ div.container div {
 	left: 289px;
 	width: 48px;
 	height: 42px;
+  object-fit: contain;
 }
 
 .chair24 img {
@@ -427,6 +486,7 @@ div.container div {
 	left: 289px;
 	width: 48px;
 	height: 42px;
+  object-fit: contain;
 }
 
 .chair38 img {
@@ -434,6 +494,7 @@ div.container div {
 	left: 218px;
 	width: 48px;
 	height: 42px;
+  object-fit: contain;
 }
 
 .chair39 img {
@@ -441,6 +502,7 @@ div.container div {
 	left: 218px;
 	width: 48px;
 	height: 42px;
+  object-fit: contain;
 }
 
 .chair40 img {
@@ -448,6 +510,7 @@ div.container div {
 	left: 218px;
 	width: 48px;
 	height: 42px;
+  object-fit: contain;
 }
 
 /* chairs at the right */
@@ -457,6 +520,7 @@ div.container div {
 	left: 989px;
 	width: 48px;
 	height: 42px;
+  object-fit: contain;
 }
 
 .chair9 img {
@@ -464,6 +528,7 @@ div.container div {
 	left: 989px;
 	width: 48px;
 	height: 42px;
+  object-fit: contain;
 }
 
 .chair10 img {
@@ -471,6 +536,7 @@ div.container div {
 	left: 989px;
 	width: 48px;
 	height: 42px;
+  object-fit: contain;
 }
 
 .chair11 img {
@@ -478,6 +544,7 @@ div.container div {
 	left: 989px;
 	width: 48px;
 	height: 42px;
+  object-fit: contain;
 }
 
 .chair12 img {
@@ -485,6 +552,7 @@ div.container div {
 	left: 989px;
 	width: 48px;
 	height: 42px;
+  object-fit: contain;
 }
 
 .chair30 img {
@@ -492,6 +560,7 @@ div.container div {
 	left: 1059px;
 	width: 48px;
 	height: 42px;
+  object-fit: contain;
 }
 
 .chair31 img {
@@ -499,6 +568,7 @@ div.container div {
 	left: 1059px;
 	width: 48px;
 	height: 42px;
+  object-fit: contain;
 }
 
 .chair32 img {
@@ -506,6 +576,7 @@ div.container div {
 	left: 1059px;
 	width: 48px;
 	height: 42px;
+  object-fit: contain;
 }
 
 /* main chairs in conference */
@@ -521,8 +592,7 @@ div.container div {
 }
 
 .frame1 img {
-  width: 308px;
-  height: 158px;
+  object-fit: contain;
 }
 
 .frame2 {
@@ -530,16 +600,13 @@ div.container div {
   top: 135px;
   width: 308px;
   height: 158px;
-  background: #ffffff;
+  background: #bfbfbf;
   outline: 1px solid gray;
   overflow: hidden;
 }
 
 .frame2 img {
-  width: 308px;
-  height: 158px;
-  -webkit-transform: scaleX(-1);
-  transform: scaleX(-1);
+   object-fit: contain;
 }
 
 .frame3 {
@@ -553,8 +620,7 @@ div.container div {
 }
 
 .frame3 img {
-  width: 308px;
-  height: 158px;
+  object-fit: contain;
 }
 
 .frame4 {
@@ -562,16 +628,13 @@ div.container div {
   top: 292px;
   width: 308px;
   height: 158px;
-  background: #ffffff;
+  background-color: #bfbfbf;
   outline: 1px solid gray;
   overflow: hidden;
 }
 
 .frame4 img {
-  width: 308px;
-  height: 158px;
-  -webkit-transform: scaleX(-1);
-  transform: scaleX(-1);
+  object-fit: contain;
 }
 
 .joinbutton {
@@ -582,9 +645,14 @@ div.container div {
 .joinbutton button {
   width: 616px;
   height: 41px;
+  border: 0;
   cursor: pointer;
-  font-size: 22px;
-  font-weight: 600;
-  font-family: 'RobotoDraft', 'Roboto', sans-serif;
+  background: #000000;
+  font-size: 18px;
+  font-weight: 400;
+  letter-spacing: 1px;
+  font-family: inherit;
+  color: #ffffff;
   text-transform: uppercase;
+  padding: 10px 15px;
 }

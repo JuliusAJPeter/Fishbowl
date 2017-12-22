@@ -88,8 +88,28 @@ function onRemoteTrackRemove(track) {
     if (participant in changeList) {
       var remoteVideo = "#remoteVideo" +changeList[participant];
       var remoteAudio = "#remoteAudio" +changeList[participant];
+      switch (changeList[participant]) {
+	case 1:
+	   $(remoteVideo).replaceWith(
+		`<div id='remoteVideo${changeList[participant]}'><img src="resources/top-left.png"/></div>`);
+	   break;
+	case 2:
+	   $(remoteVideo).replaceWith(
+		`<div id='remoteVideo${changeList[participant]}'><img src="resources/top-right.png"/></div>`);
+	   break;
+	case 3:
+	   $(remoteVideo).replaceWith(
+	        `<div id='remoteVideo${changeList[participant]}'><img src="resources/bottom-left.png"/></div>`);
+	   break;
+	case 4:
+	   $(remoteVideo).replaceWith(
+	        `<div id='remoteVideo${changeList[participant]}'><img src="resources/bottom-right.png"/></div>`);
+	   break;
+	}
+      /*
       $(remoteVideo).replaceWith(
           `<div id='remoteVideo${changeList[participant]}'><img src="resources/conference-chair.png"/></div>`);
+      */
       $(remoteAudio).replaceWith(
           `<div id='remoteAudio${changeList[participant]}'></div>`);
       frameArray.push(changeList[participant]);
@@ -109,12 +129,13 @@ function onConferenceJoined() {
     }
     $('#mainBtn').attr('disabled', false);
     $.toast({
-        text: 'You have joined the room as a speaker.',
+        text: 'You have joined the Panel.',
         icon: 'success',
         showHideTransition: 'fade',
         allowToastClose: false,
         hideAfter: 5000,
         stack: 5,
+	loader: false,
         position: 'top-right',
         textAlign: 'left',
         bgColor: '#333333',
@@ -126,7 +147,7 @@ function onConferenceJoined() {
  * function is called when connection is established successfully
  */
 function onConnectionSuccess() {
-    room = connection.initJitsiConference('aaltofishbowlconference', interfaceConfig);
+    room = connection.initJitsiConference(details.roomName, interfaceConfig);
     room.on(JitsiMeetJS.events.conference.TRACK_ADDED, onRemoteTrack);
     room.on(JitsiMeetJS.events.conference.TRACK_REMOVED, onRemoteTrackRemove);
     room.on(JitsiMeetJS.events.conference.CONFERENCE_JOINED,onConferenceJoined);
@@ -151,6 +172,7 @@ function onMessageReceive(id, text, ts) {
             allowToastClose: false,
             hideAfter: 5000,
             stack: 5,
+	    loader: false,
             position: 'top-right',
             textAlign: 'left',
             bgColor: '#333333',
@@ -167,12 +189,16 @@ function onMessageReceive(id, text, ts) {
            allowToastClose: false,
            hideAfter: 5000,
            stack: 5,
+	   loader: false,
            position: 'top-right',
            textAlign: 'left',
            bgColor: '#333333',
            textColor: '#ffffff'
         });
     }
+    console.log('BERRY: '+id);
+    console.log('BERRY: '+text);
+    console.log('BERRY: '+ts);
 }
 
 /**
@@ -218,12 +244,13 @@ JitsiMeetJS.init(config)
     .then(() => {
         connection = new JitsiMeetJS.JitsiConnection(null, null, config);
         $.toast({
-	     text: 'Finding a chair for you...',
+	     text: 'Rearranging the video a bit...',
 	     icon: 'info',
 	     showHideTransition: 'fade',
 	     allowToastClose: false,
              hideAfter: 2000,
-	     stack: 5, 
+	     stack: 5,
+	     loader: false,	
 	     position: 'top-right',
 	     textAlign: 'left',
 	     bgColor: '#333333',
@@ -257,7 +284,7 @@ function btnClick() {
 	    this.src == 'https://fishbowl.havoc.fi/dev/libs/join-config.js')
 	    this.parentNode.removeChild(this);
     });
-    $("#mainBtn").text("Join the discussion"); 
+   $('#mainBtn').text('join the panel'); 
     $('#mainBtn').attr('disabled', true);
     $('body').append('<script src="libs/audience-config.js"></script>');
     $('body').append('<script src="libs/audience.js"></script>');
@@ -267,7 +294,7 @@ var blinkBtn = setInterval(function() {
    if (blink){
      $('#mainBtn').text('');
      setTimeout(function() {
-	$('#mainBtn').text('Leave');
+	$('#mainBtn').text('leave the panel');
      }, 500);
    }
 }, 1000);
