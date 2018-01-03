@@ -234,6 +234,7 @@ div.container div {
 }
 
 .readme {
+  cursor: pointer;
   display: block;
   width: 30px;
   height: 30px;
@@ -655,4 +656,59 @@ div.container div {
   color: #ffffff;
   text-transform: uppercase;
   padding: 10px 15px;
+}
+
+/* modal */
+#overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #000;
+  opacity: 0.5;
+}
+
+#modal {
+  position:absolute;
+  background:#58585B;
+  padding:3px;
+}
+
+#content {
+  background:#e9ac07;
+  padding:20px;
+}
+
+#content h2 {
+  margin: 0 0 20px;
+  color: #58585B;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 1;
+  font-family: 'RobotoDraft', 'Roboto', sans-serif;
+  text-align: center;
+}
+
+#content ul {
+  list-style-type: circle;
+  font-family: 'RobotoDraft', 'Roboto', sans-serif;
+  color: #58585B;
+  margin: 10px;
+}
+
+#content li {
+  padding: 5px;
+  font-family: 'RobotoDraft', 'Roboto', sans-serif;
+}
+
+#close {
+  position:absolute;
+  background:url('close.png') 0 0 no-repeat;
+  width:24px;
+  height:27px;
+  display:block;
+  text-indent:-9999px;
+  top:-7px;
+  right:-7px;
 }
