@@ -46,8 +46,8 @@ var modal = (function(){
     top = Math.max($(window).height() - $modal.outerHeight(), 0) / 2;
     left = Math.max($(window).width() - $modal.outerWidth(), 0) / 2;
     $modal.css({
-      top:top + $(window).scrollTop(),
-      left:left + $(window).scrollLeft()
+      top: top + $(window).scrollTop(),
+      left: left + $(window).scrollLeft()
     });
   };
 
@@ -100,25 +100,25 @@ function go(){
   var data = JSON.stringify({"roomname": roomname,
   "username": nickname,
   "image"   : image});
-  /*$.ajax({
+  $.ajax({
   url: "https://fishbowl.havoc.fi/fishbowl_register",
   type: "POST",
   data: data,
   dataType: "application/json",
   success: function(response){
-  console.log(response);
-},
-error: function(xhr, ajaxOptions, thrownError) {
-alert(xhr.status);
-alert(thrownError);
-}
-});*/
+             console.log(response);
+           },
+  error: function(xhr, ajaxOptions, thrownError) {
+           alert(xhr.status);
+           alert(thrownError);
+         }
+  });
 
-$('body').append('<script src="libs/strophe/strophe.js"></script>');
-$('body').append('<script src="libs/strophe/strophe.disco.min.js?v=1"></script>');
-$('body').append('<script src="libs/audience-config.js"></script>');
-$('body').append('<script src="libs/interface_config.js"></script>');
-$('body').append('<script src="libs/audience.js"></script>');
+  $('body').append('<script src="libs/strophe/strophe.js"></script>');
+  $('body').append('<script src="libs/strophe/strophe.disco.min.js?v=1"></script>');
+  $('body').append('<script src="libs/audience-config.js"></script>');
+  $('body').append('<script src="libs/interface_config.js"></script>');
+  $('body').append('<script src="libs/audience.js"></script>');
 }
 
 function snap(value) {
@@ -173,13 +173,13 @@ function readme() {
     height: "422px"
   });
 }
-
-function showAvatar(nickName) {
-  var fileName = "resources/" + nickName + ".png";
+/*
+function showAvatar(order) {
   modal.open({
-    content: '<h2>@' + nickName + '</h2>' +
-        '<img src="' + fileName + '"/>',
-    width: "300px",
+    content: '<h2>@' + seats[order].nickName + '</h2>' +
+        '<img src="' + seats[order].fileName + '"/>',
+    width: "340px",
     heigth: "225px"
   });
 }
+*/

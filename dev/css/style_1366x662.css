@@ -254,330 +254,370 @@ div.container div {
 }
 
 /* chairs at the top */
-.chair1 img {
+.chair0 img {
 	top: 78px;
 	left: 427px;
 	width: 48px;
 	height: 42px;
-  object-fit: contain;
+  object-fit: cover;
+  overflow: hidden;
+}
+
+.chair1 img {
+	top: 78px;
+	left: 498px;
+  width: 48px;
+	height: 42px;
+  object-fit: cover;
+  overflow: hidden;
 }
 
 .chair2 img {
 	top: 78px;
-	left: 498px;
+	left: 568px;
   width: 48px;
 	height: 42px;
-  object-fit: contain;
+  object-fit: cover;
+  overflow: hidden;
 }
 
 .chair3 img {
 	top: 78px;
-	left: 568px;
+	left: 639px;
   width: 48px;
 	height: 42px;
-  object-fit: contain;
+  object-fit: cover;
+  overflow: hidden;
 }
 
 .chair4 img {
 	top: 78px;
-	left: 639px;
+	left: 709px;
   width: 48px;
 	height: 42px;
-  object-fit: contain;
+  object-fit: cover;
+  overflow: hidden;
 }
 
 .chair5 img {
 	top: 78px;
-	left: 709px;
+	left: 780px;
   width: 48px;
 	height: 42px;
-  object-fit: contain;
+  object-fit: cover;
+  overflow: hidden;
 }
 
 .chair6 img {
 	top: 78px;
-	left: 780px;
-  width: 48px;
-	height: 42px;
-  object-fit: contain;
-}
-
-.chair7 img {
-	top: 78px;
 	left: 849px;
   width: 48px;
 	height: 42px;
-  object-fit: contain;
+  object-fit: cover;
+  overflow: hidden;
+}
+
+.chair24 img {
+	top: 21px;
+	left: 498px;
+  width: 48px;
+	height: 42px;
+  object-fit: cover;
+  overflow: hidden;
 }
 
 .chair25 img {
 	top: 21px;
-	left: 498px;
+	left: 568px;
   width: 48px;
 	height: 42px;
-  object-fit: contain;
+  object-fit: cover;
+  overflow: hidden;
 }
 
 .chair26 img {
 	top: 21px;
-	left: 568px;
+	left: 639px;
   width: 48px;
 	height: 42px;
-  object-fit: contain;
+  object-fit: cover;
+  overflow: hidden;
 }
 
 .chair27 img {
 	top: 21px;
-	left: 639px;
+	left: 709px;
   width: 48px;
 	height: 42px;
-  object-fit: contain;
+  object-fit: cover;
+  overflow: hidden;
 }
 
 .chair28 img {
 	top: 21px;
-	left: 709px;
-  width: 48px;
-	height: 42px;
-  object-fit: contain;
-}
-
-.chair29 img {
-	top: 21px;
 	left: 780px;
   width: 48px;
 	height: 42px;
-  object-fit: contain;
+  object-fit: cover;
+  overflow: hidden;
 }
 
 /* chairs at the bottom */
 
-.chair13 img {
+.chair12 img {
 	top: 522px;
 	left: 849px;
 	width: 48px;
 	height: 42px;
-  object-fit: contain;
+  object-fit: cover;
+  overflow: hidden;
+}
+
+.chair13 img {
+	top: 522px;
+	left: 779px;
+  width: 48px;
+	height: 42px;
+  object-fit: cover;
+  overflow: hidden;
 }
 
 .chair14 img {
 	top: 522px;
-	left: 779px;
+	left: 709px;
   width: 48px;
 	height: 42px;
-  object-fit: contain;
+  object-fit: cover;
+  overflow: hidden;
 }
 
 .chair15 img {
 	top: 522px;
-	left: 709px;
+	left: 639px;
   width: 48px;
 	height: 42px;
-  object-fit: contain;
+  object-fit: cover;
+  overflow: hidden;
 }
 
 .chair16 img {
 	top: 522px;
-	left: 639px;
+	left: 568px;
   width: 48px;
 	height: 42px;
-  object-fit: contain;
+  object-fit: cover;
+  overflow: hidden;
 }
 
 .chair17 img {
 	top: 522px;
-	left: 568px;
+	left: 498px;
   width: 48px;
 	height: 42px;
-  object-fit: contain;
+  object-fit: cover;
+  overflow: hidden;
 }
 
 .chair18 img {
 	top: 522px;
-	left: 498px;
-  width: 48px;
-	height: 42px;
-  object-fit: contain;
-}
-
-.chair19 img {
-	top: 522px;
 	left: 427px;
   width: 48px;
 	height: 42px;
-  object-fit: contain;
+  object-fit: cover;
+  overflow: hidden;
 }
 
-.chair33 img {
+.chair32 img {
 	top: 579px;
 	left: 779px;
   width: 48px;
 	height: 42px;
-  object-fit: contain;
+  object-fit: cover;
+  overflow: hidden;
 }
 
-.chair34 img {
+.chair33 img {
 	top: 579px;
 	left: 709px;
   width: 48px;
 	height: 42px;
-  object-fit: contain;
+  object-fit: cover;
+  overflow: hidden;
 }
 
-.chair35 img {
+.chair34 img {
 	top: 579px;
 	left: 639px;
   width: 48px;
 	height: 42px;
-  object-fit: contain;
+  object-fit: cover;
+  overflow: hidden;
 }
 
-.chair36 img {
+.chair35 img {
 	top: 579px;
 	left: 568px;
   width: 48px;
 	height: 42px;
-  object-fit: contain;
+  object-fit: cover;
+  overflow: hidden;
 }
 
-.chair37 img {
+.chair36 img {
 	top: 579px;
 	left: 498px;
   width: 48px;
 	height: 42px;
-  object-fit: contain;
+  object-fit: cover;
+  overflow: hidden;
 }
 
 /* chairs at the left */
 
-.chair20 img {
+.chair19 img {
 	top: 408px;
 	left: 289px;
 	width: 48px;
 	height: 42px;
-  object-fit: contain;
+  object-fit: cover;
+  overflow: hidden;
 }
 
-.chair21 img {
+.chair20 img {
 	top: 348px;
 	left: 289px;
 	width: 48px;
 	height: 42px;
-  object-fit: contain;
+  object-fit: cover;
+  overflow: hidden;
 }
 
-.chair22 img {
+.chair21 img {
 	top: 287px;
 	left: 289px;
 	width: 48px;
 	height: 42px;
-  object-fit: contain;
+  object-fit: cover;
+  overflow: hidden;
 }
 
-.chair23 img {
+.chair22 img {
 	top: 227px;
 	left: 289px;
 	width: 48px;
 	height: 42px;
-  object-fit: contain;
+  object-fit: cover;
+  overflow: hidden;
 }
 
-.chair24 img {
+.chair23 img {
 	top: 167px;
 	left: 289px;
 	width: 48px;
 	height: 42px;
-  object-fit: contain;
+  object-fit: cover;
+  overflow: hidden;
 }
 
-.chair38 img {
+.chair37 img {
 	top: 348px;
 	left: 218px;
 	width: 48px;
 	height: 42px;
-  object-fit: contain;
+  object-fit: cover;
+  overflow: hidden;
 }
 
-.chair39 img {
+.chair38 img {
 	top: 287px;
 	left: 218px;
 	width: 48px;
 	height: 42px;
-  object-fit: contain;
+  object-fit: cover;
+  overflow: hidden;
 }
 
-.chair40 img {
+.chair39 img {
 	top: 227px;
 	left: 218px;
 	width: 48px;
 	height: 42px;
-  object-fit: contain;
+  object-fit: cover;
+  overflow: hidden;
 }
 
 /* chairs at the right */
 
-.chair8 img {
+.chair7 img {
 	top: 167px;
 	left: 989px;
 	width: 48px;
 	height: 42px;
-  object-fit: contain;
+  object-fit: cover;
+  overflow: hidden;
 }
 
-.chair9 img {
+.chair8 img {
 	top: 227px;
 	left: 989px;
 	width: 48px;
 	height: 42px;
-  object-fit: contain;
+  object-fit: cover;
+  overflow: hidden;
 }
 
-.chair10 img {
+.chair9 img {
 	top: 287px;
 	left: 989px;
 	width: 48px;
 	height: 42px;
-  object-fit: contain;
+  object-fit: cover;
+  overflow: hidden;
 }
 
-.chair11 img {
+.chair10 img {
 	top: 347px;
 	left: 989px;
 	width: 48px;
 	height: 42px;
-  object-fit: contain;
+  object-fit: cover;
+  overflow: hidden;
 }
 
-.chair12 img {
+.chair11 img {
 	top: 408px;
 	left: 989px;
 	width: 48px;
 	height: 42px;
-  object-fit: contain;
+  object-fit: cover;
+  overflow: hidden;
 }
 
-.chair30 img {
+.chair29 img {
 	top: 227px;
 	left: 1059px;
 	width: 48px;
 	height: 42px;
-  object-fit: contain;
+  object-fit: cover;
+  overflow: hidden;
 }
 
-.chair31 img {
+.chair30 img {
 	top: 287px;
 	left: 1059px;
 	width: 48px;
 	height: 42px;
-  object-fit: contain;
+  object-fit: cover;
+  overflow: hidden;
 }
 
-.chair32 img {
+.chair31 img {
 	top: 347px;
 	left: 1059px;
 	width: 48px;
 	height: 42px;
-  object-fit: contain;
+  object-fit: cover;
+  overflow: hidden;
 }
 
 /* main chairs in conference */
@@ -670,14 +710,14 @@ div.container div {
 }
 
 #modal {
-  position:absolute;
-  background:#58585B;
-  padding:3px;
+  position: absolute;
+  background: #58585B;
+  padding: 3px;
 }
 
 #content {
-  background:#e9ac07;
-  padding:20px;
+  background: #e9ac07;
+  padding: 20px;
 }
 
 #content h2 {
@@ -703,12 +743,12 @@ div.container div {
 }
 
 #close {
-  position:absolute;
-  background:url('close.png') 0 0 no-repeat;
-  width:24px;
-  height:27px;
-  display:block;
-  text-indent:-9999px;
-  top:-7px;
-  right:-7px;
+  position: absolute;
+  background: url('close.png') 0 0 no-repeat;
+  width: 24px;
+  height: 27px;
+  display: block;
+  text-indent: -9999px;
+  top: -7px;
+  right: -7px;
 }
