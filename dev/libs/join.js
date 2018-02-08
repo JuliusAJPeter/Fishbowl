@@ -163,9 +163,16 @@ function onConnectionSuccess() {
  * function is called when a message is received
  */
 function onMessageReceive(id, text, ts) {
-    if (text === "REQUEST") {
-	blink = true;
- 	$.toast({
+    console.log("onMessageReceive" +id);
+    console.log("onMessageReceive" +text);
+    console.log("onMessageReceive" +ts);
+    var split = text.split("@");
+    if (split[0] === "REQUEST") {
+	var diff = new Date().getTime() - new Date(split[1]).getTime();
+	console.log("onMessageReceive" +diff);
+	if (Math.floor(diff/1000) < 10) {
+	  blink = true;
+ 	  $.toast({
             text: 'Someone wants to join!',
             icon: 'info',
             showHideTransition: 'fade',
@@ -177,8 +184,9 @@ function onMessageReceive(id, text, ts) {
             textAlign: 'left',
             bgColor: '#333333',
             textColor: '#ffffff'
-        });	
-    } else if (text === "STOP") {
+          });
+	}	
+    } else if (split[0] === "STOP") {
 	blink = false;
 	clearInterval(blinkBtn);
     } else {
@@ -196,9 +204,6 @@ function onMessageReceive(id, text, ts) {
            textColor: '#ffffff'
         });
     }
-    console.log('BERRY: '+id);
-    console.log('BERRY: '+text);
-    console.log('BERRY: '+ts);
 }
 
 /**

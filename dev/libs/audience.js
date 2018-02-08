@@ -13,6 +13,23 @@ let emptySeat = Array.from(Array(40).keys());
 let avatarLoc = "https://fishbowl.havoc.fi/fishbowl/kuvat/";
 
 /**
+ * Fill in the empty chairs
+ */
+var tagId,
+    src;
+for (var i=0; i<40; i++) {
+  tagId = "#img" +i;
+  if ((i>2 && i<15) ||
+      (i>25 && i<34)) {
+    src = "resources/chair-right.png";
+  }else {
+    src = "resources/chair-left.png";
+  }
+  $(tagId).replaceWith(
+    `<img id="img${i}" src="${src}"/>`);
+}
+
+/**
  * Handles remote tracks
  * @param track JitsiTrack object
  */
@@ -163,13 +180,13 @@ function onUserLeft(id, user) {
     emptySeat.push(removeIdx);
     if ((removeIdx>2 && removeIdx<15) ||
 	(removeIdx>25 && removeIdx<34)) {
-      var src = "resources/chair-right.png";
+      src = "resources/chair-right.png";
     }
     else {
-      var src = "resources/chair-left.png";
+      src = "resources/chair-left.png";
     }
-    var imgId = '#img' + removeIdx;
-    $(imgId).replaceWith(
+    tagId = '#img' + removeIdx;
+    $(tagId).replaceWith(
 	`<img id="img${removeIdx}" src="${src}"/>`);
 }
 /**
@@ -203,8 +220,24 @@ function unload() {
     connection.disconnect();
 }
 
-$(window).bind('beforeunload', unload);
+function beforeUnload() {
+    unload();
+    $('script').each(function() {
+      if (this.src == 'https://fishbowl.havoc.fi/dev/libs/audience.js' ||
+	  this.src == 'https://fishbowl.havoc.fi/dev/libs/audience-config.js' ||
+          this.src == 'https://fishbowl.havoc.fi/dev/libs/interface_config.js' ||
+          this.src == 'https://fishbowl.havoc.fi/dev/libs/strophe/strophe.js' ||
+          this.src == 'https://fishbowl.havoc.fi/dev/libs/strophe/strophe.disco.min.js?v=1')
+	  this.parentNode.removeChild(this);
+    });
+    $('.container').css('display', 'none');
+    $('.form-module').css('display', 'block');
+    $('.banner').css('display', 'block');
+}
+
+$(window).bind('beforeunload', beforeUnload);
 $(window).bind('unload', unload);
+$(window).on('popstate', beforeUnload);
 
 JitsiMeetJS.init(config)
     .then(() => {
@@ -241,7 +274,8 @@ function btnClick() {
      join();
    } 
    else {
-     room.sendTextMessage("REQUEST");
+     var txtMessage = "REQUEST@" +new Date().toISOString();
+     room.sendTextMessage(txtMessage);
      triggerJoin = true;
    }
 }

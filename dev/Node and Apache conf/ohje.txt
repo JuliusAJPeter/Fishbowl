@@ -1,0 +1,45 @@
+Hi,
+
+I just got the Node.JS server to work, and gave it some thought:
+
+1) The picture you store in the setup will in the first iteration be:
+   https://fisbbowl.aalto.fi/fishbowl_pics/${username}.png
+2) The picture is not removed whether or not you're off line or not.
+   The point is that when a user returns, their picture is taken
+   with the same nickname/username, and it will simply be overwritten.
+   This will not work welli if there's two "pekka"'s for instance in the
+   fishbowl conference. Needs some thought.
+3) The collision of nicknames must be solved later.
+
+I made a Node.js serve that is attached. It's a bit work in process but
+should work out more or less neatly if you change the first line in the
+code:
+        DEST_DIR="/tmp"
+to
+        DEST_DIR="/var/www/html/pictures"
+or something like that. If you don't get the point, I can make the change
+to Apache when I return from town tomorrow home.
+
+The system works like this:
+        % node server.js
+
+Theres's a POST request given as JSON coded data. Right now I try with:
+
+        % (echo -n '{"username":"bgran2", "image": "'; base64 kukka.jpg; echo '"}') | curl -H "Content-Type: application/json" -d @-  http://localhost:8080/ ; echo
+
+This sends the JSON coded data like username and image data to the
+server. The return value is:
+        {"picurl":"http://fishbowl.aalto.fi/fishbowl/kuvat/bgran2.png"}
+which is JSON coded data. That picurl entry is the thing that we'll setup
+in the <img> tag in the interface.
+
+I think I will be online around 13:00 ish tomorrow, so I'm setting out
+to sleep now.
+
+After this is done, the login to the conf should do the stuff like
+show the pictures with:
+        <img src="https://fishbowl.aalto.fi/fishbowl_pics/bgran.png />
+Which would be my picture.
+
+Best regareds,
+Bo

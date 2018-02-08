@@ -94,9 +94,6 @@ function go(){
   nickname +
   "'};";
   document.body.appendChild(script);
-  $('.container').css('display', 'block');
-  $('.form-module').css('display', 'none');
-  $('.banner').css('display', 'none');
   var data = JSON.stringify({"roomname": roomname,
   "username": nickname,
   "image"   : image});
@@ -106,19 +103,43 @@ function go(){
   data: data,
   dataType: "application/json",
   success: function(response){
-             console.log(response);
+             alert("Success:" +response);
            },
   error: function(xhr, ajaxOptions, thrownError) {
-           alert(xhr.status);
-           alert(thrownError);
+	 if (xhr.status == '200') {
+           $('.container').css('display', 'block');
+           $('.form-module').css('display', 'none');
+           $('.banner').css('display', 'none');
+	   $('body').append('<script src="libs/strophe/strophe.js"></script>');
+	   $('body').append('<script src="libs/strophe/strophe.disco.min.js?v=1"></script>');
+           $('body').append('<script src="libs/audience-config.js"></script>');
+	   $('body').append('<script src="libs/interface_config.js"></script>');
+	   $('body').append('<script src="libs/audience.js"></script>');
+	 } else {
+	   $.toast({
+	       text: 'Something went wrong unexpectedly.. please try again.',
+	       icon: 'error',
+	       showHideTransition: 'fade',
+	       allowToastClose: false,
+	       hideAfter: 5000,
+	       stack: 5,
+	       loader: false,
+	       position: 'top-right',
+	       textAlign: 'left',
+	       bgColor: '#333333',
+	       textColor: '#ffffff'
+           });
+	 }
+           /*alert("Error:" +xhr.status);
+           alert("Error:" +thrownError);*/
          }
   });
-
+  /*
   $('body').append('<script src="libs/strophe/strophe.js"></script>');
   $('body').append('<script src="libs/strophe/strophe.disco.min.js?v=1"></script>');
   $('body').append('<script src="libs/audience-config.js"></script>');
   $('body').append('<script src="libs/interface_config.js"></script>');
-  $('body').append('<script src="libs/audience.js"></script>');
+  $('body').append('<script src="libs/audience.js"></script>');*/
 }
 
 function snap(value) {
@@ -137,6 +158,19 @@ function snap(value) {
       video.play();
     }, function(error){
       console.log("ERROR: " +error);
+    });
+    $.toast({
+	text: 'Click the camera icon again to capture your photo..',
+	icon: 'info',
+	showHideTransition: 'fade',
+	allowToastClose: false,
+	hideAfter: 5000,
+	stack: 5,
+	loader: false,	
+	position: 'top-right',
+	textAlign: 'left',
+	bgColor: '#333333',
+	textColor: '#ffffff'	
     });
   }
   if(value == 1) {
