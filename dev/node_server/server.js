@@ -47,6 +47,7 @@ http.createServer(function (req, res) {
 			var username = "pekka";
 			var base64_data = "dataaa";
 			var roomname = "";
+                        var pk = "";
 
 			var obj = JSON.parse(body, function (key, val) {
 				if (key == "username") {
@@ -57,10 +58,13 @@ http.createServer(function (req, res) {
 					base64_data = val;
 				} else if (key == "roomname") {
 					roomname = val;
-				}
+				} else if (key == "key") {
+                                        pk = val;
+                                }
 			});
 
 			console.log("USERNAME: " + username);
+                        console.log("KEY:" + pk);
 			
 			if (!/^[a-zA-Z0-9]+$/.test(username)) {
 				 console.log("HAXXOR detected");
@@ -75,7 +79,7 @@ http.createServer(function (req, res) {
 				return (1);
 			}
 			console.log("DEST_DIR: " + DEST_DIR);
-			pic_dst = DEST_DIR + "/" + roomname + "_" + username + ".png";
+			pic_dst = DEST_DIR + "/" + roomname + "_" + username + "_" + pk + ".png";
 
 			// concert base64 to binary
 			var uncoded = new Buffer(base64_data, 'base64');

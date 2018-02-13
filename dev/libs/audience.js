@@ -46,8 +46,8 @@ function onRemoteTrack(track) {
         $(remoteVideo).replaceWith(
           `<div id='remoteVideo${changeList[participant]}'><video autoplay='1' id='${participant}video${idx}' width='308px'/></div>`);
         for (var i=0; i<40; i++) {
-          if (seats[i] != undefined) {
-            if (seats[i].userId == participant) {
+          if (seats[i] !== undefined) {
+            if (seats[i].userId === participant) {
               seats.splice(i, 1);
               emptySeat.push(i);
             } 
@@ -141,13 +141,16 @@ function onConnectionSuccess() {
     */
     room.on(JitsiMeetJS.events.conference.USER_JOINED, onUserJoined);
     room.on(JitsiMeetJS.events.conference.USER_LEFT, onUserLeft);
-    room.setDisplayName(details.nickName);	
+    room.setDisplayName(details.nickName + "@" + details.key);	
     room.join();
     seats[0] = {userId: 0,
                 placeHolder: emptySeat.shift(),
 	        nickname: details.nickName,
-	        fileName: avatarLoc + details.roomName + "_" + details.nickName + ".png"
-	       };
+                key: details.key,
+	        fileName: avatarLoc + 
+                          details.roomName + "_" + 
+                          details.nickName + "_" + 
+                          details.key + ".png"};
     var imgId = '#img' + seats[0].placeHolder;
     $(imgId).replaceWith(
       `<img id="img${seats[0].placeHolder}" src="${seats[0].fileName}"/>`);
@@ -156,11 +159,16 @@ function onConnectionSuccess() {
 function onUserJoined(id, user) {
     remoteTracks[id] = [];
     chairIdx = emptySeat.shift();
+    var displayName = user._displayName;
+    var nameKeyStr = displayName.split("@");
     seats[chairIdx] = {userId: id,
                 placeHolder: chairIdx,
-    		nickname: user._displayName,
-    		fileName: avatarLoc + details.roomName + "_" + user._displayName + ".png"
-    	       };
+    		nickname: nameKeyStr[0],
+                key: nameKeyStr[1],
+    		fileName: avatarLoc + 
+                          details.roomName + "_" + 
+                          nameKeyStr[0] + "_" +
+                          nameKeyStr[1] + ".png"};
     var imgId = '#img' + seats[chairIdx].placeHolder;
     $(imgId).replaceWith(
       `<img id="img${seats[chairIdx].placeHolder}" src="${seats[chairIdx].fileName}"/>`);
@@ -168,8 +176,8 @@ function onUserJoined(id, user) {
 
 function onUserLeft(id, user) {
     for (var i=0; i<40; i++) {
-      if (seats[i] != undefined) {
-        if (seats[i].userId == id) {
+      if (seats[i] !== undefined) {
+        if (seats[i].userId === id) {
           seats.splice(i, 1);
           emptySeat.push(i);
         }
@@ -182,7 +190,7 @@ function refreshSeats() {
     var imgId,
         src;
     for (var i=0; i<40; i++) {
-      if (seats[i] != undefined) {
+      if (seats[i] !== undefined) {
         imgId = '#img' + seats[i].placeHolder;
         $(imgId).replaceWith(
           `<img id="img${seats[i].placeHolder}" src="${seats[i].fileName}"/>`);
@@ -330,11 +338,12 @@ var queue = setInterval(function() {
 }, 1000);
 
 function showAvatar(order) {
-  if (seats[order] == undefined) {
-    var modalContent = '<h2>@empty chair</h2>';
+  var modalContent;
+  if (seats[order] === undefined) {
+    modalContent = '<h2>@empty chair</h2>';
   }
   else {
-    var modalContent = '<h2>@' + seats[order].nickname + '</h2>' +
+    modalContent = '<h2>@' + seats[order].nickname + '</h2>' +
 		       '<img src="' + seats[order].fileName + '"/>';
   }
   modal.open({

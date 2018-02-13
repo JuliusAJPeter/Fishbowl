@@ -83,6 +83,7 @@ let image = null;
 let nickname = null;
 let roomname = null;
 let localStream = null;
+let key = null;
 
 function go(){
   if (image == null) {
@@ -104,13 +105,16 @@ function go(){
   var script = document.createElement('script');
   roomname = document.getElementById('form-details').elements.item(0).value;
   nickname = document.getElementById('form-details').elements.item(1).value;
+  key = new Date().getTime();
   script.text = "var details = {roomName:'" + 
                 document.getElementById('form-details').elements.item(0).value +
                 "',nickName:'" + nickname +
-                "'};";
+                "',key:'" + key.toString() + "'};";
+  console.log(script.text);
   document.body.appendChild(script);
   var data = JSON.stringify({"roomname": roomname,
   "username": nickname,
+  "key": key.toString(),
   "image"   : image});
   $.ajax({
   url: "https://webdialogos.fi/fishbowl_register",
