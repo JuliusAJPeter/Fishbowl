@@ -85,20 +85,35 @@ let roomname = null;
 let localStream = null;
 
 function go(){
+  if (image == null) {
+    $.toast({
+        text: 'Please take a picture before entering the room!',
+        icon: 'info',
+        showHideTransition: 'fade',
+        allowToastClose: false,
+        hideAfter: 5000,
+        stack: 5,
+        loader: false,
+        position: 'top-right',
+        textAlign: 'left',
+        bgColor: '#333333',
+        textColor: '#ffffff'
+    });
+    return;
+  }
   var script = document.createElement('script');
   roomname = document.getElementById('form-details').elements.item(0).value;
   nickname = document.getElementById('form-details').elements.item(1).value;
-  script.text = "var details = {roomName:'" +
-  document.getElementById('form-details').elements.item(0).value +
-  "',nickName:'" +
-  nickname +
-  "'};";
+  script.text = "var details = {roomName:'" + 
+                document.getElementById('form-details').elements.item(0).value +
+                "',nickName:'" + nickname +
+                "'};";
   document.body.appendChild(script);
   var data = JSON.stringify({"roomname": roomname,
   "username": nickname,
   "image"   : image});
   $.ajax({
-  url: "https://fishbowl.havoc.fi/fishbowl_register",
+  url: "https://webdialogos.fi/fishbowl_register",
   type: "POST",
   data: data,
   dataType: "application/json",
@@ -115,7 +130,21 @@ function go(){
            $('body').append('<script src="libs/audience-config.js"></script>');
 	   $('body').append('<script src="libs/interface_config.js"></script>');
 	   $('body').append('<script src="libs/audience.js"></script>');
-	 } else {
+	 } else if (xhr.status == '503') {
+           $.toast({
+               text: 'Server is broken.. please notify admin.',
+               icon: 'error',
+               showHideTransition: 'fade',
+               allowToastClose: false,
+               hideAfter: 5000,
+               stack: 5,
+               loader: false,
+               position: 'top-right',
+               textAlign: 'left',
+               bgColor: '#333333',
+               textColor: '#ffffff'
+           });
+         } else {
 	   $.toast({
 	       text: 'Something went wrong unexpectedly.. please try again.',
 	       icon: 'error',
@@ -189,20 +218,20 @@ function snap(value) {
 
 function readme() {
   modal.open({
-    content: '<h2>Fishbowl discussion</h2>' +
-      '<ul>' +
-      '<li>Fishbowl is a way to have a discussion with a large group of participants.</li>' +
-      '<li>The aim of the discussion is to increase all participants understanding on a topic under discussion.</li>' +
-      '<li>In the center, there are four chairs.</li>' +
-      '<li>People on the chairs are the panel having a discussion.</li>' +
-      '<li>The panel in the center is the “fishbowl”.</li>' +
-      '<li>Anyone in the audience may join the discussion at any time.</li>' +
-      '<li>When someone joins the discussion, one of the panelists must go to the audience.</li>' +
-      '<li>Encourage and give space for all to visit the “fishbowl” so that every participant\'s point of view is heard.</li>' +
-      '<li>Listen to everyone – equally and non-judgementally.</li>' +
-      '<li>Be nice.</li>' +
-      '<li>If you really want to be an ass, go somewhere else. There are plenty of places for that on the Internet.</li>' +
-      '</ul>',
+    content: '<h2>Dialogue: A tool for online fishbowl discussions</h2>' +
+        '<ul>' +
+        '<li>Fishbowl is a way to have a discussion with a large group of participants.</li>' +
+        '<li>The aim of the discussion is to increase all participants understanding on a topic under discussion, to be a dialogue.</li>' +
+        '<li>In the center, there are four chairs.</li>' +
+        '<li>People on the chairs are the panel having a discussion.</li>' +
+        '<li>The people in the center are the “fishbowl”.</li>' +
+        '<li>Anyone in the audience may join the discussion at any time.</li>' +
+        '<li>When someone joins the discussion, one of the people in the center must go to the audience.</li>' +
+        '<li>Encourage and give space for all to visit the “fishbowl” so that every participant\'s point of view is heard.</li>' +
+        '<li>Listen to everyone – equally and non-judgementally.</li>' +
+        '<li>But, we hope that you are nice for the other.</li>' +
+        '<li>If you really want to be an ass, go somewhere else. There are plenty of places for that on the Internet.</li>' +
+        '</ul>',
     width: "450px",
     height: "422px"
   });

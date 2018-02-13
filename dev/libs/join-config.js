@@ -14,38 +14,36 @@ var config = { // eslint-disable-line no-unused-vars
     //
 
     hosts: {
-        // XMPP domain.
-        //domain: 'fishbowl.havoc.fi',
-        domain: 'meet.jit.si',
+	// XMPP domain.
+        domain: 'webdialogos.fi',
+
         // XMPP MUC domain. FIXME: use XEP-0030 to discover it.
-        //muc: 'conference.fishbowl.havoc.fi'
-        muc: 'conference.meet.jit.si',
+        muc: 'conference.webdialogos.fi'
+
         // When using authentication, domain for guest users.
-        //anonymousdomain: 'guest.example.com',
+        // anonymousdomain: 'guest.example.com',
 
         // Domain for authenticated users. Defaults to <domain>.
-        //authdomain: 'fishbowl.havoc.fi',
+        // authdomain: 'webdialogos.fi',
 
         // Jirecon recording component domain.
-        //jirecon: 'jirecon.fishbowl.havoc.fi',
+        // jirecon: 'jirecon.webdialogos.fi',
 
         // Call control component (Jigasi).
-        //call_control: 'callcontrol.fishbowl.havoc.fi',
+        // call_control: 'callcontrol.webdialogos.fi',
 
         // Focus component domain. Defaults to focus.<domain>.
-        //focus: 'focus.fishbowl.havoc.fi',
-        focus: 'focus.meet.jit.si',
+        // focus: 'focus.webdialogos.fi',
     },
 
     // BOSH URL. FIXME: use XEP-0156 to discover it.
-    //bosh: '//fishbowl.havoc.fi/http-bind',
-    bosh: '//meet.jit.si/http-bind',
+    bosh: '//webdialogos.fi/http-bind',
+
     // The name of client node advertised in XEP-0115 'c' stanza
     clientNode: 'http://jitsi.org/jitsimeet',
 
     // The real JID of focus participant - can be overridden here
-    //focusUserJid: 'focus@auth.fishbowl.havoc.fi',
-
+    // focusUserJid: 'focus@auth.webdialogos.fi',
 
     // Testing / experimental features.
     //

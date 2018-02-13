@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Stream&deg; Panel</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
+  <link rel='stylesheet prefetch' href='https://fonts.googleapis.com/css?family=Roboto:400,100,300,500,700,900|RobotoDraft:400,100,300,500,700,900'>
+  <link rel='stylesheet prefetch' href='https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css'>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/jquery.toast.min.css">
+  <script src='libs/jquery-2.1.3.min.js'></script>
+  <script src="https://cdn.jitsi.net/2367/libs/lib-jitsi-meet.min.js?v=2367"></script>
+</head>
+
+<body>
+  <!-- Banner -->
+  <div class="banner">
+    <!-- empty banner -->
+  </div>
+  <!-- Form Module-->
+  <div class="form-module">
+    <div class="toggle"><i class="fa fa-times fa-exclamation"></i>
+      <div class="tooltip">Read me</div>
+    </div>
+    <div class="form">
+      <form action="javascript: void(0);" onsubmit="return go()" id="form-details">
+        <input type="text" placeholder="room" name="roomName" required/>
+        <input type="text" placeholder="nickname" name="nickName" required/>
+        <div class="avatar">
+          <!-- <img id="avatar-here" src="resources/image.png">-->
+	  <h1 id="avatar-here">Take a photo of yourself <br>by clicking the <br>camera icon</h1>
+        </div>
+        <div class="avatar-button">
+          <button id="click-snap" onclick="snap(0)" type="button">
+            <i class="fa fa-camera"></i>
+          </button>
+        </div>
+        <!-- <div class="label">
+          <label>avatar snapshot</label>
+	</div> -->
+        <button>Enter the room</button>
+        <!-- <input type="submit" value="Stream&deg; Panel" onclick="join()"/> -->
+      </form>
+    </div>
+    <!-- conference rules -->
+    <div class="form">
+      <h2>Fishbowl discussion</h2>
+      <ul>
+        <li>Fishbowl is a way to have a discussion with a large group of participants.</li>
+	<li>The aim of the discussion is to increase all participants understanding on a topic under discussion.</li>
+	<li>In the center, there are four chairs.</li>
+        <li>People on the chairs are the panel having a discussion.</li>
+        <li>The panel in the center is the “fishbowl”.</li>
+        <li>Anyone in the audience may join the discussion at any time.</li>
+	<li>When someone joins the discussion, one of the panelists must go to the audience.</li>
+	<li>Encourage and give space for all to visit the “fishbowl” so that every participant's point of view is heard.</li>
+	<li>Listen to everyone – equally and non-judgementally.</li>
+	<li>Be nice.</li>
+	<li>If you really want to be an ass, go somewhere else. There are plenty of places for that on the Internet.</li>	
+        </ul>
+      </div>
+    </div>
+
+    <!-- main -->
+    <div class="container">
+      <div class="top">
+        <div class="chair7">
+		<img src="resources/chair-right.png"/>
+        </div>
+        <div class="chair6">
+          <img src="resources/chair-right.png"/>
+        </div>
+        <div class="chair5">
+          <img src="resources/chair-right.png"/>
+        </div>
+        <div class="chair4">
+          <img src="resources/chair-right.png"/>
+        </div>
+        <div class="chair3">
+          <img src="resources/chair-left.png"/>
+        </div>
+        <div class="chair2">
+          <img src="resources/chair-left.png"/>
+        </div>
+        <div class="chair1">
+          <img src="resources/chair-left.png"/>
+        </div>
+        <div class="chair29">
+          <img src="resources/chair-right.png"/>
+        </div>
+        <div class="chair28">
+          <img src="resources/chair-right.png"/>
+        </div>
+        <div class="chair27">
+          <img src="resources/chair-right.png"/>
+        </div>
+        <div class="chair26">
+          <img src="resources/chair-left.png"/>
+        </div>
+        <div class="chair25">
+          <img src="resources/chair-left.png"/>
+        </div>
+      </div>
+
+      <div class="bottom">
+        <div class="chair13">
+          <img src="resources/chair-right.png"/>
+        </div>
+        <div class="chair14">
+          <img src="resources/chair-right.png"/>
+        </div>
+        <div class="chair15">
+          <img src="resources/chair-right.png"/>
+        </div>
+        <div class="chair18">
+          <img src="resources/chair-left.png"/>
+        </div>
+        <div class="chair17">
+          <img src="resources/chair-left.png"/>
+        </div>
+        <div class="chair19">
+          <img src="resources/chair-left.png"/>
+        </div>
+        <div class="chair16">
+          <img src="resources/chair-left.png"/>
+        </div>
+        <div class="chair37">
+          <img src="resources/chair-left.png"/>
+        </div>
+        <div class="chair36">
+          <img src="resources/chair-left.png"/>
+        </div>
+        <div class="chair35">
+          <img src="resources/chair-left.png"/>
+        </div>
+        <div class="chair34">
+          <img src="resources/chair-right.png"/>
+        </div>
+        <div class="chair33">
+          <img src="resources/chair-right.png"/>
+        </div>
+      </div>
+
+      <div class="left">
+        <div class="chair21">
+          <img src="resources/chair-left.png"/>
+        </div>
+        <div class="chair22">
+          <img src="resources/chair-left.png"/>
+        </div>
+        <div class="chair23">
+          <img src="resources/chair-left.png"/>
+        </div>
+        <div class="chair38">
+          <img src="resources/chair-left.png"/>
+        </div>
+        <div class="chair39">
+          <img src="resources/chair-left.png"/>
+        </div>
+        <div class="chair40">
+          <img src="resources/chair-left.png"/>
+        </div>
+        <div class="chair20">
+          <img src="resources/chair-left.png"/>
+        </div>
+        <div class="chair24">
+          <img src="resources/chair-left.png"/>
+        </div>
+      </div>
+
+      <div class="right">
+        <div class="chair32">
+          <img src="resources/chair-right.png"/>
+        </div>
+        <div class="chair31">
+          <img src="resources/chair-right.png"/>
+        </div>
+        <div class="chair30">
+          <img src="resources/chair-right.png"/>
+        </div>
+        <div class="chair12">
+          <img src="resources/chair-right.png"/>
+        </div>
+        <div class="chair11">
+          <img src="resources/chair-right.png"/>
+        </div>
+        <div class="chair10">
+          <img src="resources/chair-right.png"/>
+        </div>
+        <div class="chair9">
+          <img src="resources/chair-right.png"/>
+        </div>
+        <div class="chair8">
+          <img src="resources/chair-right.png"/>
+        </div>
+      </div>
+
+      <div class="conference">
+        <div class="frame1">
+	  <div id="remoteVideo1">
+            <img src="resources/top-left.png"/>
+	  </div>
+	  <div id="remoteAudio1"></div>
+        </div>
+        <div class="frame2">
+	  <div id="remoteVideo2">
+            <img src="resources/top-right.png"/>
+	  </div>
+	  <div id="remoteAudio2"></div>
+        </div>
+        <div class="frame3">
+	  <div id="remoteVideo3">
+            <img src="resources/bottom-left.png"/>
+	  </div>
+	  <div id="remoteAudio3"></div>
+        </div>
+        <div class="frame4">
+	  <div id="remoteVideo4">
+            <img src="resources/bottom-right.png"/>
+	  </div>
+	  <div id="remoteAudio4"></div>
+        </div>
+        <div class="joinbutton">
+	  <button id="mainBtn" disabled="true" onClick="btnClick()">join the panel</button>
+        </div>
+      </div>
+
+    </div>
+    <script type="text/javascript" src="js/jquery.toast.min.js"></script> 
+    <script  src="js/index.js"></script>
+  </body>
+  </html>
+

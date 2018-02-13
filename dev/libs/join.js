@@ -7,6 +7,27 @@ const changeList = {};
 let frameArray = [1,2,3,4];
 let isJoined = false;
 let blink = false;
+let seats = [];
+let emptySeat = Array.from(Array(40).keys());
+let avatarLoc = "https://webdialogos.fi/fishbowl/kuvat/";
+
+/**
+ * Fill in the empty chairs
+ */
+var tagId,
+    src;
+for (var i=0; i<40; i++) {
+  tagId = "#img" +i;
+  if ((i>2 && i<15) ||
+      (i>25 && i<34)) {
+    src = "resources/chair-right.png";
+  }else {
+    src = "resources/chair-left.png";
+  }
+  $(tagId).replaceWith(
+    `<img id="img${i}" src="${src}"/>`);
+}
+
 /**
  * Handles local tracks.
  * @param tracks Array with JitsiTrack objects
@@ -46,6 +67,7 @@ function onLocalTracks(tracks) {
  * @param track JitsiTrack object
  */
 function onRemoteTrack(track) {
+    console.log('OnRemoteTrack:' +track.toString);
     if (track.isLocal()) {
         return;
     }
@@ -151,14 +173,70 @@ function onConnectionSuccess() {
     room.on(JitsiMeetJS.events.conference.TRACK_ADDED, onRemoteTrack);
     room.on(JitsiMeetJS.events.conference.TRACK_REMOVED, onRemoteTrackRemove);
     room.on(JitsiMeetJS.events.conference.CONFERENCE_JOINED,onConferenceJoined);
+    /*
     room.on(JitsiMeetJS.events.conference.USER_JOINED, id => {
         console.log('INFO (join.js): User join');
         remoteTracks[id] = [];
     });
+    */
+    room.on(JitsiMeetJS.events.conference.USER_JOINED, onUserJoined);
+    room.on(JitsiMeetJS.events.conference.USER_LEFT, onUserLeft);
+    room.setDisplayName(details.nickName);
+    
     room.on(JitsiMeetJS.events.conference.MESSAGE_RECEIVED, onMessageReceive);
     room.join();
+    seats[0] = {userId: 0,
+                placeHolder: emptySeat.shift(),
+                nickname: details.nickName,
+                fileName: avatarLoc + details.roomName + "_" + details.nickName + ".png"
+               };
+    var imgId = '#img' + seats[0].placeHolder;
+    $(imgId).replaceWith(
+      `<img id="img${seats[0].placeHolder}" src="${seats[0].fileName}"/>`);
 }
 
+function onUserJoined(id, user) {
+    remoteTracks[id] = [];
+    if (user._tracks.length == 0) {
+      chairIdx = emptySeat.shift();
+      seats[chairIdx] = {userId: id,
+                       placeHolder: chairIdx,
+    		       nickname: user._displayName,
+    		       fileName: avatarLoc + details.roomName + "_" + user._displayName + ".png"
+    	              };
+      var imgId = '#img' + seats[chairIdx].placeHolder;
+      $(imgId).replaceWith(
+	`<img id="img${seats[chairIdx].placeHolder}" src="${seats[chairIdx].fileName}"/>`);
+      console.log('DEBUG chairIdx:' +chairIdx);
+      console.log('DEBUG OnUserJoined emptySeat:' +emptySeat);
+      console.log('DEBUG OnUserJoined seats:' +JSON.stringify(seats));
+    }
+}
+
+function onUserLeft(id, user) {
+    var removeIdx;
+    for (var i=0; i<40; i++) {
+      if (seats[i] != undefined) {
+        if (seats[i].userId == id)
+	  removeIdx = i;
+      }
+    }
+    seats.splice(removeIdx, 1);
+    emptySeat.push(removeIdx);
+    if ((removeIdx>2 && removeIdx<15) ||
+	(removeIdx>25 && removeIdx<34)) {
+      src = "resources/chair-right.png";
+    }
+    else {
+      src = "resources/chair-left.png";
+    }
+    tagId = '#img' + removeIdx;
+    $(tagId).replaceWith(
+	`<img id="img${removeIdx}" src="${src}"/>`);
+    console.log('DEBUG removeIdx:' +removeIdx);
+    console.log('DEBUG OnUserLeft emptySeat:' +emptySeat);
+    console.log('DEBUG OnUserLeft seats:' +JSON.stringify(seats));
+}
 /**
  * function is called when a message is received
  */
@@ -168,6 +246,7 @@ function onMessageReceive(id, text, ts) {
     console.log("onMessageReceive" +ts);
     var split = text.split("@");
     if (split[0] === "REQUEST") {
+        $('#mainBtn').attr('disabled', false);
 	var diff = new Date().getTime() - new Date(split[1]).getTime();
 	console.log("onMessageReceive" +diff);
 	if (Math.floor(diff/1000) < 10) {
@@ -188,6 +267,7 @@ function onMessageReceive(id, text, ts) {
 	}	
     } else if (split[0] === "STOP") {
 	blink = false;
+        $('#mainBtn').attr('disabled', true);
 	clearInterval(blinkBtn);
     } else {
 	$.toast({
@@ -285,11 +365,11 @@ function btnClick() {
     blink = false;
     unload();
     $('script').each(function() {
-	if (this.src == 'https://fishbowl.havoc.fi/dev/libs/join.js' ||
-	    this.src == 'https://fishbowl.havoc.fi/dev/libs/join-config.js')
+	if (this.src == 'https://webdialogos.fi/libs/join.js' ||
+	    this.src == 'https://webdialogos.fi/libs/join-config.js')
 	    this.parentNode.removeChild(this);
     });
-   $('#mainBtn').text('join the panel'); 
+    $('#mainBtn').text('join the panel'); 
     $('#mainBtn').attr('disabled', true);
     $('body').append('<script src="libs/audience-config.js"></script>');
     $('body').append('<script src="libs/audience.js"></script>');
@@ -303,3 +383,19 @@ var blinkBtn = setInterval(function() {
      }, 500);
    }
 }, 1000);
+
+function showAvatar(order) {
+  if (seats[order] == undefined) {
+    var modalContent = '<h2>@empty chair</h2>';
+  }
+  else {
+    var modalContent = '<h2>@' + seats[order].nickname + '</h2>' +
+                       '<img src="' + seats[order].fileName + '"/>';
+  }
+  modal.open({
+     content: modalContent,
+     width: "340px",
+     heigth: "225px"
+  });
+}
+

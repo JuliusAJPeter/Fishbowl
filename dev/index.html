@@ -5,12 +5,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Stream&deg; Panel</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
-  <link rel='stylesheet prefetch' href='https://fonts.googleapis.com/css?family=Roboto:400,100,300,500,700,900|RobotoDraft:400,100,300,500,700,900'>
-  <link rel='stylesheet prefetch' href='https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css'>
+  <link rel='stylesheet prefetch' href="https://fonts.googleapis.com/css?family=Roboto:400,100,300,500,700,900|RobotoDraft:400,100,300,500,700,900">
+  <link rel='stylesheet prefetch' href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="css/jquery.toast.min.css">
-  <script src='libs/jquery-2.1.3.min.js'></script>
+  <script src="libs/jquery-2.1.3.min.js"></script>
   <script src="https://cdn.jitsi.net/2367/libs/lib-jitsi-meet.min.js?v=2367"></script>
+  <script type="text/javascript" src="js/jquery.toast.min.js"></script>
 </head>
 
 <body>
@@ -45,154 +46,159 @@
     </div>
     <!-- conference rules -->
     <div class="form">
-      <h2>Fishbowl discussion</h2>
+      <h2>Dialogue: A tool for online fishbowl discussions</h2>
       <ul>
         <li>Fishbowl is a way to have a discussion with a large group of participants.</li>
-	<li>The aim of the discussion is to increase all participants understanding on a topic under discussion.</li>
+	<li>The aim of the discussion is to increase all participants understanding on a topic under discussion, to be a dialogue.</li>
 	<li>In the center, there are four chairs.</li>
         <li>People on the chairs are the panel having a discussion.</li>
-        <li>The panel in the center is the “fishbowl”.</li>
+        <li>The people in the center are the “fishbowl”.</li>
         <li>Anyone in the audience may join the discussion at any time.</li>
-	<li>When someone joins the discussion, one of the panelists must go to the audience.</li>
+	<li>When someone joins the discussion, one of the people in the center must go to the audience.</li>
 	<li>Encourage and give space for all to visit the “fishbowl” so that every participant's point of view is heard.</li>
 	<li>Listen to everyone – equally and non-judgementally.</li>
-	<li>Be nice.</li>
-	<li>If you really want to be an ass, go somewhere else. There are plenty of places for that on the Internet.</li>	
+	<li>But, we hope that you are nice for the other.</li>
+	<li>If you really want to be an ass, go somewhere else. There are plenty of places for that on the Internet.</li>
         </ul>
       </div>
     </div>
 
     <!-- main -->
     <div class="container">
+	<div class="readme-btn">
+	  <a class="readme" onclick="readme()">
+	    <i class="fa fa-exclamation"></i>
+	  </a>
+	</div>
       <div class="top">
-        <div class="chair7">
-		<img src="resources/chair-right.png"/>
+        <div class="chair6" onclick="showAvatar(6);">
+	   <img id="img6">
         </div>
-        <div class="chair6">
-          <img src="resources/chair-right.png"/>
+        <div class="chair5" onclick="showAvatar(5);">
+	   <img id="img5">
         </div>
-        <div class="chair5">
-          <img src="resources/chair-right.png"/>
+        <div class="chair4" onclick="showAvatar(4);">
+	   <img id="img4">
         </div>
-        <div class="chair4">
-          <img src="resources/chair-right.png"/>
+        <div class="chair3" onclick="showAvatar(3);">
+	   <img id="img3">
         </div>
-        <div class="chair3">
-          <img src="resources/chair-left.png"/>
+        <div class="chair2" onclick="showAvatar(2);">
+	   <img id="img2">
         </div>
-        <div class="chair2">
-          <img src="resources/chair-left.png"/>
+        <div class="chair1" onclick="showAvatar(1);">
+	   <img id="img1">
         </div>
-        <div class="chair1">
-          <img src="resources/chair-left.png"/>
+        <div class="chair0" onclick="showAvatar(0);">
+           <img id="img0">
         </div>
-        <div class="chair29">
-          <img src="resources/chair-right.png"/>
+        <div class="chair28" onclick="showAvatar(28);">
+	   <img id="img28">
         </div>
-        <div class="chair28">
-          <img src="resources/chair-right.png"/>
+        <div class="chair27" onclick="showAvatar(27);">
+	   <img id="img27">
         </div>
-        <div class="chair27">
-          <img src="resources/chair-right.png"/>
+        <div class="chair26" onclick="showAvatar(26);">
+	   <img id="img26">
         </div>
-        <div class="chair26">
-          <img src="resources/chair-left.png"/>
+        <div class="chair25" onclick="showAvatar(25);">
+	   <img id="img25">
         </div>
-        <div class="chair25">
-          <img src="resources/chair-left.png"/>
+        <div class="chair24" onclick="showAvatar(24);">
+	   <img id="img24">
         </div>
       </div>
 
       <div class="bottom">
-        <div class="chair13">
-          <img src="resources/chair-right.png"/>
+        <div class="chair12" onclick="showAvatar(12);">
+	   <img id="img12">	
         </div>
-        <div class="chair14">
-          <img src="resources/chair-right.png"/>
+        <div class="chair13" onclick="showAvatar(13);">
+	   <img id="img13">
         </div>
-        <div class="chair15">
-          <img src="resources/chair-right.png"/>
+        <div class="chair14" onclick="showAvatar(14);">
+	   <img id="img14">
         </div>
-        <div class="chair18">
-          <img src="resources/chair-left.png"/>
+        <div class="chair15" onclick="showAvatar(15);">
+	   <img id="img15">
         </div>
-        <div class="chair17">
-          <img src="resources/chair-left.png"/>
+        <div class="chair16" onclick="showAvatar(16);">
+	   <img id="img16">
         </div>
-        <div class="chair19">
-          <img src="resources/chair-left.png"/>
+        <div class="chair17" onclick="showAvatar(17);">
+	   <img id="img17">
         </div>
-        <div class="chair16">
-          <img src="resources/chair-left.png"/>
+        <div class="chair18" onclick="showAvatar(18);">
+	   <img id="img18">
         </div>
-        <div class="chair37">
-          <img src="resources/chair-left.png"/>
+        <div class="chair36" onclick="showAvatar(36);">
+	   <img id="img36">
         </div>
-        <div class="chair36">
-          <img src="resources/chair-left.png"/>
+        <div class="chair35" onclick="showAvatar(35);">
+	   <img id="img35">
         </div>
-        <div class="chair35">
-          <img src="resources/chair-left.png"/>
+        <div class="chair34" onclick="showAvatar(34);">
+	   <img id="img34">
         </div>
-        <div class="chair34">
-          <img src="resources/chair-right.png"/>
+        <div class="chair33" onclick="showAvatar(33);">
+	   <img id="img33">
         </div>
-        <div class="chair33">
-          <img src="resources/chair-right.png"/>
+        <div class="chair32" onclick="showAvatar(32);">
+	   <img id="img32">
         </div>
       </div>
 
       <div class="left">
-        <div class="chair21">
-          <img src="resources/chair-left.png"/>
+        <div class="chair20" onclick="showAvatar(20);">
+	   <img id="img20">
         </div>
-        <div class="chair22">
-          <img src="resources/chair-left.png"/>
+        <div class="chair21" onclick="showAvatar(21);">
+	   <img id="img21">
         </div>
-        <div class="chair23">
-          <img src="resources/chair-left.png"/>
+        <div class="chair22" onclick="showAvatar(22);">
+	   <img id="img22">
         </div>
-        <div class="chair38">
-          <img src="resources/chair-left.png"/>
+	<div class="chair23" onclick="showAvatar(23);">
+	   <img id="img23">
+	</div>
+        <div class="chair37" onclick="showAvatar(37);">
+	   <img id="img37">
         </div>
-        <div class="chair39">
-          <img src="resources/chair-left.png"/>
+        <div class="chair38" onclick="showAvatar(38);">
+	   <img id="img38">
         </div>
-        <div class="chair40">
-          <img src="resources/chair-left.png"/>
+        <div class="chair39" onclick="showAvatar(39);">
+	   <img id="img39">
         </div>
-        <div class="chair20">
-          <img src="resources/chair-left.png"/>
-        </div>
-        <div class="chair24">
-          <img src="resources/chair-left.png"/>
+        <div class="chair19" onclick="showAvatar(19);">
+	   <img id="img19">
         </div>
       </div>
 
       <div class="right">
-        <div class="chair32">
-          <img src="resources/chair-right.png"/>
+        <div class="chair31" onclick="showAvatar(31);">
+	   <img id="img31">
         </div>
-        <div class="chair31">
-          <img src="resources/chair-right.png"/>
+        <div class="chair30" onclick="showAvatar(30);">
+	   <img id="img30">
         </div>
-        <div class="chair30">
-          <img src="resources/chair-right.png"/>
+        <div class="chair29" onclick="showAvatar(29);">
+	   <img id="img29">
         </div>
-        <div class="chair12">
-          <img src="resources/chair-right.png"/>
+        <div class="chair11" onclick="showAvatar(11);">
+	   <img id="img11">
         </div>
-        <div class="chair11">
-          <img src="resources/chair-right.png"/>
+        <div class="chair10" onclick="showAvatar(10);">
+	   <img id="img10">
         </div>
-        <div class="chair10">
-          <img src="resources/chair-right.png"/>
+        <div class="chair9" onclick="showAvatar(9);">
+	   <img id="img9">
         </div>
-        <div class="chair9">
-          <img src="resources/chair-right.png"/>
+        <div class="chair8" onclick="showAvatar(8);">
+	   <img id="img8">
         </div>
-        <div class="chair8">
-          <img src="resources/chair-right.png"/>
+        <div class="chair7" onclick="showAvatar(7);">
+	   <img id="img7">
         </div>
       </div>
 
@@ -225,10 +231,7 @@
 	  <button id="mainBtn" disabled="true" onClick="btnClick()">join the panel</button>
         </div>
       </div>
-
     </div>
-    <script type="text/javascript" src="js/jquery.toast.min.js"></script> 
     <script  src="js/index.js"></script>
   </body>
   </html>
-

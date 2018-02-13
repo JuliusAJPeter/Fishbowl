@@ -10,24 +10,12 @@ let count = 20;
 let triggerJoin = false;
 let seats = [];
 let emptySeat = Array.from(Array(40).keys());
-let avatarLoc = "https://fishbowl.havoc.fi/fishbowl/kuvat/";
+let avatarLoc = "https://webdialogos.fi/fishbowl/kuvat/";
 
 /**
  * Fill in the empty chairs
  */
-var tagId,
-    src;
-for (var i=0; i<40; i++) {
-  tagId = "#img" +i;
-  if ((i>2 && i<15) ||
-      (i>25 && i<34)) {
-    src = "resources/chair-right.png";
-  }else {
-    src = "resources/chair-left.png";
-  }
-  $(tagId).replaceWith(
-    `<img id="img${i}" src="${src}"/>`);
-}
+refreshSeats();
 
 /**
  * Handles remote tracks
@@ -57,9 +45,18 @@ function onRemoteTrack(track) {
             `<video autoplay='1' id='${participant}video${idx}' />`);*/
         $(remoteVideo).replaceWith(
           `<div id='remoteVideo${changeList[participant]}'><video autoplay='1' id='${participant}video${idx}' width='308px'/></div>`);
+        for (var i=0; i<40; i++) {
+          if (seats[i] != undefined) {
+            if (seats[i].userId == participant) {
+              seats.splice(i, 1);
+              emptySeat.push(i);
+            } 
+          }
+        }
+        refreshSeats();
     } else {
-        /*$('body').append(
-            `<audio autoplay='1' id='${participant}audio${idx}' />`);*/
+      /*$('body').append(
+         `<audio autoplay='1' id='${participant}audio${idx}' />`);*/
         $(remoteAudio).replaceWith(
           `<div id='remoteAudio${changeList[participant]}'><audio autoplay='1' id='${participant}audio${idx}' /></div>`);
     }
@@ -110,7 +107,7 @@ function onRemoteTrackRemove(track) {
  * function is executed when the conference is joined
  */
 function onConferenceJoined() {
-    console.log('INFO (audience.js): Conference joined in silence!');
+    //console.log('INFO (audience.js): Conference joined in silence!');
     $('#mainBtn').attr('disabled', false);
     /*room.sendTextMessage(details.nickName+" joined the room..");*/
     $.toast({
@@ -146,48 +143,62 @@ function onConnectionSuccess() {
     room.on(JitsiMeetJS.events.conference.USER_LEFT, onUserLeft);
     room.setDisplayName(details.nickName);	
     room.join();
-    seats.push({placeHolder: emptySeat.shift(),
+    seats[0] = {userId: 0,
+                placeHolder: emptySeat.shift(),
 	        nickname: details.nickName,
 	        fileName: avatarLoc + details.roomName + "_" + details.nickName + ".png"
-	       });
+	       };
     var imgId = '#img' + seats[0].placeHolder;
     $(imgId).replaceWith(
       `<img id="img${seats[0].placeHolder}" src="${seats[0].fileName}"/>`);
 }
 
 function onUserJoined(id, user) {
-    console.log('onUserJoined id:' +id);
-    console.log('onUserJoined user:' +user._displayName);
     remoteTracks[id] = [];
     chairIdx = emptySeat.shift();
-    seats.push({placeHolder: chairIdx,
+    seats[chairIdx] = {userId: id,
+                placeHolder: chairIdx,
     		nickname: user._displayName,
     		fileName: avatarLoc + details.roomName + "_" + user._displayName + ".png"
-    	       });
+    	       };
     var imgId = '#img' + seats[chairIdx].placeHolder;
     $(imgId).replaceWith(
-	`<img id="img${seats[chairIdx].placeHolder}" src="${seats[chairIdx].fileName}"/>`);
+      `<img id="img${seats[chairIdx].placeHolder}" src="${seats[chairIdx].fileName}"/>`);
 }
 
 function onUserLeft(id, user) {
-    var removeIdx;
-    for (var i=0; i<seats.length; i++) {
-      if (seats[i].nickname == user._displayName) {
-	removeIdx = i;
+    for (var i=0; i<40; i++) {
+      if (seats[i] != undefined) {
+        if (seats[i].userId == id) {
+          seats.splice(i, 1);
+          emptySeat.push(i);
+        }
       }
     }
-    seats.splice(removeIdx, 1);
-    emptySeat.push(removeIdx);
-    if ((removeIdx>2 && removeIdx<15) ||
-	(removeIdx>25 && removeIdx<34)) {
-      src = "resources/chair-right.png";
+    refreshSeats();
+}
+
+function refreshSeats() {
+    var imgId,
+        src;
+    for (var i=0; i<40; i++) {
+      if (seats[i] != undefined) {
+        imgId = '#img' + seats[i].placeHolder;
+        $(imgId).replaceWith(
+          `<img id="img${seats[i].placeHolder}" src="${seats[i].fileName}"/>`);
+      } else {
+          if ((i>2 && i<15) ||
+              (i>25 && i<34)) {
+            src = "resources/chair-right.png";
+          }
+          else {
+            src = "resources/chair-left.png";
+          }
+          imgId = '#img' + i;
+          $(imgId).replaceWith(
+            `<img id="img${i}" src="${src}"/>`);
+      }
     }
-    else {
-      src = "resources/chair-left.png";
-    }
-    tagId = '#img' + removeIdx;
-    $(tagId).replaceWith(
-	`<img id="img${removeIdx}" src="${src}"/>`);
 }
 /**
  * function is called when the connection fails.
@@ -223,11 +234,11 @@ function unload() {
 function beforeUnload() {
     unload();
     $('script').each(function() {
-      if (this.src == 'https://fishbowl.havoc.fi/dev/libs/audience.js' ||
-	  this.src == 'https://fishbowl.havoc.fi/dev/libs/audience-config.js' ||
-          this.src == 'https://fishbowl.havoc.fi/dev/libs/interface_config.js' ||
-          this.src == 'https://fishbowl.havoc.fi/dev/libs/strophe/strophe.js' ||
-          this.src == 'https://fishbowl.havoc.fi/dev/libs/strophe/strophe.disco.min.js?v=1')
+      if (this.src == 'https://webdialogos.fi/libs/audience.js' ||
+	  this.src == 'https://webdialogos.fi/libs/audience-config.js' ||
+          this.src == 'https://webdialogos.fi/libs/interface_config.js' ||
+          this.src == 'https://webdialogos.fi/libs/strophe/strophe.js' ||
+          this.src == 'https://webdialogos.fi/libs/strophe/strophe.disco.min.js?v=1')
 	  this.parentNode.removeChild(this);
     });
     $('.container').css('display', 'none');
@@ -283,8 +294,8 @@ function btnClick() {
 function join() {
    unload();
    $('script').each(function() {
-	if (this.src == 'https://fishbowl.havoc.fi/dev/libs/audience.js' ||
-	    this.src == 'https://fishbowl.havoc.fi/dev/libs/audience-config.js')
+	if (this.src == 'https://webdialogos.fi/libs/audience.js' ||
+	    this.src == 'https://webdialogos.fi/libs/audience-config.js')
 		this.parentNode.removeChild(this);
    });
    $('#mainBtn').text('leave the panel');
@@ -319,7 +330,7 @@ var queue = setInterval(function() {
 }, 1000);
 
 function showAvatar(order) {
-  if (order >= seats.length) {
+  if (seats[order] == undefined) {
     var modalContent = '<h2>@empty chair</h2>';
   }
   else {
