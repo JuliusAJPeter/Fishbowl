@@ -1,0 +1,111 @@
+body {
+	background: url('background.png');
+	margin: 0 !important;
+  padding: 0 !important;
+}
+
+.main {
+	position: absolute;
+  background-color: #333333;
+	max-width: 1000px;
+	left: 175px;
+	margin-top: 0;
+}
+
+.main .logo {
+	width: 995px;
+}
+
+.logo img {
+	padding-left: 25px;
+	padding-top: 20px;
+	width: 100px;
+}
+
+.main .heading {
+	max-width: 450px;
+}
+
+.heading p {
+	font-family: 'Lato', sans-serif;
+	padding-left: 30px;
+	margin-left: 0 auto;
+	color: #ffffff;
+	font-size: 30px;
+	font-weight: bolder;
+	word-spacing: 3px;
+}
+
+.dialogos {
+	float: right;
+	padding-right: 50px;
+}
+
+.main .intro {
+	max-width: 497px;
+	text-align: justify;
+}
+
+.intro p{
+	font-family: 'Lato', sans-serif;
+	padding-left: 30px;
+	margin-left: 0 auto;
+	color: #ffffff;
+	font-size: 14px;
+}
+
+.main .links {
+	max-width: 450px;
+	text-align: justify;
+}
+
+.links p {
+	font-family: 'Lato', sans-serif;
+	padding-left: 30px;
+	margin-left: 0 auto;
+	color: #ffffff;
+	font-size: 14px;
+}
+
+.links a {
+	color: inherit;
+}
+
+.links a:hover {
+	color: blue;
+}
+
+.main .invite {
+	max-width: 500px;
+}
+
+.invite p {
+	font-family: 'Lato', sans-serif;
+	padding-left: 30px;
+	margin-left: 0 auto;
+	color: #ffffff;
+	font-size: 25px;
+	word-spacing: 3px;
+}
+.invite img {
+	padding-left: 30px;
+}
+
+.main .footnote {
+	max-width: 497px;
+	text-align: justify;
+}
+
+.footnote p {
+	font-family: 'Lato', sans-serif;
+	padding-left: 30px;
+	padding-top: 20px;
+	margin-left: 0 auto;
+	color: #ffffff;
+	font-size: 10px;
+}
+
+.main .footer {
+	max-width: 1000px;
+	height: 105px;
+}
