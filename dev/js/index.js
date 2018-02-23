@@ -106,7 +106,7 @@ function go(){
   roomname = document.getElementById('form-details').elements.item(0).value;
   nickname = document.getElementById('form-details').elements.item(1).value;
   key = new Date().getTime();
-  script.text = "var details = {roomName:'" + 
+  script.text = "var details = {roomName:'" +
                 document.getElementById('form-details').elements.item(0).value +
                 "',nickName:'" + nickname +
                 "',key:'" + key.toString() + "'};";
@@ -199,11 +199,11 @@ function snap(value) {
 	allowToastClose: false,
 	hideAfter: 5000,
 	stack: 5,
-	loader: false,	
+	loader: false,
 	position: 'top-right',
 	textAlign: 'left',
 	bgColor: '#333333',
-	textColor: '#ffffff'	
+	textColor: '#ffffff'
     });
   }
   if(value == 1) {
@@ -222,7 +222,7 @@ function snap(value) {
 
 function readme() {
   modal.open({
-    content: '<h2>Dialogue: A tool for online fishbowl discussions</h2>' +
+    content: '<h2>Dialogos: A tool for online fishbowl discussions</h2>' +
         '<ul>' +
         '<li>Fishbowl is a way to have a discussion with a large group of participants.</li>' +
         '<li>The aim of the discussion is to increase all participants understanding on a topic under discussion, to be a dialogue.</li>' +
