@@ -7,28 +7,28 @@ body {
 .main {
 	position: absolute;
   background-color: #333333;
-	max-width: 1000px;
-	left: 175px;
-	margin-top: 0;
+	max-width: 600px;
+	left: 395px;
+	margin: 0 auto;
 }
 
 .main .logo {
-	width: 995px;
+	width: 600px;
 }
 
 .logo img {
-	padding-left: 25px;
-	padding-top: 20px;
+	padding-left: 60px;
+	padding-top: 30px;
 	width: 100px;
 }
 
 .main .heading {
-	max-width: 450px;
+	max-width: 500px;
 }
 
 .heading p {
 	font-family: 'Lato', sans-serif;
-	padding-left: 30px;
+	padding-left: 60px;
 	margin-left: 0 auto;
 	color: #ffffff;
 	font-size: 30px;
@@ -36,32 +36,27 @@ body {
 	word-spacing: 3px;
 }
 
-.dialogos {
-	float: right;
-	padding-right: 50px;
-}
-
 .main .intro {
-	max-width: 497px;
+	max-width: 540px;
 	text-align: justify;
 }
 
 .intro p{
 	font-family: 'Lato', sans-serif;
-	padding-left: 30px;
+	padding-left: 60px;
 	margin-left: 0 auto;
 	color: #ffffff;
 	font-size: 14px;
 }
 
 .main .links {
-	max-width: 450px;
+	max-width: 540px;
 	text-align: justify;
 }
 
 .links p {
 	font-family: 'Lato', sans-serif;
-	padding-left: 30px;
+	padding-left: 60px;
 	margin-left: 0 auto;
 	color: #ffffff;
 	font-size: 14px;
@@ -76,29 +71,29 @@ body {
 }
 
 .main .invite {
-	max-width: 500px;
+	max-width: 540px;
 }
 
 .invite p {
 	font-family: 'Lato', sans-serif;
-	padding-left: 30px;
+	padding-left: 60px;
 	margin-left: 0 auto;
 	color: #ffffff;
 	font-size: 25px;
 	word-spacing: 3px;
 }
 .invite img {
-	padding-left: 30px;
+	padding-left: 60px;
 }
 
 .main .footnote {
-	max-width: 497px;
+	max-width: 540px;
 	text-align: justify;
 }
 
 .footnote p {
 	font-family: 'Lato', sans-serif;
-	padding-left: 30px;
+	padding-left: 60px;
 	padding-top: 20px;
 	margin-left: 0 auto;
 	color: #ffffff;
@@ -106,6 +101,6 @@ body {
 }
 
 .main .footer {
-	max-width: 1000px;
+	max-width: 600px;
 	height: 105px;
 }
