@@ -26,12 +26,7 @@ var modal = (function(){
   $modal = $('<div id="modal"></div>');
   $content = $('<div id="content"></div>');
   $close = $('<a id="close" href="#">close</a>');
-  /*
-  $overlay = $(document.getElementById('overlay'));
-  $modal = $(document.getElementById('modal'));
-  $content = $(document.getElementById('content'));
-  $close = $(document.getElementById('close'));
-  */
+
   $modal.hide();
   $overlay.hide();
   $modal.append($content, $close);
@@ -88,17 +83,17 @@ let key = null;
 function go(){
   if (image == null) {
     $.toast({
-        text: 'Please take a picture before entering the room!',
-        icon: 'info',
-        showHideTransition: 'fade',
-        allowToastClose: false,
-        hideAfter: 5000,
-        stack: 5,
-        loader: false,
-        position: 'top-right',
-        textAlign: 'left',
-        bgColor: '#333333',
-        textColor: '#ffffff'
+      text: 'Please take a picture before entering the room!',
+      icon: 'info',
+      showHideTransition: 'fade',
+      allowToastClose: false,
+      hideAfter: 5000,
+      stack: 5,
+      loader: false,
+      position: 'top-right',
+      textAlign: 'left',
+      bgColor: '#333333',
+      textColor: '#ffffff'
     });
     return;
   }
@@ -107,9 +102,9 @@ function go(){
   nickname = document.getElementById('form-details').elements.item(1).value;
   key = new Date().getTime();
   script.text = "var details = {roomName:'" +
-                document.getElementById('form-details').elements.item(0).value +
-                "',nickName:'" + nickname +
-                "',key:'" + key.toString() + "'};";
+  document.getElementById('form-details').elements.item(0).value +
+  "',nickName:'" + nickname +
+  "',key:'" + key.toString() + "'};";
   console.log(script.text);
   document.body.appendChild(script);
   var data = JSON.stringify({"roomname": roomname,
@@ -117,62 +112,54 @@ function go(){
   "key": key.toString(),
   "image"   : image});
   $.ajax({
-  url: "https://webdialogos.fi/fishbowl_register",
-  type: "POST",
-  data: data,
-  dataType: "application/json",
-  success: function(response){
-             alert("Success:" +response);
-           },
-  error: function(xhr, ajaxOptions, thrownError) {
-	 if (xhr.status == '200') {
-           $('.container').css('display', 'block');
-           $('.form-module').css('display', 'none');
-           $('.banner').css('display', 'none');
-	   $('body').append('<script src="libs/strophe/strophe.js"></script>');
-	   $('body').append('<script src="libs/strophe/strophe.disco.min.js?v=1"></script>');
-           $('body').append('<script src="libs/audience-config.js"></script>');
-	   $('body').append('<script src="libs/interface_config.js"></script>');
-	   $('body').append('<script src="libs/audience.js"></script>');
-	 } else if (xhr.status == '503') {
-           $.toast({
-               text: 'Server is broken.. please notify admin.',
-               icon: 'error',
-               showHideTransition: 'fade',
-               allowToastClose: false,
-               hideAfter: 5000,
-               stack: 5,
-               loader: false,
-               position: 'top-right',
-               textAlign: 'left',
-               bgColor: '#333333',
-               textColor: '#ffffff'
-           });
-         } else {
-	   $.toast({
-	       text: 'Something went wrong unexpectedly.. please try again.',
-	       icon: 'error',
-	       showHideTransition: 'fade',
-	       allowToastClose: false,
-	       hideAfter: 5000,
-	       stack: 5,
-	       loader: false,
-	       position: 'top-right',
-	       textAlign: 'left',
-	       bgColor: '#333333',
-	       textColor: '#ffffff'
-           });
-	 }
-           /*alert("Error:" +xhr.status);
-           alert("Error:" +thrownError);*/
-         }
+    url: "https://webdialogos.fi/fishbowl_register",
+    type: "POST",
+    data: data,
+    dataType: "application/json",
+    success: function(response){
+      alert("Success:" +response);
+    },
+    error: function(xhr, ajaxOptions, thrownError) {
+      if (xhr.status == '200') {
+        $('.container').css('display', 'block');
+        $('.form-module').css('display', 'none');
+        $('.banner').css('display', 'none');
+        $('body').append('<script src="libs/strophe/strophe.js"></script>');
+        $('body').append('<script src="libs/strophe/strophe.disco.min.js?v=1"></script>');
+        $('body').append('<script src="libs/audience-config.js"></script>');
+        $('body').append('<script src="libs/interface_config.js"></script>');
+        $('body').append('<script src="libs/audience.js"></script>');
+      } else if (xhr.status == '503') {
+        $.toast({
+          text: 'Server is broken.. please notify admin.',
+          icon: 'error',
+          showHideTransition: 'fade',
+          allowToastClose: false,
+          hideAfter: 5000,
+          stack: 5,
+          loader: false,
+          position: 'top-right',
+          textAlign: 'left',
+          bgColor: '#333333',
+          textColor: '#ffffff'
+        });
+      } else {
+        $.toast({
+          text: 'Something went wrong unexpectedly.. please try again.',
+          icon: 'error',
+          showHideTransition: 'fade',
+          allowToastClose: false,
+          hideAfter: 5000,
+          stack: 5,
+          loader: false,
+          position: 'top-right',
+          textAlign: 'left',
+          bgColor: '#333333',
+          textColor: '#ffffff'
+        });
+      }
+    }
   });
-  /*
-  $('body').append('<script src="libs/strophe/strophe.js"></script>');
-  $('body').append('<script src="libs/strophe/strophe.disco.min.js?v=1"></script>');
-  $('body').append('<script src="libs/audience-config.js"></script>');
-  $('body').append('<script src="libs/interface_config.js"></script>');
-  $('body').append('<script src="libs/audience.js"></script>');*/
 }
 
 function snap(value) {
@@ -193,17 +180,17 @@ function snap(value) {
       console.log("ERROR: " +error);
     });
     $.toast({
-	text: 'Click the camera icon again to capture your photo..',
-	icon: 'info',
-	showHideTransition: 'fade',
-	allowToastClose: false,
-	hideAfter: 5000,
-	stack: 5,
-	loader: false,
-	position: 'top-right',
-	textAlign: 'left',
-	bgColor: '#333333',
-	textColor: '#ffffff'
+      text: 'Click the camera icon again to capture your photo..',
+      icon: 'info',
+      showHideTransition: 'fade',
+      allowToastClose: false,
+      hideAfter: 5000,
+      stack: 5,
+      loader: false,
+      position: 'top-right',
+      textAlign: 'left',
+      bgColor: '#333333',
+      textColor: '#ffffff'
     });
   }
   if(value == 1) {
@@ -223,30 +210,65 @@ function snap(value) {
 function readme() {
   modal.open({
     content: '<h2>Dialogos: A tool for online fishbowl discussions</h2>' +
-        '<ul>' +
-        '<li>Fishbowl is a way to have a discussion with a large group of participants.</li>' +
-        '<li>The aim of the discussion is to increase all participants understanding on a topic under discussion, to be a dialogue.</li>' +
-        '<li>In the center, there are four chairs.</li>' +
-        '<li>People on the chairs are the panel having a discussion.</li>' +
-        '<li>The people in the center are the “fishbowl”.</li>' +
-        '<li>Anyone in the audience may join the discussion at any time.</li>' +
-        '<li>When someone joins the discussion, one of the people in the center must go to the audience.</li>' +
-        '<li>Encourage and give space for all to visit the “fishbowl” so that every participant\'s point of view is heard.</li>' +
-        '<li>Listen to everyone – equally and non-judgementally.</li>' +
-        '<li>But, we hope that you are nice for the other.</li>' +
-        '<li>If you really want to be an ass, go somewhere else. There are plenty of places for that on the Internet.</li>' +
-        '</ul>',
+    '<ul>' +
+    '<li>Fishbowl is a way to have a discussion with a large group of participants.</li>' +
+    '<li>The aim of the discussion is to increase all participants understanding on a topic under discussion, to be a dialogue.</li>' +
+    '<li>In the center, there are four chairs.</li>' +
+    '<li>People on the chairs are the panel having a discussion.</li>' +
+    '<li>The people in the center are the “fishbowl”.</li>' +
+    '<li>Anyone in the audience may join the discussion at any time.</li>' +
+    '<li>When someone joins the discussion, one of the people in the center must go to the audience.</li>' +
+    '<li>Encourage and give space for all to visit the “fishbowl” so that every participant\'s point of view is heard.</li>' +
+    '<li>Listen to everyone – equally and non-judgementally.</li>' +
+    '<li>But, we hope that you are nice for the other.</li>' +
+    '<li>If you really want to be an ass, go somewhere else. There are plenty of places for that on the Internet.</li>' +
+    '</ul>',
     width: "450px",
     height: "422px"
   });
 }
-/*
-function showAvatar(order) {
-  modal.open({
-    content: '<h2>@' + seats[order].nickName + '</h2>' +
-        '<img src="' + seats[order].fileName + '"/>',
-    width: "340px",
-    heigth: "225px"
-  });
-}
-*/
+
+var roomText = "Type your room here...";
+var nameText = "Type your nickname here...";
+var room_text = "";
+var name_text = "";
+var i_room =0;
+var i_name =0;
+
+var roomQueue = setInterval(function() {
+  if ($("#roomText").val() == "") {
+    if (i_room < 0) {
+      i_room++;
+      $("#roomText").attr("placeholder", " ");
+      return;
+    }
+    room_text = room_text + roomText[i_room];
+    i_room++;
+    $("#roomText").attr("placeholder", room_text);
+    if (i_room > roomText.length-1) {
+      i_room=-2;
+      room_text = "";
+    }
+    } else {
+       clearInterval(roomQueue);
+    }
+}, 100);
+
+var nameQueue = setInterval(function() {
+  if (i_name < 0) {
+    i_name++;
+    $("#nickText").attr("placeholder", " ");
+    return;
+  }
+  if ($("#nickText").val() == "") {
+    name_text = name_text + nameText[i_name];
+    i_name++;
+    $("#nickText").attr("placeholder", name_text);
+    if (i_name > nameText.length-1) {
+      i_name=-2;
+      name_text = "";
+    }
+  } else {
+    clearInterval(nameQueue);
+  }
+}, 100);
