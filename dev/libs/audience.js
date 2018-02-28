@@ -9,7 +9,8 @@ let frameArray = [1,2,3,4];
 let count = 20;
 let triggerJoin = false;
 let seats = [];
-let emptySeat = Array.from(Array(40).keys());
+/*let emptySeat = Array.from(Array(40).keys());*/
+let emptySeat = [0,12,20,8,24,16,4,1,13,9,17,5,2,14,22,10,26,18,6,3,15,11,19,7,28,36,34,38,32,21,29,25,30,37,35,39,33,23,31,27];
 let avatarLoc = "https://webdialogos.fi/fishbowl/kuvat/";
 
 /**
