@@ -170,9 +170,10 @@ function onUserJoined(id, user) {
                           details.roomName + "_" + 
                           nameKeyStr[0] + "_" +
                           nameKeyStr[1] + ".png"};
-    var imgId = '#img' + seats[chairIdx].placeHolder;
+    /*var imgId = '#img' + seats[chairIdx].placeHolder;
     $(imgId).replaceWith(
-      `<img id="img${seats[chairIdx].placeHolder}" src="${seats[chairIdx].fileName}"/>`);
+      `<img id="img${seats[chairIdx].placeHolder}" src="${seats[chairIdx].fileName}"/>`);*/
+    refreshSeats();
 }
 
 function onUserLeft(id, user) {
@@ -307,7 +308,8 @@ function join() {
 	    this.src == 'https://webdialogos.fi/libs/audience-config.js')
 		this.parentNode.removeChild(this);
    });
-   $('#mainBtn').text('leave the panel');
+   /*$('#mainBtn').text('leave the panel');*/
+   $('#mainBtn').text('');
    $('body').append('<script src="libs/join-config.js"></script>');
    $('body').append('<script src="libs/join.js"></script>');
 }
@@ -328,7 +330,7 @@ var queue = setInterval(function() {
 	   textColor: '#ffffff'
 	});
 	count--;
-	count==0 ? count=20 : count;
+	/*count==0 ? count=20 : count;*/
    } else if (triggerJoin && frameArray.length > 0) {
         $.toast().reset('all');	   
 	room.sendTextMessage("STOP");
@@ -336,6 +338,27 @@ var queue = setInterval(function() {
 	clearInterval(queue);
 	join();
    } 
+   
+   if (count == 0) {
+	$.toast().reset('all');
+        room.sendTextMessage("STOP");
+        triggerJoin = false;
+        count = 20;
+        $('#mainBtn').attr('disabled', false);
+        $.toast({
+           text: 'Joining request failed! Please click Join again.',
+           icon: 'error',
+           showHideTransition: 'fade',
+           allowToastClose: false,
+           hideAfter: 2000,
+           stack: 1,
+           loader: false,
+           position: 'top-right',
+           textAlign: 'left',
+           bgColor: '#333333',
+           textColor: '#ffffff'
+        });
+   }
 }, 1000);
 
 function showAvatar(order) {

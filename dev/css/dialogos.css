@@ -1,63 +1,87 @@
 body {
-	background: url('background.png');
 	margin: 0 !important;
   padding: 0 !important;
+	width: 100%;
+	height: 100%;
+	background: #000000;
 }
 
-.main {
-	position: absolute;
-  background-color: #333333;
-	max-width: 600px;
-	left: 395px;
-	margin: 0 auto;
+.content {
+	min-width: 1280px;
+	max-height: 768px;
 }
 
-.main .logo {
-	width: 600px;
+.content .left-content {
+	width: 30%;
+	height: inherit;
+	float: left;
 }
 
-.logo img {
-	padding-left: 60px;
-	padding-top: 30px;
-	width: 100px;
+.content .left-content img {
+	transform: scaleX(-1);
+	width: 100%;
+	object-fit: contain;
 }
 
-.main .heading {
-	max-width: 500px;
+.content .right-content {
+	width: 30%;
+	height: inherit;
+	float: right;
 }
 
-.heading p {
+.content .right-content img {
+	width: 100%;
+	object-fit: contain;
+}
+
+/* main content starts below */
+
+.content .mid-content {
+	width: 40%;
+	height: inherit;
+	float: left;
+	background: #000000;
+}
+
+.mid-content .logo {
+	width: auto;
+	padding-left: 5%;
+	padding-top: 5%;
+}
+
+.mid-content .heading {
+	width: auto;
+	padding: 0 5%;
+}
+
+.mid-content .heading p {
 	font-family: 'Lato', sans-serif;
-	padding-left: 60px;
-	margin-left: 0 auto;
 	color: #ffffff;
 	font-size: 30px;
 	font-weight: bolder;
 	word-spacing: 3px;
 }
 
-.main .intro {
-	max-width: 540px;
+.mid-content .intro {
+	width: auto;
 	text-align: justify;
+	padding: 0 5%;
 }
 
-.intro p{
+.mid-content .intro p{
 	font-family: 'Lato', sans-serif;
-	padding-left: 60px;
-	margin-left: 0 auto;
 	color: #ffffff;
 	font-size: 14px;
 }
 
-.main .links {
-	max-width: 540px;
+.mid-content .links {
+	width: auto;
 	text-align: justify;
+	padding: 0 5%;
 }
 
-.links p {
+.mid-content .links p {
 	font-family: 'Lato', sans-serif;
-	padding-left: 60px;
-	margin-left: 0 auto;
 	color: #ffffff;
 	font-size: 14px;
 }
@@ -70,37 +94,30 @@ body {
 	color: blue;
 }
 
-.main .invite {
-	max-width: 540px;
+.mid-content .invite {
+	width: auto;
+	text-align: justify;
+	padding: 0 5%;
 }
 
 .invite p {
 	font-family: 'Lato', sans-serif;
-	padding-left: 60px;
-	margin-left: 0 auto;
 	color: #ffffff;
 	font-size: 25px;
 	word-spacing: 3px;
 }
+
 .invite img {
-	padding-left: 60px;
 }
 
-.main .footnote {
-	max-width: 540px;
+.mid-content .footnote {
+	width: auto;
 	text-align: justify;
+	padding: 0 5%;
 }
 
 .footnote p {
 	font-family: 'Lato', sans-serif;
-	padding-left: 60px;
-	padding-top: 20px;
-	margin-left: 0 auto;
 	color: #ffffff;
 	font-size: 10px;
-}
-
-.main .footer {
-	max-width: 600px;
-	height: 105px;
 }

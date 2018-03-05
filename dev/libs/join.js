@@ -212,9 +212,10 @@ function onUserJoined(id, user) {
                                  details.roomName + "_" + 
                                  nameKeyStr[0] + "_" +
                                  nameKeyStr[1] + ".png"};
-    var imgId = '#img' + seats[chairIdx].placeHolder;
+    /*var imgId = '#img' + seats[chairIdx].placeHolder;
     $(imgId).replaceWith(
-      `<img id="img${seats[chairIdx].placeHolder}" src="${seats[chairIdx].fileName}"/>`);
+      `<img id="img${seats[chairIdx].placeHolder}" src="${seats[chairIdx].fileName}"/>`);*/
+    refreshSeats();
 
 }
 
@@ -283,7 +284,7 @@ function onMessageReceive(id, text, ts) {
     } else if (split[0] === "STOP") {
 	blink = false;
         $('#mainBtn').attr('disabled', true);
-	clearInterval(blinkBtn);
+	/*clearInterval(blinkBtn);*/
     } else {
 	$.toast({
            text: text,
