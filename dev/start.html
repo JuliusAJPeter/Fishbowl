@@ -29,10 +29,12 @@
     <div class="form">
       <form action="javascript: void(0);" onsubmit="return go()" id="form-details">
         <input type="text" id="roomText" placeholder="room" name="roomName" onfocus="showRoomTip()" onblur="hideRoomTip()" required/>
-        <div class="roomTooltip">No capital letters, special characters, numbers or spaces allowed in roomname!</div>
+        <div class="roomTooltip"><!--No capital letters, special characters, numbers or spaces allowed in roomname!-->
+	   Only lowercase letters and numbers allowed in roomname!</div>
 
         <input type="text" id="nickText" placeholder="nickname" name="nickName" onfocus="showNameTip()" onblur="hideNameTip()" required/>
-        <div class="nameTooltip">No special characters or spaces allowed in nickname!</div>
+        <div class="nameTooltip"><!--No special characters or spaces allowed in nickname!-->
+	   Only letters and numbers allowed in nickname!</div>
         <div class="avatar">
           <!-- <img id="avatar-here" src="resources/image.png">-->
 	  <h1 id="avatar-here">Take a photo of yourself <br>by clicking the <br>camera icon</h1>

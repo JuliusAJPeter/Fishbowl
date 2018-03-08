@@ -377,6 +377,7 @@ var blinkBtn = setInterval(function() {
    } else {
        if ($('#mainBtn').text() != '') {
          $('#mainBtn').text('');
+       }
    }
 }, 1000);
 
