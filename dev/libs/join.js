@@ -7,15 +7,36 @@ const changeList = {};
 let frameArray = [1,2,3,4];
 let isJoined = false;
 let blink = false;
-let seats = [];
-/*let emptySeat = Array.from(Array(40).keys());*/
-let emptySeat = [0,12,20,8,24,16,4,1,13,9,17,5,2,14,22,10,26,18,6,3,15,11,19,7,28,36,34,38,32,21,29,25,30,37,35,39,33,23,31,27];
+let joinSeats = [];
+let joinEmptySeat = [0,12,20,8,24,16,4,1,13,9,17,5,2,14,22,10,26,18,6,3,15,11,19,7,28,36,34,38,32,21,29,25,30,37,35,39,33,23,31,27];
 let avatarLoc = "https://webdialogos.fi/fishbowl/kuvat/";
 
-/**
- * Fill in the empty chairs
- */
-refreshSeats();
+var proxyJoinSeats = new Proxy(joinSeats, {
+  set: function(target, property, value, receiver) {
+         target[property] = value;
+         var imgId,
+             src;
+         for (var i=0; i<40; i++) {
+           if (target[i] !== undefined) {
+             imgId = '#img' + target[i].placeHolder;
+             $(imgId).replaceWith(
+               `<img id="img${target[i].placeHolder}" src="${target[i].fileName}"/>`);
+           } else {
+              if ((i>2 && i<15) ||
+                (i>25 && i<34)) {
+                src = "resources/chair-right.png";
+              }
+              else {
+                src = "resources/chair-left.png";
+              }
+           imgId = '#img' + i;
+           $(imgId).replaceWith(
+             `<img id="img${i}" src="${src}"/>`);
+           }
+         }
+         return true;
+  }
+});
 
 /**
  * Handles local tracks.
@@ -69,7 +90,15 @@ function onRemoteTrack(track) {
 
     if (!(participant in changeList)){
       changeList[participant] = frameArray.shift();
-      console.log('INFO (join.js): Participants: ' + JSON.stringify(changeList));
+      for (var i=0; i<40; i++) {
+          if (proxyJoinSeats[i] !== undefined) {
+            if (proxyJoinSeats[i].userId === participant) {
+              proxyJoinSeats[i] = undefined;
+              joinEmptySeat.push(i);
+              break;
+            }
+          }
+      }
     }
 
     var remoteVideo = "#remoteVideo" +changeList[participant];
@@ -80,15 +109,6 @@ function onRemoteTrack(track) {
             `<video autoplay='1' id='${participant}video${idx}' />`);*/
         $(remoteVideo).replaceWith(
           `<div id='remoteVideo${changeList[participant]}'><video autoplay='1' id='${participant}video${idx}' width='308px'/></div>`);
-        for (var i=0; i<40; i++) {
-          if (seats[i] != undefined) {
-            if (seats[i].userId == participant) {
-              seats.splice(i, 1);
-              emptySeat.push(i);
-            } 
-          }
-        }
-        refreshSeats();
     } else {
         /*$('body').append(
             `<audio autoplay='1' id='${participant}audio${idx}' />`);*/
@@ -96,7 +116,6 @@ function onRemoteTrack(track) {
           `<div id='remoteAudio${changeList[participant]}'><audio autoplay='1' id='${participant}audio${idx}' /></div>`);
     }
     track.attach($(`#${id}`)[0]);
-    console.log('INFO (join.js): Remote track added!');
 }
 
 /**
@@ -135,7 +154,6 @@ function onRemoteTrackRemove(track) {
       frameArray.push(changeList[participant]);
       delete changeList[participant];
     }
-    //console.log('INFO (join.js): Participants after track remove: ' + JSON.stringify(changeList));
 }
 
 /**
@@ -160,7 +178,7 @@ function onConferenceJoined() {
         textAlign: 'left',
         bgColor: '#333333',
         textColor: '#ffffff'
-    }); 
+    });
 }
 
 /**
@@ -180,86 +198,43 @@ function onConnectionSuccess() {
     room.on(JitsiMeetJS.events.conference.USER_JOINED, onUserJoined);
     room.on(JitsiMeetJS.events.conference.USER_LEFT, onUserLeft);
     room.setDisplayName(details.nickName + "@" + details.key);
-    
+
     room.on(JitsiMeetJS.events.conference.MESSAGE_RECEIVED, onMessageReceive);
     room.join();
-    /* User joined in the panel so no avatar on the chair
-    seats[0] = {userId: 0,
-                placeHolder: emptySeat.shift(),
-                nickname: details.nickName,
-                key: details.key,
-                fileName: avatarLoc + 
-                          details.roomName + "_" + 
-                          details.nickName + "_" +
-                          details.key + ".png"
-               };
-    var imgId = '#img' + seats[0].placeHolder;
-    $(imgId).replaceWith(
-      `<img id="img${seats[0].placeHolder}" src="${seats[0].fileName}"/>`);
-    */
 }
 
 function onUserJoined(id, user) {
     remoteTracks[id] = [];
-    chairIdx = emptySeat.shift();
+    chairIdx = joinEmptySeat.shift();
     var displayName = user._displayName;
-    var nameKeyStr = displayName.split("@");    
-    seats[chairIdx] = {userId: id,
-                       placeHolder: chairIdx,
-    		       nickname: nameKeyStr[0],
-                       key: nameKeyStr[1],
-    		       fileName: avatarLoc + 
-                                 details.roomName + "_" + 
-                                 nameKeyStr[0] + "_" +
-                                 nameKeyStr[1] + ".png"};
-    /*var imgId = '#img' + seats[chairIdx].placeHolder;
-    $(imgId).replaceWith(
-      `<img id="img${seats[chairIdx].placeHolder}" src="${seats[chairIdx].fileName}"/>`);*/
-    refreshSeats();
-
+    var nameKeyStr = displayName.split("@");
+    proxyJoinSeats[chairIdx] = {userId: id,
+                placeHolder: chairIdx,
+                nickname: nameKeyStr[0],
+                key: nameKeyStr[1],
+                fileName: avatarLoc +
+                          details.roomName + "_" +
+                          nameKeyStr[0] + "_" +
+                          nameKeyStr[1] + ".png"};
 }
 
 function onUserLeft(id, user) {
     for (var i=0; i<40; i++) {
-      if (seats[i] !== undefined) {
-        if (seats[i].userId === id)
-	  seats.splice(i, 1);
-          emptySeat.push(i);
+      if (proxyJoinSeats[i] !== undefined) {
+        if (proxyJoinSeats[i].userId === id) {
+          proxyJoinSeats[i] = undefined;
+          joinEmptySeat.push(i);
+          break;
+        }
       }
     }
-    refreshSeats();
 }
 
-function refreshSeats() {
-    var imgId,
-        src;
-    for (var i=0; i<40; i++) {
-      if (seats[i] !== undefined) {
-        imgId = '#img' + seats[i].placeHolder;
-        $(imgId).replaceWith(
-          `<img id="img${seats[i].placeHolder}" src="${seats[i].fileName}"/>`);
-      } else {
-          if ((i>2 && i<15) ||
-              (i>25 && i<34)) {
-            src = "resources/chair-right.png";
-          }
-          else {
-            src = "resources/chair-left.png";
-          }
-          imgId = '#img' + i;
-          $(imgId).replaceWith(
-            `<img id="img${i}" src="${src}"/>`);
-      }
-    }
-}
 
 /**
  * function is called when a message is received
  */
 function onMessageReceive(id, text, ts) {
-    console.log("onMessageReceive" +id);
-    console.log("onMessageReceive" +text);
-    console.log("onMessageReceive" +ts);
     var split = text.split("@");
     if (split[0] === "REQUEST") {
         $('#mainBtn').attr('disabled', false);
@@ -274,15 +249,16 @@ function onMessageReceive(id, text, ts) {
             allowToastClose: false,
             hideAfter: 5000,
             stack: 5,
-	    loader: false,
-            position: 'top-right',
+	          loader: false,
+            position: 'top-center',
             textAlign: 'left',
             bgColor: '#333333',
             textColor: '#ffffff'
           });
-	}	
+	}
     } else if (split[0] === "STOP") {
-	blink = false;
+	      blink = false;
+        $('#mainBtn').text('');
         $('#mainBtn').attr('disabled', true);
 	/*clearInterval(blinkBtn);*/
     } else {
@@ -293,8 +269,8 @@ function onMessageReceive(id, text, ts) {
            allowToastClose: false,
            hideAfter: 5000,
            stack: 5,
-	   loader: false,
-           position: 'top-right',
+	         loader: false,
+           position: 'top-center',
            textAlign: 'left',
            bgColor: '#333333',
            textColor: '#ffffff'
@@ -330,10 +306,8 @@ function disconnect() {
  */
 function unload() {
     for(let i = 0; i<localTracks.length; i++) {
-      //console.log("INFO: localTrack: " +localTracks[i]);
-      //localTracks[i].stop();
       localTracks[i].dispose();
-    }	    
+    }
     room.leave();
     connection.disconnect();
 }
@@ -351,12 +325,12 @@ JitsiMeetJS.init(config)
 	     allowToastClose: false,
              hideAfter: 2000,
 	     stack: 5,
-	     loader: false,	
+	     loader: false,
 	     position: 'top-right',
 	     textAlign: 'left',
 	     bgColor: '#333333',
-	     textColor: '#ffffff'	
-	}); 
+	     textColor: '#ffffff'
+	});
         connection.addEventListener(
             JitsiMeetJS.events.connection.CONNECTION_ESTABLISHED,
             onConnectionSuccess);
@@ -377,37 +351,43 @@ JitsiMeetJS.init(config)
     .catch(error => console.log('ERROR (join.js): JitsiMeetJS.init says ' +error));
 
 function btnClick() {
-    clearInterval(blinkBtn);
     blink = false;
+    clearInterval(blinkBtn);
     unload();
     $('script').each(function() {
-	if (this.src == 'https://webdialogos.fi/libs/join.js' ||
+	  if (this.src == 'https://webdialogos.fi/libs/join.js' ||
 	    this.src == 'https://webdialogos.fi/libs/join-config.js')
 	    this.parentNode.removeChild(this);
     });
-    $('#mainBtn').text('join the panel'); 
-    $('#mainBtn').attr('disabled', true);
+    /*$('#mainBtn').text('join the panel');
+    $('#mainBtn').attr('disabled', true);*/
     $('body').append('<script src="libs/audience-config.js"></script>');
     $('body').append('<script src="libs/audience.js"></script>');
 }
 
 var blinkBtn = setInterval(function() {
-   if (blink){
-     $('#mainBtn').text('');
+   if (blink) {
      setTimeout(function() {
-	$('#mainBtn').text('leave the panel');
+        if ($('#mainBtn').text() == '') {
+          $('#mainBtn').text('leave the panel');
+        } else {
+          $('#mainBtn').text('');
+        }
      }, 500);
+   } else {
+       if ($('#mainBtn').text() != '') {
+         $('#mainBtn').text('');
    }
 }, 1000);
 
 function showAvatar(order) {
   var modalContent;
-  if (seats[order] === undefined) {
+  if (joinSeats[order] === undefined) {
     modalContent = '<h2>@empty chair</h2>';
   }
   else {
-    modalContent = '<h2>@' + seats[order].nickname + '</h2>' +
-                       '<img src="' + seats[order].fileName + '"/>';
+    modalContent = '<h2>@' + joinSeats[order].nickname + '</h2>' +
+                   '<img src="' + joinSeats[order].fileName + '"/>';
   }
   modal.open({
      content: modalContent,
@@ -415,4 +395,3 @@ function showAvatar(order) {
      heigth: "225px"
   });
 }
-

@@ -10,6 +10,7 @@
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="css/jquery.toast.min.css">
   <script src="libs/jquery-2.1.3.min.js"></script>
+  <script src="libs/logging_config.js"></script>
   <script src="https://cdn.jitsi.net/2367/libs/lib-jitsi-meet.min.js?v=2367"></script>
   <script type="text/javascript" src="js/jquery.toast.min.js"></script>
 </head>
@@ -24,10 +25,14 @@
     <div class="toggle"><i class="fa fa-times fa-exclamation"></i>
       <div class="tooltip">Read me</div>
     </div>
+
     <div class="form">
       <form action="javascript: void(0);" onsubmit="return go()" id="form-details">
-        <input type="text" id="roomText" placeholder="room" name="roomName" required/>
-        <input type="text" id="nickText" placeholder="nickname" name="nickName" required/>
+        <input type="text" id="roomText" placeholder="room" name="roomName" onfocus="showRoomTip()" onblur="hideRoomTip()" required/>
+        <div class="roomTooltip">No capital letters, special characters, numbers or spaces allowed in roomname!</div>
+
+        <input type="text" id="nickText" placeholder="nickname" name="nickName" onfocus="showNameTip()" onblur="hideNameTip()" required/>
+        <div class="nameTooltip">No special characters or spaces allowed in nickname!</div>
         <div class="avatar">
           <!-- <img id="avatar-here" src="resources/image.png">-->
 	  <h1 id="avatar-here">Take a photo of yourself <br>by clicking the <br>camera icon</h1>

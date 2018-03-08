@@ -64,6 +64,60 @@ body {
   text-transform: uppercase;
 }
 
+.form .roomTooltip {
+  position: absolute;
+  top: 50px;
+  right: -145px;
+  display: block;
+  background: rgba(128, 128, 134, 1);
+  width: 170px;
+  height: 30px;
+  padding: 5px;
+  font-size: 10px;
+  color: #000000;
+  line-height: 1;
+  font-weight: bold;
+  display: none;
+}
+
+.form .roomTooltip:before {
+  content: '';
+  position: absolute;
+  top: 5px;
+  left: -5px;
+  display: block;
+  border-top: 5px solid transparent;
+  border-bottom: 5px solid transparent;
+  border-right: 5px solid rgba(128, 128, 134, 1);
+}
+
+.form .nameTooltip {
+  position: absolute;
+  top: 110px;
+  right: -115px;
+  display: block;
+  background: rgba(128, 128, 134, 1);
+  width: 140px;
+  height: 20px;
+  padding: 5px;
+  font-size: 10px;
+  color: #000000;
+  line-height: 1;
+  font-weight: bold;
+  display: none;
+}
+
+.form .nameTooltip:before {
+  content: '';
+  position: absolute;
+  top: 5px;
+  left: -5px;
+  display: block;
+  border-top: 5px solid transparent;
+  border-bottom: 5px solid transparent;
+  border-right: 5px solid rgba(128, 128, 134, 1);
+}
+
 .form-module .toggle .tooltip:before {
   content: '';
   position: absolute;

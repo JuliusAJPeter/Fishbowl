@@ -228,6 +228,11 @@ function readme() {
   });
 }
 
+function showRoomTip() {$('.roomTooltip').css('display', 'block');}
+function hideRoomTip() {$('.roomTooltip').css('display', 'none');}
+function showNameTip() {$('.nameTooltip').css('display', 'block');}
+function hideNameTip() {$('.nameTooltip').css('display', 'none');}
+
 var roomText = "Type your room here...";
 var nameText = "Type your nickname here...";
 var room_text = "";
@@ -236,19 +241,20 @@ var i_room =0;
 var i_name =0;
 
 var roomQueue = setInterval(function() {
-  if ($("#roomText").val() == "") {
     if (i_room < 0) {
       i_room++;
-      $("#roomText").attr("placeholder", " ");
+      if (i_room == 0)
+        $("#roomText").attr("placeholder", " ");
       return;
     }
-    room_text = room_text + roomText[i_room];
-    i_room++;
-    $("#roomText").attr("placeholder", room_text);
-    if (i_room > roomText.length-1) {
-      i_room=-2;
-      room_text = "";
-    }
+    if ($("#roomText").val() == "") {
+      room_text = room_text + roomText[i_room];
+      i_room++;
+      $("#roomText").attr("placeholder", room_text);
+      if (i_room > roomText.length-1) {
+        i_room=-54;
+        room_text = "";
+      }
     } else {
        clearInterval(roomQueue);
     }
@@ -257,7 +263,8 @@ var roomQueue = setInterval(function() {
 var nameQueue = setInterval(function() {
   if (i_name < 0) {
     i_name++;
-    $("#nickText").attr("placeholder", " ");
+    if (i_name == 0)
+      $("#nickText").attr("placeholder", " ");
     return;
   }
   if ($("#nickText").val() == "") {
@@ -265,7 +272,7 @@ var nameQueue = setInterval(function() {
     i_name++;
     $("#nickText").attr("placeholder", name_text);
     if (i_name > nameText.length-1) {
-      i_name=-2;
+      i_name=-50;
       name_text = "";
     }
   } else {
