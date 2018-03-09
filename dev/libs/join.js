@@ -38,6 +38,7 @@ var proxyJoinSeats = new Proxy(joinSeats, {
   }
 });
 
+$('#mainBtn').css('cursor', 'none');
 /**
  * Handles local tracks.
  * @param tracks Array with JitsiTrack objects
@@ -237,11 +238,11 @@ function onUserLeft(id, user) {
 function onMessageReceive(id, text, ts) {
     var split = text.split("@");
     if (split[0] === "REQUEST") {
-        $('#mainBtn').attr('disabled', false);
 	var diff = new Date().getTime() - new Date(split[1]).getTime();
-	console.log("onMessageReceive" +diff);
 	if (Math.floor(diff/1000) < 10) {
 	  blink = true;
+          $('#mainBtn').attr('disabled', false);
+          $('#mainBtn').css('cursor', 'pointer');
  	  $.toast({
             text: 'Someone wants to join!',
             icon: 'info',
@@ -249,7 +250,7 @@ function onMessageReceive(id, text, ts) {
             allowToastClose: false,
             hideAfter: 5000,
             stack: 5,
-	          loader: false,
+	    loader: false,
             position: 'top-center',
             textAlign: 'left',
             bgColor: '#333333',
@@ -257,9 +258,10 @@ function onMessageReceive(id, text, ts) {
           });
 	}
     } else if (split[0] === "STOP") {
-	      blink = false;
+	blink = false;
         $('#mainBtn').text('');
         $('#mainBtn').attr('disabled', true);
+        $('#mainBtn').css('cursor', 'none');
 	/*clearInterval(blinkBtn);*/
     } else {
 	$.toast({
@@ -353,6 +355,7 @@ JitsiMeetJS.init(config)
 function btnClick() {
     blink = false;
     clearInterval(blinkBtn);
+    $.toast().reset('all');
     unload();
     $('script').each(function() {
 	  if (this.src == 'https://webdialogos.fi/libs/join.js' ||
@@ -367,19 +370,17 @@ function btnClick() {
 
 var blinkBtn = setInterval(function() {
    if (blink) {
-     setTimeout(function() {
-        if ($('#mainBtn').text() == '') {
-          $('#mainBtn').text('leave the panel');
-        } else {
-          $('#mainBtn').text('');
-        }
-     }, 500);
+     if ($('#mainBtn').text() == '') {
+       $('#mainBtn').text('leave the panel');
+     } else {
+       $('#mainBtn').text('');
+     }
    } else {
        if ($('#mainBtn').text() != '') {
          $('#mainBtn').text('');
        }
    }
-}, 1000);
+}, 500);
 
 function showAvatar(order) {
   var modalContent;

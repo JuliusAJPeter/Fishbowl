@@ -41,6 +41,7 @@ var proxyAudienceSeats = new Proxy(audienceSeats, {
 
 $('#mainBtn').text('join the panel');
 $('#mainBtn').attr('disabled', true);
+/*$('#mainBtn').attr('cursor', 'pointer');*/
 
 /**
  * Handles remote tracks
@@ -228,7 +229,7 @@ function disconnect() {
 }
 
 /**
- * function called when windiw is closed.
+ * function called when window is closed.
  */
 function unload() {
     room.leave();
@@ -335,7 +336,7 @@ var queue = setInterval(function() {
 
    if (count == 0) {
     	$.toast().reset('all');
-      room.sendTextMessage("STOP");
+      room.sendTextMessage("STOP@nothing");
       triggerJoin = false;
       count = 20;
       $('#mainBtn').attr('disabled', false);
