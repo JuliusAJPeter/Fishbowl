@@ -79,6 +79,8 @@ let nickname = null;
 let roomname = null;
 let localStream = null;
 let key = null;
+let allowCameraOn = false;
+let allowMicOn = false;
 
 function go(){
   if (image == null) {
@@ -97,6 +99,39 @@ function go(){
     });
     return;
   }
+  // check for camera and microphone
+  navigator.getMedia = (navigator.getUserMedia ||
+                        navigator.webkitGetUserMedia);
+    navigator.getMedia({video: true}, function() {
+      allowCameraOn = true;
+    }, function() {
+      allowCameraOn = false;
+    });
+    navigator.getMedia({audio: true}, function() {
+      allowMicOn = true;
+    }, function() {
+      allowMicOn = false
+    });
+
+    if (allowCameraOn && allowMicOn) {
+      console.log("Camera and MIC clear");
+    } else {
+      $.toast({
+        text: 'Please allow camera and MIC in your browser settings!',
+        icon: 'info',
+        showHideTransition: 'fade',
+        allowToastClose: false,
+        hideAfter: 5000,
+        stack: 5,
+        loader: false,
+        position: 'top-right',
+        textAlign: 'left',
+        bgColor: '#333333',
+        textColor: '#ffffff'
+      });
+      return;
+    }
+ 
   var script = document.createElement('script');
   roomname = document.getElementById('form-details').elements.item(0).value;
   nickname = document.getElementById('form-details').elements.item(1).value;
