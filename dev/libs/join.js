@@ -241,8 +241,9 @@ function onMessageReceive(id, text, ts) {
 	var diff = new Date().getTime() - new Date(split[1]).getTime();
 	if (Math.floor(diff/1000) < 10) {
 	  blink = true;
-          $('#mainBtn').attr('disabled', false);
-          $('#mainBtn').css('cursor', 'pointer');
+          /*$('#mainBtn').attr('disabled', false);
+          $('#mainBtn').css('cursor', 'pointer');*/
+          $('#mainBtn').replaceWith(`<img id="mainBtn" src="resources/leaveBtn.gif" onClick="btnClick()"/>`);
  	  $.toast({
             text: 'Someone wants to join!',
             icon: 'info',
@@ -259,10 +260,11 @@ function onMessageReceive(id, text, ts) {
 	}
     } else if (split[0] === "STOP") {
 	blink = false;
-        $('#mainBtn').text('');
+        /*$('#mainBtn').text('');
         $('#mainBtn').attr('disabled', true);
-        $('#mainBtn').css('cursor', 'none');
+        $('#mainBtn').css('cursor', 'none');*/
 	/*clearInterval(blinkBtn);*/
+        $('#mainBtn').replaceWith(`<img id="mainBtn"/>`);
     } else {
 	$.toast({
            text: text,
@@ -354,8 +356,9 @@ JitsiMeetJS.init(config)
 
 function btnClick() {
     blink = false;
-    clearInterval(blinkBtn);
+    //clearInterval(blinkBtn);
     $.toast().reset('all');
+    $('#mainBtn').replaceWith(`<img id="mainBtn"/>`);
     unload();
     $('script').each(function() {
 	  if (this.src == 'https://webdialogos.fi/libs/join.js' ||
@@ -367,7 +370,7 @@ function btnClick() {
     $('body').append('<script src="libs/audience-config.js"></script>');
     $('body').append('<script src="libs/audience.js"></script>');
 }
-
+/*
 var blinkBtn = setInterval(function() {
    if (blink) {
      if ($('#mainBtn').text() == '') {
@@ -381,7 +384,7 @@ var blinkBtn = setInterval(function() {
        }
    }
 }, 500);
-
+*/
 function showAvatar(order) {
   var modalContent;
   if (joinSeats[order] === undefined) {

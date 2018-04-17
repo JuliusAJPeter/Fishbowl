@@ -742,6 +742,9 @@ div.container div {
 .joinbutton {
   left: 355px;
   top: 465px;
+  width: 616px;
+  height: 41px;
+  color: #ffffff;
 }
 
 .joinbutton button {

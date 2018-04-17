@@ -82,6 +82,20 @@ let key = null;
 let allowCameraOn = false;
 let allowMicOn = false;
 
+// check for camera and microphone
+  navigator.getMedia = (navigator.getUserMedia ||
+                        navigator.webkitGetUserMedia);
+    navigator.getMedia({video: true}, function() {
+      allowCameraOn = true;
+    }, function() {
+      allowCameraOn = false;
+    });
+    navigator.getMedia({audio: true}, function() {
+      allowMicOn = true;
+    }, function() {
+      allowMicOn = false
+    });
+
 function go(){
   if (image == null) {
     $.toast({
@@ -99,20 +113,7 @@ function go(){
     });
     return;
   }
-  // check for camera and microphone
-  navigator.getMedia = (navigator.getUserMedia ||
-                        navigator.webkitGetUserMedia);
-    navigator.getMedia({video: true}, function() {
-      allowCameraOn = true;
-    }, function() {
-      allowCameraOn = false;
-    });
-    navigator.getMedia({audio: true}, function() {
-      allowMicOn = true;
-    }, function() {
-      allowMicOn = false
-    });
-
+    
     if (allowCameraOn && allowMicOn) {
       console.log("Camera and MIC clear");
     } else {

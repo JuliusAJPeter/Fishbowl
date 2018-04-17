@@ -39,9 +39,12 @@ var proxyAudienceSeats = new Proxy(audienceSeats, {
   }
 });
 
+/*
 $('#mainBtn').text('join the panel');
-$('#mainBtn').attr('disabled', true);
+$('#mainBtn').attr('disabled', true);*/
 /*$('#mainBtn').attr('cursor', 'pointer');*/
+$('#mainBtn').replaceWith(`<img id="mainBtn" src="resources/joinBtn.png" onClick="btnClick()"/>`);
+$('#mainBtn').attr('disabled', true);
 
 /**
  * Handles remote tracks
@@ -303,8 +306,9 @@ function join() {
 	    this.src == 'https://webdialogos.fi/libs/audience-config.js')
 		this.parentNode.removeChild(this);
    });
-   /*$('#mainBtn').text('leave the panel');*/
-   $('#mainBtn').text('');
+   /*$('#mainBtn').text('leave the panel');
+   $('#mainBtn').text('');*/
+   $('#mainBtn').replaceWith(`<img id="mainBtn"/>`);
    $('body').append('<script src="libs/join-config.js"></script>');
    $('body').append('<script src="libs/join.js"></script>');
 }
