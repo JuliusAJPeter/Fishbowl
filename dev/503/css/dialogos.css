@@ -1,0 +1,137 @@
+body {
+	margin: 0 !important;
+  padding: 0 !important;
+	width: 100%;
+	height: 100%;
+	background: #333333;
+}
+
+.content {
+	min-width: 1280px;
+	max-height: 768px;
+}
+
+.content .left-content {
+	width: 30%;
+	height: inherit;
+	float: left;
+}
+
+.content .left-content img {
+	transform: scaleX(-1);
+	width: 100%;
+	object-fit: contain;
+}
+
+.content .right-content {
+	width: 30%;
+	height: inherit;
+	float: right;
+}
+
+.content .right-content img {
+	width: 100%;
+	object-fit: contain;
+}
+
+/* main content starts below */
+
+.content .mid-content {
+	width: 40%;
+	height: inherit;
+	float: left;
+	background: #333333;
+}
+
+.mid-content .logo {
+	width: auto;
+	padding-left: 5%;
+	padding-top: 5%;
+}
+
+.mid-content .heading {
+	width: auto;
+	padding: 0 5%;
+}
+
+.mid-content .heading p {
+	font-family: 'Lato', sans-serif;
+	color: #ffffff;
+	font-size: 30px;
+	font-weight: bolder;
+	word-spacing: 3px;
+}
+
+.mid-content .intro {
+	width: auto;
+	text-align: justify;
+	padding: 0 5%;
+}
+
+.mid-content .intro p{
+	font-family: 'Lato', sans-serif;
+	color: #ffffff;
+	font-size: 14px;
+}
+
+.intro a {
+        color: inherit;
+}
+
+.intro a:hover {
+        color: blue;
+}
+
+.mid-content .links {
+	width: auto;
+	text-align: justify;
+	padding: 0 5%;
+}
+
+.mid-content .links p {
+	font-family: 'Lato', sans-serif;
+	color: #ffffff;
+	font-size: 14px;
+}
+
+.links a {
+	color: inherit;
+}
+
+.links a:hover {
+	color: blue;
+}
+
+.mid-content .invite {
+	width: auto;
+	text-align: center;
+	padding-bottom: 2%;
+	padding-top: 1%;
+	background: #ffffff;
+}
+
+.invite p {
+	font-family: 'Lato', sans-serif;
+	color: #000000;
+	font-size: 18px;
+	word-spacing: 3px;
+}
+
+.invite b {
+	font-family: 'Lato', sans-serif;
+	color: #000000;
+	font-size: 28px;
+	word-spacing: 3px;
+}
+
+.mid-content .footnote {
+	width: auto;
+	text-align: justify;
+	padding: 0 5%;
+}
+
+.footnote p {
+	font-family: 'Lato', sans-serif;
+	color: #ffffff;
+	font-size: 10px;
+}
